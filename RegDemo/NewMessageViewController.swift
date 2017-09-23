@@ -11,7 +11,12 @@ import Firebase
 
 class NewMessageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var users = [UserFB]()
+    var users = [UserFB]() {
+        didSet {
+            displayedUsers = users.filter { $0.id != Auth.auth().currentUser!.uid }
+        }
+    }
+    var displayedUsers = [UserFB]()
     var selectedUserIDs = [String]()
     var allname: [String] = []
     
@@ -29,20 +34,20 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return displayedUsers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellNM", for: indexPath)
         
-        let user = users[indexPath.row]
+        let user = displayedUsers[indexPath.row]
         cell.textLabel?.text = user.name
         return cell
 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let user = users[indexPath.row]
+        let user = displayedUsers[indexPath.row]
         let cell = tableView.cellForRow(at: indexPath)
         if cell?.accessoryType == .checkmark {
             cell?.accessoryType = .none
@@ -84,34 +89,22 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         let chatroomRef = Database.database().reference().child("chatrooms")
         let newChatroomKey = chatroomRef.childByAutoId().key
         let chatroomMembersRef = chatroomRef.child(newChatroomKey).child("members")
-        let allMemberIDs = selectedUserIDs + [Auth.auth().currentUser!.uid]
         let nameRef = chatroomRef.child(newChatroomKey).child("name")
         
+        let allMemberIDs = selectedUserIDs + [Auth.auth().currentUser!.uid]
+        
+        // Filter all the users to just the selected users, and get their names only
+        let selectedUsers = users.filter { allMemberIDs.contains($0.id) }
+        let names = selectedUsers.map { $0.name }
+        nameRef.setValue(names.joined(separator: ", "))
 
+        // Adds all members to chatroom
         for userID in allMemberIDs {
             chatroomMembersRef.child(userID).setValue(true)
             usersRef.child(userID).child("chatrooms").child(newChatroomKey).setValue(true)
-            Database.database().reference().child("users").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
-                if let dictionary = snapshot.value as? [String: AnyObject] {
-                    let name = dictionary["name"] as? String
-                    self.allname.append("\(name!)")
-                    if self.allname.count == allMemberIDs.count {
-                        var names = ""
-                        for name in self.allname {
-                            if names == "" {
-                                names = name
-                            }
-                            else {
-                                names =  "\(names), \(name)"
-                            }
-                        }
-                        nameRef.setValue(names)
-                    }
-                }
-            })
-            
         }
         
+        // Open the chatroom view
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let chatVC = storyboard.instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
         chatVC.chatroomID = newChatroomKey

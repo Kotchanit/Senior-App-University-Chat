@@ -17,6 +17,7 @@ import FirebaseAuth
 class ChatViewController: JSQMessagesViewController {
     
     var chatroomID = ""
+    var name = ""
     var messages = [JSQMessage]()
     
     var messageRef: DatabaseReference?
@@ -25,27 +26,32 @@ class ChatViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
         
+        senderId = Auth.auth().currentUser?.uid
+        senderDisplayName = senderId
         
-        let currentUser = Auth.auth().currentUser
-        
-        self.senderId = currentUser?.uid
-        self.senderDisplayName = Auth.auth().currentUser!.uid
+        Database.database().reference().child("users").child(senderId).child("name").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let name = snapshot.value as? String {
+                self.senderDisplayName = name
+            }
+        })
  
-  
         messageRef = Database.database().reference().child("chatrooms").child(chatroomID).child("messages")
         observeMembers()
         observeMessages()
-        
-       
     }
  
     func observeMembers() {
         Database.database().reference().child("chatrooms").child(chatroomID).child("members").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 self.members = [String](dictionary.keys)
-                self.navigationItem.title = "\(self.chatroomID)(\(self.members.count))"
+                self.navigationItem.title = "\(self.name)(\(self.members.count))"
+            }
+        })
+        Database.database().reference().child("chatrooms").child(chatroomID).child("name").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let name = snapshot.value as? String{
+                self.name = name
+                self.navigationItem.title = "\(self.name) (\(self.members.count))"
             }
         })
     }
@@ -162,10 +168,7 @@ class ChatViewController: JSQMessagesViewController {
         } else {
             let bubbleFactory = JSQMessagesBubbleImageFactory()
             return bubbleFactory?.incomingMessagesBubbleImage(with: UIColor.blue)
-
         }
-        
-        
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
@@ -173,7 +176,6 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //print("number of items:\(messages.count)")
         return messages.count
     }
     
@@ -194,16 +196,12 @@ class ChatViewController: JSQMessagesViewController {
             }
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 
     func sendMedia(picture: UIImage?, video: NSURL?) {
 
         print(Storage.storage().reference())
         if let picture = picture {
-            let filePath = "\(Auth.auth().currentUser)/\(Date.timeIntervalSinceReferenceDate)"
+            let filePath = "\(Auth.auth().currentUser!)/\(Date.timeIntervalSinceReferenceDate)"
             print(filePath)
             let data = UIImageJPEGRepresentation(picture, 0.1)
             let metadata = StorageMetadata()
@@ -223,7 +221,7 @@ class ChatViewController: JSQMessagesViewController {
             }
             
         } else if let video = video {
-            let filePath = "\(Auth.auth().currentUser)/\(NSDate.timeIntervalSinceReferenceDate)"
+            let filePath = "\(Auth.auth().currentUser!)/\(NSDate.timeIntervalSinceReferenceDate)"
             print(filePath)
             let data = NSData(contentsOf: video as URL)
             let metadata = StorageMetadata()
