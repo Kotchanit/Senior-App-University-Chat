@@ -17,8 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        FirebaseApp.configure()
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if TokenManager.isLoggedIn() {
+        if AuthenticationManager.isLoggedIn() {
             let tabBar = storyboard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
             self.window?.rootViewController = tabBar
         } else {
@@ -26,8 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = login
         }
 
-        
-        FirebaseApp.configure()
+        window?.makeKeyAndVisible()
         return true
     }
 

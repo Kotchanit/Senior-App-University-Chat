@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class LoginViewController: UIViewController {
     
@@ -24,6 +25,9 @@ class LoginViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
         loginButton.isEnabled = true
         
+        usernameTextField.text = "57313783"
+        passwordTextField.text = "1234"
+        
         if Auth.auth().currentUser?.uid != nil {
             
         }
@@ -37,43 +41,40 @@ class LoginViewController: UIViewController {
             return
         }
         
-        //loginButton.isEnabled = false
+        loginButton.isEnabled = false
         
-        //                API.login(username: username, password: password) { result in
-        //                    self.loginButton.isEnabled = true
-        //                    if case let .success(token) = result {
-        //                        self.loginComplete(token: token)
-        //                        TokenManager.set(token: token)
-        //                    } else {
-        //                        self.showAlert(message: result.error?.localizedDescription ?? "Unknown error")
-        //                    }
-        //                }
-
-        Auth.auth().signIn(withEmail: username , password: password, completion: { (user, error) in
-            if user != nil {
-        
-                self.performSegue(withIdentifier: "tabBar", sender: self)
+        API.login(username: username, password: password) { result in
+            if case let .success(token) = result {
+                AuthenticationManager.set(token: token)
+                self.loginComplete(token: token)
             } else {
-                
-                if let myError = error?.localizedDescription {
-                    print(myError)
-                    
-                } else {
-                    print("ERROR")
-                }
+                self.loginButton.isEnabled = true
+                self.showAlert(message: result.error?.localizedDescription ?? "Unknown error")
             }
-            
-            self.contactController?.fetchUserAndSetupNavBarTitle()
-        
-        })
-        
+        }
     }
     
-    
-    
     func loginComplete(token: Token) {
-        // Login anon to Firebase
-        Helper.helper.loginAnonymously()
+        API.profile(token: token) { result in
+            self.loginButton.isEnabled = true
+            if case let .success(user) = result {
+                AuthenticationManager.set(user: user)
+                // Login anon to Firebase
+                Helper.helper.loginAnonymously() { success in
+                    if success {
+                        let userData = ["name": user.name, "status": user.status, "departmentName": user.departmentName, "facultyName": user.facultyName, "programName" : user.programName ]
+
+                        Database.database().reference().child("users").child(user.uid).child("data").setValue(userData)
+                    }
+                    else {
+                        self.showAlert(message: "Could not connect to Firebase")
+                    }
+                }
+            }
+            else {
+                self.showAlert(message: result.error?.localizedDescription ?? "Unknown error")
+            }
+        }
     }
     
     @IBAction func registerPressed(_ sender: Any) {

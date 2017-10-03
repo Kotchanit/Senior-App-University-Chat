@@ -321,7 +321,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
-                                    <action selector="Logout:" destination="Ohw-re-1Cs" eventType="touchUpInside" id="Ke7-3w-A39"/>
+                                    <action selector="logout" destination="Ohw-re-1Cs" eventType="touchUpInside" id="FQE-zW-20G"/>
                                 </connections>
                             </button>
                         </subviews>

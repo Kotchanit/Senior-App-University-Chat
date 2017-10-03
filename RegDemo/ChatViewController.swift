@@ -27,8 +27,8 @@ class ChatViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        senderId = Auth.auth().currentUser?.uid
-        senderDisplayName = senderId
+        senderId = AuthenticationManager.user()?.uid
+        senderDisplayName = AuthenticationManager.user()?.name
         
         Database.database().reference().child("users").child(senderId).child("name").observeSingleEvent(of: .value, with: { (snapshot) in
             if let name = snapshot.value as? String {

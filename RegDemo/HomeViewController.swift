@@ -19,7 +19,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let token = TokenManager.get() {
+        if let token = AuthenticationManager.token() {
             API.subjects(token: token, completion: { (result) in
                 if case let .success(items) = result {
                     self.subjectItems = items

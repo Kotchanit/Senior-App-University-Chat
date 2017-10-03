@@ -42,7 +42,7 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func checkIfUserisLoggedIn() {
-        if Auth.auth().currentUser?.uid == nil {
+        if AuthenticationManager.user()?.uid == nil {
             perform(#selector(logout), with: nil, afterDelay: 0)
         } else {
             fetchUserAndSetupNavBarTitle()
@@ -51,7 +51,7 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
     
  
     func fetchUserAndSetupNavBarTitle() {
-        guard let uid = Auth.auth().currentUser?.uid else {
+        guard let uid = AuthenticationManager.user()?.uid else {
             
             return
         }

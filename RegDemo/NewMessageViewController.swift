@@ -11,12 +11,12 @@ import Firebase
 
 class NewMessageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var users = [UserFB]() {
+    var users = [User]() {
         didSet {
-            displayedUsers = users.filter { $0.id != Auth.auth().currentUser!.uid }
+            displayedUsers = users.filter { $0.uid != AuthenticationManager.user()?.uid }
         }
     }
-    var displayedUsers = [UserFB]()
+    var displayedUsers = [User]()
     var selectedUserIDs = [String]()
     var allname: [String] = []
     
@@ -51,12 +51,12 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.cellForRow(at: indexPath)
         if cell?.accessoryType == .checkmark {
             cell?.accessoryType = .none
-            if let i = selectedUserIDs.index(of: user.id) {
+            if let i = selectedUserIDs.index(of: user.uid) {
                 self.selectedUserIDs.remove(at: i)
             }
         } else {
             cell?.accessoryType = .checkmark
-            self.selectedUserIDs.append(user.id)
+            self.selectedUserIDs.append(user.uid)
         }
         
         if selectedUserIDs.count > 0 {
@@ -70,17 +70,23 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     func fetchUsers() {
-        Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
-  
-            if let user = UserFB(snapshot: snapshot) {
-                self.users.append(user)
-                DispatchQueue.main.async{
-                    self.tableView.reloadData()
+        Database.database().reference().child("users").observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: Any] else {
+                return
+            }
+            
+            var users = [User]()
+            for (uid, object) in dictionary {
+                if let dict = object as? [String: Any], let userDict = dict["data"] as? [String: Any], let name = userDict["name"] as? String, let status = userDict["status"] as? String, let departmentName = userDict["departmentName"] as? String, let facultyName = userDict["facultyName"] as? String, let programName = userDict["programName"] as? String {
+                    let user = User(username: uid, name: name, status: status, departmentName: departmentName, facultyName: facultyName, programName: programName)
+                    users.append(user)
                 }
             }
-        
-        }, withCancel: nil)
-        
+            self.users = users
+            DispatchQueue.main.async{
+                self.tableView.reloadData()
+            }
+        })
     }
     
     
@@ -91,11 +97,11 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         let chatroomMembersRef = chatroomRef.child(newChatroomKey).child("members")
         let nameRef = chatroomRef.child(newChatroomKey).child("name")
         
-        let allMemberIDs = selectedUserIDs + [Auth.auth().currentUser!.uid]
+        let allMemberIDs = selectedUserIDs + [AuthenticationManager.user()!.uid]
         
         // Filter all the users to just the selected users, and get their names only
         //check if user.id in allmembersID is true
-        let selectedUsers = users.filter { allMemberIDs.contains($0.id) }
+        let selectedUsers = users.filter { allMemberIDs.contains($0.uid) }
         //append name to names
         let names = selectedUsers.map { $0.name } //check n
         nameRef.setValue(names.joined(separator: ", "))
