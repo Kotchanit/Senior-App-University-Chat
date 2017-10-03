@@ -94,8 +94,10 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         let allMemberIDs = selectedUserIDs + [Auth.auth().currentUser!.uid]
         
         // Filter all the users to just the selected users, and get their names only
+        //check if user.id in allmembersID is true
         let selectedUsers = users.filter { allMemberIDs.contains($0.id) }
-        let names = selectedUsers.map { $0.name }
+        //append name to names
+        let names = selectedUsers.map { $0.name } //check n
         nameRef.setValue(names.joined(separator: ", "))
 
         // Adds all members to chatroom

@@ -164,12 +164,15 @@ class ChatViewController: JSQMessagesViewController {
         
         if message.senderId == self.senderId {
             let bubbleFactory = JSQMessagesBubbleImageFactory()
-            return bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.black)
+            return bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.blue)
         } else {
             let bubbleFactory = JSQMessagesBubbleImageFactory()
-            return bubbleFactory?.incomingMessagesBubbleImage(with: UIColor.blue)
+            return bubbleFactory?.incomingMessagesBubbleImage(with: UIColor.lightGray)
         }
     }
+    
+
+    
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         return nil
