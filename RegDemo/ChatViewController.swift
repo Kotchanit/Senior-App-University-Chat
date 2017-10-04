@@ -39,6 +39,9 @@ class ChatViewController: JSQMessagesViewController {
         messageRef = Database.database().reference().child("chatrooms").child(chatroomID).child("messages")
         observeMembers()
         observeMessages()
+        
+        collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height: kJSQMessagesCollectionViewCellLabelHeightDefault)
+        collectionView.collectionViewLayout.outgoingAvatarViewSize = .zero
     }
  
     func observeMembers() {
@@ -158,6 +161,10 @@ class ChatViewController: JSQMessagesViewController {
         return messages[indexPath.item]
     }
     
+    
+    
+    
+    
     //Display Messages
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
         let message = messages[indexPath.item]
@@ -171,19 +178,82 @@ class ChatViewController: JSQMessagesViewController {
         }
     }
     
-
+    //MARK setting messageBubbletopLabel about name
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
+        let message = messages[indexPath.item]
+        if message.senderId == senderId {
+            return nil
+        }
+        
+        return NSAttributedString(string: message.senderDisplayName)
+    }
+    
+    
+    //messageBubbleTopLabel hight
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
+        if messages.count == 0 {
+            return 0.0
+        }
+        if messages[indexPath.item].senderId == senderId {
+            return 8.0
+        }
+        
+        return kJSQMessagesCollectionViewCellLabelHeightDefault
+    }
+    
+    //messageBubbleTopLabel text about Date
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
+        if messages.count == 0 {
+            return nil
+        }
+        
+        let message = messages[indexPath.item]
+        
+        if message.senderId == senderId {
+            return nil
+        }
+        
+        return NSAttributedString(string: "Date 01/02/2017")
+        
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAt indexPath: IndexPath!) -> CGFloat {
+        if indexPath.item % 3 == 0 {
+            return kJSQMessagesCollectionViewCellLabelHeightDefault
+        }
+        
+        return 0.0
+    }
     
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-        return nil
+        if messages.count == 0 {
+            return nil
+        }
+        
+        let message = messages[indexPath.row]
+        if message.senderId == senderId {
+            return nil
+        }
+        
+        return JSQMessagesAvatarImage.avatar(with: #imageLiteral(resourceName: "nu-logo"))
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
     }
-    
+
+    //set text color -> toplabel in bubble
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
+        let message = messages[indexPath.item]
+        
+        if message.senderId != senderId {
+            cell.messageBubbleTopLabel.textColor = UIColor.darkGray
+        }
+        
+       
+        cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0, kJSQMessagesCollectionViewAvatarSizeDefault+8, 10, 0)
         return cell
     }
     
