@@ -212,20 +212,20 @@ class ChatViewController: JSQMessagesViewController {
         if message.senderId == senderId {
             return nil
         }
-        
-        return NSAttributedString(string: "Date 05/10/2017")
+        return NSAttributedString()
+        //return NSAttributedString(string: "Date 05/10/2017")
         
     }
     
     //set hight toplabel
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAt indexPath: IndexPath!) -> CGFloat {
-        if indexPath.item % 3 == 0 {
-            return kJSQMessagesCollectionViewCellLabelHeightDefault
-        }
-
-        return 0.0
-    }
-    
+//    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAt indexPath: IndexPath!) -> CGFloat {
+//        if indexPath.item % 3 == 0 {
+//            return kJSQMessagesCollectionViewCellLabelHeightDefault
+//        }
+//
+//        return 0.0
+//    }
+//    
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         if messages.count == 0 {
