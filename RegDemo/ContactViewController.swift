@@ -50,24 +50,32 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
  
+    
     func fetchUserAndSetupNavBarTitle() {
         guard let uid = AuthenticationManager.user()?.uid else {
             
             return
         }
         
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        Database.database().reference().child("users").child(uid).child("data").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 self.navigationItem.title = dictionary["name"] as? String
-                if let dict = dictionary["chatrooms"] as? [String: Any] {
-                    self.chatroomIDs = [String](dict.keys)
-                    //self.getMembers()
                      self.tableView.reloadData()
-                }
             }
             
         }, withCancel: nil)
         
+        
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                if let dict = dictionary["chatrooms"] as? [String: Any] {
+                    self.chatroomIDs = [String](dict.keys)
+                    //self.getMembers()
+                    self.tableView.reloadData()
+                }
+            }
+            
+        }, withCancel: nil)
         
 
     }
