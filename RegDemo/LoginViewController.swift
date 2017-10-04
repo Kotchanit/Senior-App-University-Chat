@@ -77,14 +77,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func registerPressed(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let registerVC = storyboard.instantiateViewController(withIdentifier: "registerVC") as! RegisterViewController
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = registerVC
-    }
-    
-    
 }
 
 extension UIViewController {
