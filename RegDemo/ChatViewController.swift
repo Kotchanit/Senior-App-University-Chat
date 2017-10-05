@@ -335,5 +335,9 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         
         self.dismiss(animated: true, completion: nil)
         collectionView.reloadData()
+        
+        
+        
+     
     }
 }

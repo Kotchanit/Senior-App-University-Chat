@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseMessaging
 
 class LoginViewController: UIViewController {
     
@@ -28,12 +29,18 @@ class LoginViewController: UIViewController {
         usernameTextField.text = "57313783"
         passwordTextField.text = "1234"
         
+        let token = Messaging.messaging().fcmToken
+        print("FCM token: \(token ?? "")")
+        
         if Auth.auth().currentUser?.uid != nil {
             
         }
     }
     
-    
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+    }
+
     
     @IBAction func loginPressed() {
         guard let username = usernameTextField.text, let password = passwordTextField.text else {
