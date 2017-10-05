@@ -35,6 +35,7 @@
 		16CA5B0B1F29DA67006BBF05 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		16D970231EFBB9FF004ADD6E /* Subject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
 		16D970251EFBC059004ADD6E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		16E9B5681F8619E3007651A4 /* RegDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RegDemo.entitlements; sourceTree = "<group>"; };
 		16EADD851F3C4770003412F9 /* NewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
 		16EEB7C81F272CAC00B4096E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		16F4467F1F1F57750023AE60 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
@@ -145,6 +146,7 @@
 		EDCFFCAA1E81141600496E5B /* RegDemo */ = {
 			isa = PBXGroup;
 			children = (
+				16E9B5681F8619E3007651A4 /* RegDemo.entitlements */,
 				16A2E7A81F1355B600D94D01 /* Plugins */,
 				16A2E7A71F1355A400D94D01 /* Controller */,
 				16A2E7A51F13557800D94D01 /* Model */,
@@ -195,6 +197,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 65PKPTRG94;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -409,6 +416,7 @@
 			baseConfigurationReference = 51D006BB865AC8F46E64970F /* Pods-RegDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RegDemo/RegDemo.entitlements;
 				DEVELOPMENT_TEAM = 65PKPTRG94;
 				INFOPLIST_FILE = RegDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -423,6 +431,7 @@
 			baseConfigurationReference = E5231A8ADF5CE9BA12196AA9 /* Pods-RegDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RegDemo/RegDemo.entitlements;
 				DEVELOPMENT_TEAM = 65PKPTRG94;
 				INFOPLIST_FILE = RegDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
