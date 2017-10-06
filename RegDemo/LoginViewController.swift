@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var loginButton: UIButton!
     @IBOutlet weak var segmentControl: UISegmentedControl!
+    let fcmtoken = Messaging.messaging().fcmToken
     
     var contactController : ContactViewController?
     
@@ -29,18 +30,13 @@ class LoginViewController: UIViewController {
         usernameTextField.text = "57313783"
         passwordTextField.text = "1234"
         
-        let token = Messaging.messaging().fcmToken
-        print("FCM token: \(token ?? "")")
+        print("FCM token: \(fcmtoken ?? "")")
         
         if Auth.auth().currentUser?.uid != nil {
             
         }
     }
     
-    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
-    }
-
     
     @IBAction func loginPressed() {
         guard let username = usernameTextField.text, let password = passwordTextField.text else {
@@ -72,6 +68,7 @@ class LoginViewController: UIViewController {
                         let userData = ["name": user.name, "status": user.status, "departmentName": user.departmentName, "facultyName": user.facultyName, "programName" : user.programName ]
 
                         Database.database().reference().child("users").child(user.uid).child("data").setValue(userData)
+                        Database.database().reference().child("users").child(user.uid).child("data").child("fcmtoken").setValue(self.fcmtoken)
                     }
                     else {
                         self.showAlert(message: "Could not connect to Firebase")

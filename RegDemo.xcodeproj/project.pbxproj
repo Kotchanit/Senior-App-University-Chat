@@ -14,8 +14,8 @@
 		16CA5B0C1F29DA67006BBF05 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA5B0B1F29DA67006BBF05 /* Helper.swift */; };
 		16D970241EFBB9FF004ADD6E /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D970231EFBB9FF004ADD6E /* Subject.swift */; };
 		16D970261EFBC059004ADD6E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D970251EFBC059004ADD6E /* HomeViewController.swift */; };
+		16E9B56A1F861C11007651A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16E9B5691F861C11007651A4 /* GoogleService-Info.plist */; };
 		16EADD861F3C4770003412F9 /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EADD851F3C4770003412F9 /* NewMessageViewController.swift */; };
-		16EEB7C91F272CAC00B4096E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16EEB7C81F272CAC00B4096E /* GoogleService-Info.plist */; };
 		16F446801F1F57750023AE60 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4467F1F1F57750023AE60 /* AuthenticationManager.swift */; };
 		AFDDDA76E22412FA6A92F931 /* Pods_RegDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C51A01F1C13AE8D732AA9EB8 /* Pods_RegDemo.framework */; };
 		EDCFFCAC1E81141600496E5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCFFCAB1E81141600496E5B /* AppDelegate.swift */; };
@@ -36,8 +36,8 @@
 		16D970231EFBB9FF004ADD6E /* Subject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
 		16D970251EFBC059004ADD6E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		16E9B5681F8619E3007651A4 /* RegDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RegDemo.entitlements; sourceTree = "<group>"; };
+		16E9B5691F861C11007651A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		16EADD851F3C4770003412F9 /* NewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
-		16EEB7C81F272CAC00B4096E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		16F4467F1F1F57750023AE60 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		51D006BB865AC8F46E64970F /* Pods-RegDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RegDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RegDemo/Pods-RegDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		BDDD92CB2EF80B2C59160792 /* Pods-RegDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RegDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RegDemo/Pods-RegDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,15 +147,15 @@
 			isa = PBXGroup;
 			children = (
 				16E9B5681F8619E3007651A4 /* RegDemo.entitlements */,
+				EDCFFCAB1E81141600496E5B /* AppDelegate.swift */,
 				16A2E7A81F1355B600D94D01 /* Plugins */,
 				16A2E7A71F1355A400D94D01 /* Controller */,
 				16A2E7A51F13557800D94D01 /* Model */,
 				16A2E7A61F13559C00D94D01 /* View */,
-				EDCFFCAB1E81141600496E5B /* AppDelegate.swift */,
 				EDCFFCB21E81141600496E5B /* Assets.xcassets */,
 				EDCFFCB41E81141600496E5B /* LaunchScreen.storyboard */,
 				EDCFFCB71E81141600496E5B /* Info.plist */,
-				16EEB7C81F272CAC00B4096E /* GoogleService-Info.plist */,
+				16E9B5691F861C11007651A4 /* GoogleService-Info.plist */,
 			);
 			path = RegDemo;
 			sourceTree = "<group>";
@@ -229,7 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDCFFCB61E81141600496E5B /* LaunchScreen.storyboard in Resources */,
-				16EEB7C91F272CAC00B4096E /* GoogleService-Info.plist in Resources */,
+				16E9B56A1F861C11007651A4 /* GoogleService-Info.plist in Resources */,
 				EDCFFCB31E81141600496E5B /* Assets.xcassets in Resources */,
 				16C7BCB41F308D82009BE301 /* Main.storyboard in Resources */,
 			);
@@ -420,7 +420,7 @@
 				DEVELOPMENT_TEAM = 65PKPTRG94;
 				INFOPLIST_FILE = RegDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = th.co.apptitude.RegDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mobcomlab.regchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -435,7 +435,7 @@
 				DEVELOPMENT_TEAM = 65PKPTRG94;
 				INFOPLIST_FILE = RegDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = th.co.apptitude.RegDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mobcomlab.regchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

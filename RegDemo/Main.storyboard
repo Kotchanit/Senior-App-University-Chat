@@ -333,13 +333,16 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="YNq-HR-xSZ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="YNq-HR-xSZ">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YNq-HR-xSZ" id="vVK-S3-k6Q">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="9Vs-Tm-fkJ" kind="push" id="lHI-nN-Hfg"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -358,6 +361,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5TL-2X-DON" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3962.4000000000001" y="-231.63418290854574"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="62I-cc-S0Y">
+            <objects>
+                <viewController id="9Vs-Tm-fkJ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kRX-tT-hwE"/>
+                        <viewControllerLayoutGuide type="bottom" id="s0y-hC-JcC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="y1j-CJ-wX9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gAa-mT-JrE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KgO-fq-Oss" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3962" y="624"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="0al-pw-c3K">
