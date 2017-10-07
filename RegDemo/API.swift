@@ -91,11 +91,12 @@ class API {
         //return user.status == "student" ? URL(string: "http://www.reg2.nu.ac.th/registrar/getstudentimage.asp?id=\(user.username)") : nil
     }
     
-    static func subjects(token: Token, completion: @escaping (Result<[Subject]>) -> ()) {
+    static func subjects(year: Int, semester: Int, token: Token, completion: @escaping (Result<[Subject]>) -> ()) {
         
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token.value)", "Accept": "application/json"]
+        let paremeters: Parameters  = [ "year": "\(year)", "semester": "\(semester)"]
         
-        Alamofire.request(baseURL+"/api/subjects", headers: headers).responseJSON { response in
+        Alamofire.request(baseURL+"/api/subjects", parameters: paremeters, headers: headers).responseJSON { response in
             
             if response.result.isSuccess, let json = response.result.value as? [String: Any], let subjectsRaw = json["subjects"] as? [[String: Any]] {
                 
@@ -125,6 +126,68 @@ class API {
         }
         
     }
+    
+    static func enrolls(subject: Int, year: Int, semester: Int, token: Token, completion: @escaping (Result<[Enroll]>) -> ()) {
+        
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(token.value)", "Accept": "application/json"]
+        let paremeters: Parameters  = ["subject": "\(subject)", "year": "\(year)", "semester": "\(semester)"]
+        
+        Alamofire.request(baseURL+"/api/enroll", parameters: paremeters, headers: headers).responseJSON { response in
+            
+            if response.result.isSuccess, let json = response.result.value as? [String: Any], let enrollsRaw = json["students"] as? [[String: Any]] {
+                
+                var enrolls: [Enroll] = []
+                
+        
+                for enrollRaw in enrollsRaw {
+                    let studentID = enrollRaw["id"] as? String ?? ""
+                    let name = enrollRaw["name"] as? String ?? ""
+                    let enroll = Enroll(studentID: studentID, name: name)
+                    
+                    enrolls.append(enroll)
+                }
+                
+                
+                completion(.success(enrolls))
+            }
+            else if case let .failure(error) = response.result {
+                completion(.failure(error))
+            }
+            else {
+                completion(.failure(DataError.unknown))
+            }
+        }
+        
+    }
+    
+//    static func semester(token: Token, completion: @escaping (Result<Semester>) -> ()) {
+//        
+//       let headers: HTTPHeaders = ["Authorization": "Bearer \(token.value)", "Accept": "application/json"]
+//        
+//        Alamofire.request(baseURL+"api/semester", headers: headers).responseJSON { response in
+//            
+//           if response.result.isSuccess, let json = response.result.value as? [String: Any], let currentsemesterRaw = json["students"] as? [[String: Any]] {
+//                
+//                var currentsemester: [Semester] = []
+//                
+//                for semesterRaw in currentsemesterRaw {
+//                    let year = semesterRaw["year"] as? String ?? ""
+//                    let semester = semesterRaw["semester"] as? String ?? ""
+//                    let semesterRaw = Semester(year: year, semester: semester)
+//                    
+//                    currentsemester.append(semesterRaw)
+//                }
+//               
+//                completion(.success(currentsemester))
+//            }
+//            else if case let .failure(error) = response.result {
+//                completion(.failure(error))
+//            }
+//            else {
+//                completion(.failure(DataError.unknown))
+//            }
+//        }
+//    }
 
     
 }

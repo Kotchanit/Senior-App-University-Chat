@@ -16,6 +16,7 @@
 import UIKit
 import UserNotifications
 import CoreData
+import FirebaseMessaging
 import Firebase
 
 @UIApplicationMain
@@ -67,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // [END register_for_notifications]
         return true
     }
+    
     
     // [START receive_message]
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {

@@ -362,7 +362,7 @@
             </objects>
             <point key="canvasLocation" x="-3962.4000000000001" y="-231.63418290854574"/>
         </scene>
-        <!--View Controller-->
+        <!--Choose Friends-->
         <scene sceneID="62I-cc-S0Y">
             <objects>
                 <viewController id="9Vs-Tm-fkJ" sceneMemberID="viewController">
@@ -373,13 +373,30 @@
                     <view key="view" contentMode="scaleToFill" id="y1j-CJ-wX9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nMq-xJ-Ioe">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="WDD-oQ-yTo">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WDD-oQ-yTo" id="ctG-9n-VAC">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="gAa-mT-JrE"/>
+                    <navigationItem key="navigationItem" title="Choose Friends" id="gAa-mT-JrE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KgO-fq-Oss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3962" y="624"/>
+            <point key="canvasLocation" x="-3962.4000000000001" y="623.83808095952031"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="0al-pw-c3K">

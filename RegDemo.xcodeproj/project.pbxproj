@@ -12,6 +12,9 @@
 		16CA2F5A1F20B65500F83720 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA2F591F20B65500F83720 /* ContactViewController.swift */; };
 		16CA5B0A1F29C346006BBF05 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA5B091F29C346006BBF05 /* SettingViewController.swift */; };
 		16CA5B0C1F29DA67006BBF05 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA5B0B1F29DA67006BBF05 /* Helper.swift */; };
+		16D573EC1F88FC9700895277 /* Enroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D573EB1F88FC9700895277 /* Enroll.swift */; };
+		16D573EE1F8905E300895277 /* EnrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D573ED1F8905E300895277 /* EnrollViewController.swift */; };
+		16D573F01F89067600895277 /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D573EF1F89067600895277 /* Semester.swift */; };
 		16D970241EFBB9FF004ADD6E /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D970231EFBB9FF004ADD6E /* Subject.swift */; };
 		16D970261EFBC059004ADD6E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D970251EFBC059004ADD6E /* HomeViewController.swift */; };
 		16E9B56A1F861C11007651A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16E9B5691F861C11007651A4 /* GoogleService-Info.plist */; };
@@ -33,6 +36,9 @@
 		16CA2F591F20B65500F83720 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		16CA5B091F29C346006BBF05 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		16CA5B0B1F29DA67006BBF05 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		16D573EB1F88FC9700895277 /* Enroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enroll.swift; sourceTree = "<group>"; };
+		16D573ED1F8905E300895277 /* EnrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollViewController.swift; sourceTree = "<group>"; };
+		16D573EF1F89067600895277 /* Semester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Semester.swift; sourceTree = "<group>"; };
 		16D970231EFBB9FF004ADD6E /* Subject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
 		16D970251EFBC059004ADD6E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		16E9B5681F8619E3007651A4 /* RegDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RegDemo.entitlements; sourceTree = "<group>"; };
@@ -73,6 +79,8 @@
 				EDCFFCC31E811E6700496E5B /* Token.swift */,
 				EDCFFCC11E811D1500496E5B /* User.swift */,
 				16CA5B0B1F29DA67006BBF05 /* Helper.swift */,
+				16D573EB1F88FC9700895277 /* Enroll.swift */,
+				16D573EF1F89067600895277 /* Semester.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -90,10 +98,11 @@
 			children = (
 				16CA5B091F29C346006BBF05 /* SettingViewController.swift */,
 				EDCFFCAD1E81141600496E5B /* LoginViewController.swift */,
-				16D970251EFBC059004ADD6E /* HomeViewController.swift */,
 				16CA2F591F20B65500F83720 /* ContactViewController.swift */,
 				16EADD851F3C4770003412F9 /* NewMessageViewController.swift */,
 				16CA2F551F2089A900F83720 /* ChatViewController.swift */,
+				16D970251EFBC059004ADD6E /* HomeViewController.swift */,
+				16D573ED1F8905E300895277 /* EnrollViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -291,14 +300,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				16F446801F1F57750023AE60 /* AuthenticationManager.swift in Sources */,
+				16D573F01F89067600895277 /* Semester.swift in Sources */,
 				EDCFFCAE1E81141600496E5B /* LoginViewController.swift in Sources */,
 				16D970241EFBB9FF004ADD6E /* Subject.swift in Sources */,
 				16D970261EFBC059004ADD6E /* HomeViewController.swift in Sources */,
 				EDCFFCC01E811CAD00496E5B /* API.swift in Sources */,
+				16D573EE1F8905E300895277 /* EnrollViewController.swift in Sources */,
 				16CA2F5A1F20B65500F83720 /* ContactViewController.swift in Sources */,
 				EDCFFCC41E811E6700496E5B /* Token.swift in Sources */,
 				EDCFFCC21E811D1500496E5B /* User.swift in Sources */,
 				16CA2F561F2089A900F83720 /* ChatViewController.swift in Sources */,
+				16D573EC1F88FC9700895277 /* Enroll.swift in Sources */,
 				16CA5B0C1F29DA67006BBF05 /* Helper.swift in Sources */,
 				EDCFFCAC1E81141600496E5B /* AppDelegate.swift in Sources */,
 				16CA5B0A1F29C346006BBF05 /* SettingViewController.swift in Sources */,

@@ -15,12 +15,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var tableView: UITableView!
     
     var subjectItems: [Subject] = []
+    var year = 2560
+    var semester = 1
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let token = AuthenticationManager.token() {
-            API.subjects(token: token, completion: { (result) in
+            API.subjects(year: year, semester: semester, token: token, completion: { (result) in
                 if case let .success(items) = result {
                     self.subjectItems = items
                     self.tableView.reloadData()
