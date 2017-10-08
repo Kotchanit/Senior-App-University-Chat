@@ -41,6 +41,14 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            let chatController = segue.destination as? ChatViewController
+            chatController?.chatroomID = chatroomIDs[indexPath.row]
+            
+        }
+    }
+    
     func checkIfUserisLoggedIn() {
         if AuthenticationManager.user()?.uid == nil {
             perform(#selector(logout), with: nil, afterDelay: 0)
@@ -94,20 +102,14 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
         appDelegate.window?.rootViewController = loginVC
     }
     
-    @IBAction func newMessage(_ sender: Any) {
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let newMessageVC = storyboard.instantiateViewController(withIdentifier: "nmView")
-        present(newMessageVC, animated: true, completion: nil)
-
-    }
+//    @IBAction func newMessage(_ sender: Any) {
+//        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let newMessageVC = storyboard.instantiateViewController(withIdentifier: "nmView")
+//        present(newMessageVC, animated: true, completion: nil)
+//
+//    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let indexPath = tableView.indexPathForSelectedRow {
-            let chatController = segue.destination as? ChatViewController
-            chatController?.chatroomID = chatroomIDs[indexPath.row]
-            
-        }
-    }
+    
  
 }

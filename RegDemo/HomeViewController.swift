@@ -15,15 +15,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var tableView: UITableView!
     
     var subjectItems: [Subject] = []
-    var year = 2560
-    var semester = 1
+    
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let token = AuthenticationManager.token() {
-            API.subjects(year: year, semester: semester, token: token, completion: { (result) in
+            API.subjects(token: token, completion: { (result) in
                 if case let .success(items) = result {
                     self.subjectItems = items
                     self.tableView.reloadData()
@@ -45,7 +45,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let item = subjectItems[indexPath.row]
         cell.textLabel?.text = item.nameTH
+        
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            let enrollController = segue.destination as? EnrollViewController
+            enrollController?.subjectID = "\(subjectItems[indexPath.row].subjectID)"
+            
+        }
+        
+        
     }
 
 }

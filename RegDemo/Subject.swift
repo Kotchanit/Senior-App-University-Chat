@@ -9,9 +9,11 @@
 import Foundation
 
 struct Subject {
-    let subjectID: String
+    let subjectID: Int
     let code: String
     let nameTH: String
     let nameEN: String
     let credit: String
+    let year: Int
+    let semester: Int
 }

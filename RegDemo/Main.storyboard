@@ -365,7 +365,7 @@
         <!--Choose Friends-->
         <scene sceneID="62I-cc-S0Y">
             <objects>
-                <viewController id="9Vs-Tm-fkJ" sceneMemberID="viewController">
+                <viewController id="9Vs-Tm-fkJ" customClass="EnrollViewController" customModule="RegDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kRX-tT-hwE"/>
                         <viewControllerLayoutGuide type="bottom" id="s0y-hC-JcC"/>
@@ -379,7 +379,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="WDD-oQ-yTo">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="WDD-oQ-yTo">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WDD-oQ-yTo" id="ctG-9n-VAC">
@@ -393,6 +393,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Choose Friends" id="gAa-mT-JrE"/>
+                    <connections>
+                        <outlet property="tableView" destination="nMq-xJ-Ioe" id="BFe-ig-uMf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KgO-fq-Oss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

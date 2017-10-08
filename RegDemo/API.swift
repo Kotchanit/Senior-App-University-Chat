@@ -91,12 +91,11 @@ class API {
         //return user.status == "student" ? URL(string: "http://www.reg2.nu.ac.th/registrar/getstudentimage.asp?id=\(user.username)") : nil
     }
     
-    static func subjects(year: Int, semester: Int, token: Token, completion: @escaping (Result<[Subject]>) -> ()) {
+    static func subjects(token: Token, completion: @escaping (Result<[Subject]>) -> ()) {
         
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token.value)", "Accept": "application/json"]
-        let paremeters: Parameters  = [ "year": "\(year)", "semester": "\(semester)"]
         
-        Alamofire.request(baseURL+"/api/subjects", parameters: paremeters, headers: headers).responseJSON { response in
+        Alamofire.request(baseURL+"/api/subjects", headers: headers).responseJSON { response in
             
             if response.result.isSuccess, let json = response.result.value as? [String: Any], let subjectsRaw = json["subjects"] as? [[String: Any]] {
                 
@@ -105,13 +104,15 @@ class API {
                 // Convert each subject raw into a subject
                 for subjectRaw in subjectsRaw {
                     // Get the data inside the subjectRaw
-                    let subjectID = subjectRaw["subject_id"] as? String ?? ""
+                    let subjectID = subjectRaw["subject_id"] as? Int ?? 0
                     let code = subjectRaw["code"] as? String ?? ""
                     let nameTH = subjectRaw["name_th"] as? String ?? ""
                     let nameEN = subjectRaw["name_en"] as? String ?? ""
                     let credit = subjectRaw["credit"] as? String ?? ""
+                    let year = subjectRaw["year"] as? Int ?? 0
+                    let semester = subjectRaw["semester"] as? Int ?? 0
                     // Create the subject object
-                    let subject = Subject(subjectID: subjectID, code: code, nameTH: nameTH, nameEN: nameEN, credit: credit)
+                    let subject = Subject(subjectID: subjectID, code: code, nameTH: nameTH, nameEN: nameEN, credit: credit, year: year, semester: semester)
                     subjects.append(subject)
                 }
                 
@@ -127,7 +128,7 @@ class API {
         
     }
     
-    static func enrolls(subject: Int, year: Int, semester: Int, token: Token, completion: @escaping (Result<[Enroll]>) -> ()) {
+    static func enrolls(subject: String, year: Int, semester: Int, token: Token, completion: @escaping (Result<[Enroll]>) -> ()) {
         
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token.value)", "Accept": "application/json"]
         let paremeters: Parameters  = ["subject": "\(subject)", "year": "\(year)", "semester": "\(semester)"]
@@ -167,9 +168,9 @@ class API {
 //        Alamofire.request(baseURL+"api/semester", headers: headers).responseJSON { response in
 //            
 //           if response.result.isSuccess, let json = response.result.value as? [String: Any], let currentsemesterRaw = json["students"] as? [[String: Any]] {
-//                
+//            
 //                var currentsemester: [Semester] = []
-//                
+//            
 //                for semesterRaw in currentsemesterRaw {
 //                    let year = semesterRaw["year"] as? String ?? ""
 //                    let semester = semesterRaw["semester"] as? String ?? ""
@@ -177,7 +178,7 @@ class API {
 //                    
 //                    currentsemester.append(semesterRaw)
 //                }
-//               
+//            
 //                completion(.success(currentsemester))
 //            }
 //            else if case let .failure(error) = response.result {
