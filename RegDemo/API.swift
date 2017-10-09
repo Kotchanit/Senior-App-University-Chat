@@ -81,14 +81,17 @@ class API {
     }
     
     static func profileImageURLRequest(token: Token) -> URLRequest? {
-        
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(token.value)"
         ]
-        
-        return try! URLRequest(url: baseURL+"api/user/image", method: .get, headers: headers)
-        
-        //return user.status == "student" ? URL(string: "http://www.reg2.nu.ac.th/registrar/getstudentimage.asp?id=\(user.username)") : nil
+        return try! URLRequest(url: baseURL+"api/profile/image", method: .get, headers: headers)
+    }
+    
+    static func userImageURLRequest(token: Token, userID: String) -> URLRequest? {
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token.value)"
+        ]
+        return try! URLRequest(url: baseURL+"api/users/\(userID)/image", method: .get, headers: headers)
     }
     
     static func subjects(token: Token, completion: @escaping (Result<[Subject]>) -> ()) {
@@ -151,8 +154,6 @@ class API {
                 
                 completion(.success(enrolls))
                 
-                print("---------")
-                print(enrolls)
             }
             else if case let .failure(error) = response.result {
                 completion(.failure(error))

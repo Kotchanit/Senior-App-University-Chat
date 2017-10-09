@@ -13,11 +13,12 @@ import Alamofire
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    
     
     var subjectItems: [Subject] = []
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     print(result.error!)
                 }
             })
+    
+        }
+        
+        showProfile()
+    }
+    
+    func showProfile () {
+        if let token = AuthenticationManager.token(), let request = API.profileImageURLRequest(token: token) {
+           profileImageView.af_setImage(withURLRequest: request)
         }
         
     }
@@ -55,9 +65,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             enrollController?.subjectID = subjectItems[indexPath.row].subjectID
             enrollController?.year = subjectItems[indexPath.row].year
             enrollController?.semester = subjectItems[indexPath.row].semester
-            
-            print(subjectItems[indexPath.row])
-            
         }
         
         

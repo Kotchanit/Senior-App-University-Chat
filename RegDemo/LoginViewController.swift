@@ -66,9 +66,10 @@ class LoginViewController: UIViewController {
                 Helper.helper.loginAnonymously() { success in
                     if success {
                         let userData = ["name": user.name, "status": user.status, "departmentName": user.departmentName, "facultyName": user.facultyName, "programName" : user.programName ]
-
-                        Database.database().reference().child("users").child(user.uid).child("data").setValue(userData)
-                        Database.database().reference().child("users").child(user.uid).child("data").child("fcmtoken").setValue(self.fcmtoken)
+                        
+                        let dataRef = Database.database().reference().child("users").child(user.uid).child("data")
+                        dataRef.setValue(userData)
+                        dataRef.child("fcmtoken").setValue(self.fcmtoken)
                     }
                     else {
                         self.showAlert(message: "Could not connect to Firebase")

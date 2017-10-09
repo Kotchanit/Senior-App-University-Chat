@@ -49,6 +49,7 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    
     func checkIfUserisLoggedIn() {
         if AuthenticationManager.user()?.uid == nil {
             perform(#selector(logout), with: nil, afterDelay: 0)
@@ -57,8 +58,7 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
- 
-    
+
     func fetchUserAndSetupNavBarTitle() {
         guard let uid = AuthenticationManager.user()?.uid else {
             
@@ -78,7 +78,6 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 if let dict = dictionary["chatrooms"] as? [String: Any] {
                     self.chatroomIDs = [String](dict.keys)
-                    //self.getMembers()
                     self.tableView.reloadData()
                 }
             }
@@ -94,22 +93,10 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
         } catch let error {
             print(error)
         }
+        AuthenticationManager.clear()
+        Helper.helper.switchToLoginViewController()
         
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = loginVC
     }
-    
-//    @IBAction func newMessage(_ sender: Any) {
-//        
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let newMessageVC = storyboard.instantiateViewController(withIdentifier: "nmView")
-//        present(newMessageVC, animated: true, completion: nil)
-//
-//    }
-    
     
  
 }

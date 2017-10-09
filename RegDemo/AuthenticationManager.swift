@@ -63,4 +63,5 @@ class AuthenticationManager {
         ud.removeObject(forKey: keyprogramName)
         ud.removeObject(forKey: keylatestGPA)
     }
+    
 }

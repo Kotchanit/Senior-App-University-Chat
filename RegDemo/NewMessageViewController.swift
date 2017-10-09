@@ -11,8 +11,10 @@ import Firebase
 
 class NewMessageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
     var users = [User]() {
         didSet {
+            //เอา user ของตัวเองออก
             displayedUsers = users.filter { $0.uid != AuthenticationManager.user()?.uid }
         }
     }

@@ -20,6 +20,8 @@
 		16E9B56A1F861C11007651A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16E9B5691F861C11007651A4 /* GoogleService-Info.plist */; };
 		16EADD861F3C4770003412F9 /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EADD851F3C4770003412F9 /* NewMessageViewController.swift */; };
 		16F446801F1F57750023AE60 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4467F1F1F57750023AE60 /* AuthenticationManager.swift */; };
+		16F8EF3F1F8B68DE00D90828 /* EnrollTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F8EF3E1F8B68DE00D90828 /* EnrollTableViewCell.swift */; };
+		16F8EF411F8B8BB900D90828 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F8EF401F8B8BB900D90828 /* EditViewController.swift */; };
 		AFDDDA76E22412FA6A92F931 /* Pods_RegDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C51A01F1C13AE8D732AA9EB8 /* Pods_RegDemo.framework */; };
 		EDCFFCAC1E81141600496E5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCFFCAB1E81141600496E5B /* AppDelegate.swift */; };
 		EDCFFCAE1E81141600496E5B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCFFCAD1E81141600496E5B /* LoginViewController.swift */; };
@@ -45,6 +47,8 @@
 		16E9B5691F861C11007651A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		16EADD851F3C4770003412F9 /* NewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
 		16F4467F1F1F57750023AE60 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		16F8EF3E1F8B68DE00D90828 /* EnrollTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollTableViewCell.swift; sourceTree = "<group>"; };
+		16F8EF401F8B8BB900D90828 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		51D006BB865AC8F46E64970F /* Pods-RegDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RegDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RegDemo/Pods-RegDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		BDDD92CB2EF80B2C59160792 /* Pods-RegDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RegDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RegDemo/Pods-RegDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		C51A01F1C13AE8D732AA9EB8 /* Pods_RegDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RegDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +85,7 @@
 				16CA5B0B1F29DA67006BBF05 /* Helper.swift */,
 				16D573EB1F88FC9700895277 /* Enroll.swift */,
 				16D573EF1F89067600895277 /* Semester.swift */,
+				16F8EF3E1F8B68DE00D90828 /* EnrollTableViewCell.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -96,13 +101,11 @@
 		16A2E7A71F1355A400D94D01 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				16CA5B091F29C346006BBF05 /* SettingViewController.swift */,
-				EDCFFCAD1E81141600496E5B /* LoginViewController.swift */,
-				16CA2F591F20B65500F83720 /* ContactViewController.swift */,
-				16EADD851F3C4770003412F9 /* NewMessageViewController.swift */,
-				16CA2F551F2089A900F83720 /* ChatViewController.swift */,
-				16D970251EFBC059004ADD6E /* HomeViewController.swift */,
-				16D573ED1F8905E300895277 /* EnrollViewController.swift */,
+				16F8EF461F8B8ECE00D90828 /* Login */,
+				16F8EF451F8B8EBD00D90828 /* Setting */,
+				16F8EF441F8B8EA900D90828 /* Chat */,
+				16F8EF421F8B8E7400D90828 /* Home */,
+				16A2E7A51F13557800D94D01 /* Model */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -114,6 +117,42 @@
 				16F4467F1F1F57750023AE60 /* AuthenticationManager.swift */,
 			);
 			name = Plugins;
+			sourceTree = "<group>";
+		};
+		16F8EF421F8B8E7400D90828 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				16D970251EFBC059004ADD6E /* HomeViewController.swift */,
+				16D573ED1F8905E300895277 /* EnrollViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		16F8EF441F8B8EA900D90828 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				16CA2F591F20B65500F83720 /* ContactViewController.swift */,
+				16EADD851F3C4770003412F9 /* NewMessageViewController.swift */,
+				16CA2F551F2089A900F83720 /* ChatViewController.swift */,
+				16F8EF401F8B8BB900D90828 /* EditViewController.swift */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		16F8EF451F8B8EBD00D90828 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				16CA5B091F29C346006BBF05 /* SettingViewController.swift */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
+		16F8EF461F8B8ECE00D90828 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				EDCFFCAD1E81141600496E5B /* LoginViewController.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		4331692DDE3F2A7FF4272760 /* Frameworks */ = {
@@ -159,7 +198,6 @@
 				EDCFFCAB1E81141600496E5B /* AppDelegate.swift */,
 				16A2E7A81F1355B600D94D01 /* Plugins */,
 				16A2E7A71F1355A400D94D01 /* Controller */,
-				16A2E7A51F13557800D94D01 /* Model */,
 				16A2E7A61F13559C00D94D01 /* View */,
 				EDCFFCB21E81141600496E5B /* Assets.xcassets */,
 				EDCFFCB41E81141600496E5B /* LaunchScreen.storyboard */,
@@ -307,10 +345,12 @@
 				EDCFFCC01E811CAD00496E5B /* API.swift in Sources */,
 				16D573EE1F8905E300895277 /* EnrollViewController.swift in Sources */,
 				16CA2F5A1F20B65500F83720 /* ContactViewController.swift in Sources */,
+				16F8EF411F8B8BB900D90828 /* EditViewController.swift in Sources */,
 				EDCFFCC41E811E6700496E5B /* Token.swift in Sources */,
 				EDCFFCC21E811D1500496E5B /* User.swift in Sources */,
 				16CA2F561F2089A900F83720 /* ChatViewController.swift in Sources */,
 				16D573EC1F88FC9700895277 /* Enroll.swift in Sources */,
+				16F8EF3F1F8B68DE00D90828 /* EnrollTableViewCell.swift in Sources */,
 				16CA5B0C1F29DA67006BBF05 /* Helper.swift in Sources */,
 				EDCFFCAC1E81141600496E5B /* AppDelegate.swift in Sources */,
 				16CA5B0A1F29C346006BBF05 /* SettingViewController.swift in Sources */,

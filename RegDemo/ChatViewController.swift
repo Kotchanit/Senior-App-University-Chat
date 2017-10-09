@@ -24,6 +24,7 @@ class ChatViewController: JSQMessagesViewController {
     var chatRef: DatabaseReference?
     var members: [String] = []
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,7 +44,12 @@ class ChatViewController: JSQMessagesViewController {
         collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height: kJSQMessagesCollectionViewCellLabelHeightDefault)
         collectionView.collectionViewLayout.outgoingAvatarViewSize = .zero
     }
- 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let editVC = segue.destination as? EditViewController {
+            editVC.chatroomID = chatroomID
+        }
+    }
     func observeMembers() {
         Database.database().reference().child("chatrooms").child(chatroomID).child("members").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
