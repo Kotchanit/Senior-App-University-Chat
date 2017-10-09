@@ -11,11 +11,11 @@ import UIKit
 class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    var subjectID = ""
+    var subjectID = 0
     var studentIDs: [Enroll] = []
     
-    var year = 2559
-    var semester = 2
+    var year = 0
+    var semester = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +32,10 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
             })
 
         }
-        print("---------")
-        print(subjectID)
-        print("---------")
+        
+        print("********")
+        print(studentIDs)
+        
     }
     
 
@@ -47,6 +48,8 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let item = studentIDs[indexPath.row]
         cell.textLabel?.text = item.name
+        
+        print(item)
         
         return cell
     }

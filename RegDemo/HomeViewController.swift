@@ -52,7 +52,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let indexPath = tableView.indexPathForSelectedRow {
             let enrollController = segue.destination as? EnrollViewController
-            enrollController?.subjectID = "\(subjectItems[indexPath.row].subjectID)"
+            enrollController?.subjectID = subjectItems[indexPath.row].subjectID
+            enrollController?.year = subjectItems[indexPath.row].year
+            enrollController?.semester = subjectItems[indexPath.row].semester
+            
+            print(subjectItems[indexPath.row])
             
         }
         

@@ -128,7 +128,7 @@ class API {
         
     }
     
-    static func enrolls(subject: String, year: Int, semester: Int, token: Token, completion: @escaping (Result<[Enroll]>) -> ()) {
+    static func enrolls(subject: Int, year: Int, semester: Int, token: Token, completion: @escaping (Result<[Enroll]>) -> ()) {
         
         let headers: HTTPHeaders = ["Authorization": "Bearer \(token.value)", "Accept": "application/json"]
         let paremeters: Parameters  = ["subject": "\(subject)", "year": "\(year)", "semester": "\(semester)"]
@@ -150,6 +150,9 @@ class API {
                 
                 
                 completion(.success(enrolls))
+                
+                print("---------")
+                print(enrolls)
             }
             else if case let .failure(error) = response.result {
                 completion(.failure(error))
