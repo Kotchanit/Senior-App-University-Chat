@@ -36,13 +36,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
         }
         
-        showProfile()
+        showInfomation()
     }
     
-    func showProfile () {
+    func showInfomation () {
         if let token = AuthenticationManager.token(), let request = API.profileImageURLRequest(token: token) {
            profileImageView.af_setImage(withURLRequest: request)
         }
+        
+        usernameLabel.text = AuthenticationManager.user()?.uid
+        nameLabel.text = AuthenticationManager.user()?.name
         
     }
     

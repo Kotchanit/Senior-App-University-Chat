@@ -231,8 +231,9 @@ class ChatViewController: JSQMessagesViewController {
 //
 //        return 0.0
 //    }
-//    
+//
     
+    //Show user's pic in chatroom for each message
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         if messages.count == 0 {
             return nil

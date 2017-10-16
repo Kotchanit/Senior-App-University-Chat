@@ -40,12 +40,17 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellNM", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellNM", for: indexPath) as! NewMessagesTableViewCell
         
         let user = displayedUsers[indexPath.row]
-        cell.textLabel?.text = user.name
+        cell.nameLabel.text = user.name
+        cell.studentIDLabel.text = "\(user.username)"
+        
+        if let token = AuthenticationManager.token(), let request = API.userImageURLRequest(token: token, userID: user.username) {
+            cell.userImageView.af_setImage(withURLRequest: request)
+        }
+        
         return cell
-
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

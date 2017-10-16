@@ -41,6 +41,26 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+//    {
+//        return true
+//    }
+//    
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+//    {
+//        guard let uid = AuthenticationManager.user()?.uid else {
+//            
+//            return
+//        }
+//        
+//        if editingStyle == .delete {
+//            chatroomIDs.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+////            Database.database().reference().child("chatrooms").child(chatroomIDs[indexPath.row]).removeValue()
+////            Database.database().reference().child("users").child(uid).child("chatrooms").child(chatroomIDs[indexPath.row]).removeValue()
+//        }
+//    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let indexPath = tableView.indexPathForSelectedRow {
             let chatController = segue.destination as? ChatViewController

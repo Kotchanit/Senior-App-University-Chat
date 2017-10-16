@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1621EC741F94A63700D8EF6B /* NewMessagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1621EC731F94A63700D8EF6B /* NewMessagesTableViewCell.swift */; };
 		16C7BCB41F308D82009BE301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16C7BCB31F308D82009BE301 /* Main.storyboard */; };
 		16CA2F561F2089A900F83720 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA2F551F2089A900F83720 /* ChatViewController.swift */; };
 		16CA2F5A1F20B65500F83720 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA2F591F20B65500F83720 /* ContactViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1621EC731F94A63700D8EF6B /* NewMessagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessagesTableViewCell.swift; sourceTree = "<group>"; };
 		16C7BCB31F308D82009BE301 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		16CA2F551F2089A900F83720 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		16CA2F591F20B65500F83720 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
@@ -83,9 +85,8 @@
 				EDCFFCC31E811E6700496E5B /* Token.swift */,
 				EDCFFCC11E811D1500496E5B /* User.swift */,
 				16CA5B0B1F29DA67006BBF05 /* Helper.swift */,
-				16D573EB1F88FC9700895277 /* Enroll.swift */,
 				16D573EF1F89067600895277 /* Semester.swift */,
-				16F8EF3E1F8B68DE00D90828 /* EnrollTableViewCell.swift */,
+				16D573EB1F88FC9700895277 /* Enroll.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -124,6 +125,7 @@
 			children = (
 				16D970251EFBC059004ADD6E /* HomeViewController.swift */,
 				16D573ED1F8905E300895277 /* EnrollViewController.swift */,
+				16F8EF3E1F8B68DE00D90828 /* EnrollTableViewCell.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -133,6 +135,7 @@
 			children = (
 				16CA2F591F20B65500F83720 /* ContactViewController.swift */,
 				16EADD851F3C4770003412F9 /* NewMessageViewController.swift */,
+				1621EC731F94A63700D8EF6B /* NewMessagesTableViewCell.swift */,
 				16CA2F551F2089A900F83720 /* ChatViewController.swift */,
 				16F8EF401F8B8BB900D90828 /* EditViewController.swift */,
 			);
@@ -346,6 +349,7 @@
 				16D573EE1F8905E300895277 /* EnrollViewController.swift in Sources */,
 				16CA2F5A1F20B65500F83720 /* ContactViewController.swift in Sources */,
 				16F8EF411F8B8BB900D90828 /* EditViewController.swift in Sources */,
+				1621EC741F94A63700D8EF6B /* NewMessagesTableViewCell.swift in Sources */,
 				EDCFFCC41E811E6700496E5B /* Token.swift in Sources */,
 				EDCFFCC21E811D1500496E5B /* User.swift in Sources */,
 				16CA2F561F2089A900F83720 /* ChatViewController.swift in Sources */,
