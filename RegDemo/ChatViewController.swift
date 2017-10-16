@@ -38,11 +38,16 @@ class ChatViewController: JSQMessagesViewController {
         })
  
         messageRef = Database.database().reference().child("chatrooms").child(chatroomID).child("messages")
-        observeMembers()
         observeMessages()
         
         collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height: kJSQMessagesCollectionViewCellLabelHeightDefault)
         collectionView.collectionViewLayout.outgoingAvatarViewSize = .zero
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        observeMembers()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,6 +55,7 @@ class ChatViewController: JSQMessagesViewController {
             editVC.chatroomID = chatroomID
         }
     }
+    
     func observeMembers() {
         Database.database().reference().child("chatrooms").child(chatroomID).child("members").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
@@ -166,10 +172,6 @@ class ChatViewController: JSQMessagesViewController {
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageDataForItemAt indexPath: IndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
     }
-    
-    
-    
-    
     
     //Display Messages
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {

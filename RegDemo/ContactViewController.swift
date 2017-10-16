@@ -16,6 +16,7 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
  
     
     var chatroomIDs :[String] = []
+    var chatrooms = [Chatroom]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +61,27 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
 ////            Database.database().reference().child("users").child(uid).child("chatrooms").child(chatroomIDs[indexPath.row]).removeValue()
 //        }
 //    }
+    
+    
+    func fetchChatrooms() {
+        Database.database().reference().child("chatrooms").observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: Any] else {
+                return
+            }
+            
+            var chatrooms = [Chatroom]()
+            for (chatroomID, object) in dictionary {
+                if let dict = object as? [String: Any], let name = dict["name"] as? String {
+                    let chatroom = Chatroom(chatroomID: chatroomID, name: name)
+                    chatrooms.append(chatroom)
+                }
+            }
+            self.chatrooms = chatrooms
+            DispatchQueue.main.async{
+                self.tableView.reloadData()
+            }
+        })
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let indexPath = tableView.indexPathForSelectedRow {
