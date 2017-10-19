@@ -17,7 +17,6 @@ struct User {
     let programName: String?
     let latestGPA: Float?
 
-    
     var uid: String {
         return username
     }

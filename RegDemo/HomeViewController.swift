@@ -33,9 +33,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     print(result.error!)
                 }
             })
-    
         }
-        
         showInfomation()
     }
     
@@ -43,10 +41,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if let token = AuthenticationManager.token(), let request = API.profileImageURLRequest(token: token) {
            profileImageView.af_setImage(withURLRequest: request)
         }
-        
         usernameLabel.text = AuthenticationManager.user()?.uid
         nameLabel.text = AuthenticationManager.user()?.name
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,8 +65,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             enrollController?.year = subjectItems[indexPath.row].year
             enrollController?.semester = subjectItems[indexPath.row].semester
         }
-        
-        
     }
 
 }

@@ -34,7 +34,6 @@ class Helper : UIViewController {
         let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = tabBarVC
-    
     }
     
     func switchToLoginViewController() {
@@ -43,6 +42,4 @@ class Helper : UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = loginVC
     }
-    
-
 }

@@ -9,8 +9,8 @@
 import Foundation
 
 struct Chatroom {
-    var chatroomID: String
-    var name: String
+    let chatroomID: String
+    let name: String
     
     init(chatroomID: String, name: String) {
         self.chatroomID = chatroomID

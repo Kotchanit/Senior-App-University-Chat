@@ -189,13 +189,18 @@ class ChatViewController: JSQMessagesViewController {
     //MARK setting messageBubbletopLabel about name
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
         let message = messages[indexPath.item]
+
         if message.senderId == senderId {
             return nil
+        } else {
+            guard let senderDisplayName = message.senderDisplayName else {
+                return nil
+            }
+            return NSAttributedString(string: senderDisplayName)
+
         }
-        
-        return NSAttributedString(string: message.senderDisplayName)
     }
-    
+
     
     //messageBubbleTopLabel hight
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
@@ -205,7 +210,7 @@ class ChatViewController: JSQMessagesViewController {
         if messages[indexPath.item].senderId == senderId {
             return 8.0
         }
-        
+
         return kJSQMessagesCollectionViewCellLabelHeightDefault
     }
     
@@ -214,38 +219,39 @@ class ChatViewController: JSQMessagesViewController {
         if messages.count == 0 {
             return nil
         }
-        
+
         let message = messages[indexPath.item]
-        
+
         if message.senderId == senderId {
             return nil
         }
         return NSAttributedString()
         //return NSAttributedString(string: "Date 05/10/2017")
-        
+
     }
     
     //set hight toplabel
-//    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAt indexPath: IndexPath!) -> CGFloat {
-//        if indexPath.item % 3 == 0 {
-//            return kJSQMessagesCollectionViewCellLabelHeightDefault
-//        }
-//
-//        return 0.0
-//    }
-//
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAt indexPath: IndexPath!) -> CGFloat {
+        if indexPath.item % 3 == 0 {
+            return kJSQMessagesCollectionViewCellLabelHeightDefault
+        }
+
+        return 0.0
+    }
+
     
     //Show user's pic in chatroom for each message
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
+
         if messages.count == 0 {
             return nil
         }
-        
+
         let message = messages[indexPath.row]
         if message.senderId == senderId {
             return nil
         }
-        
+
         return JSQMessagesAvatarImage.avatar(with: #imageLiteral(resourceName: "nu-logo"))
     }
     
@@ -257,12 +263,11 @@ class ChatViewController: JSQMessagesViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         let message = messages[indexPath.item]
-        
+
         if message.senderId != senderId {
             cell.messageBubbleTopLabel.textColor = UIColor.darkGray
         }
-        
-       
+
         cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0, kJSQMessagesCollectionViewAvatarSizeDefault+8, 10, 0)
         return cell
     }
@@ -278,6 +283,10 @@ class ChatViewController: JSQMessagesViewController {
             self.present(playerViewController, animated: true, completion: nil)
             }
         }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 
     func sendMedia(picture: UIImage?, video: NSURL?) {
@@ -325,7 +334,19 @@ class ChatViewController: JSQMessagesViewController {
         }
       
     }
-
+    
+    @IBAction func DidPreessed(_ sender: Any) {
+        if let tabbarVC = self.tabBarController, let vc = self.storyboard?.instantiateViewController(withIdentifier: "contactVC") {
+            if (tabbarVC.viewControllers?.count ?? 0) < 2 { return }
+            guard let desMavVC = tabbarVC.viewControllers?[1] as? UINavigationController else { return }
+            vc.hidesBottomBarWhenPushed = true
+            desMavVC.pushViewController(vc, animated: true)
+            self.navigationController?.popToRootViewController(animated: false)
+            tabbarVC.selectedIndex = 1
+        }
+        
+    }
+ 
 }
 
 extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

@@ -16,13 +16,6 @@ class EditViewController: UIViewController {
     
     var chatroomID = ""
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
-    
     @IBAction func changeNameofChat(_ sender: Any) {
         let chatname = chatNameTextField.text
         let dataRef = Database.database().reference().child("chatrooms").child(chatroomID).child("name")
@@ -30,13 +23,6 @@ class EditViewController: UIViewController {
         
         //go back to the previous view controller
         let _ = navigationController?.popViewController(animated: true)
-        
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let contactVC = segue.destination as? ContactViewController {
-//            contactVC.chatName =
-//        }
-//    }
     
 }

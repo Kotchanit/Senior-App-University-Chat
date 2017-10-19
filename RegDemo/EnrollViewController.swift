@@ -14,6 +14,8 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectedUser: UIBarButtonItem!
     
+    var chatrooms = [Chatroom]()
+    
     var subjectID = 0
     var students: [Enroll] = [] {
         didSet {
@@ -126,8 +128,5 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.navigationController?.viewControllers = vcs.filter { $0 != self }
             }
         }
-        
     }
-    
-
 }

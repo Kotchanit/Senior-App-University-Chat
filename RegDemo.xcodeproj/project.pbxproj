@@ -86,7 +86,6 @@
 				16D970231EFBB9FF004ADD6E /* Subject.swift */,
 				EDCFFCC31E811E6700496E5B /* Token.swift */,
 				EDCFFCC11E811D1500496E5B /* User.swift */,
-				16CA5B0B1F29DA67006BBF05 /* Helper.swift */,
 				16D573EF1F89067600895277 /* Semester.swift */,
 				16D573EB1F88FC9700895277 /* Enroll.swift */,
 				1621EC751F94B4BB00D8EF6B /* Chatroom.swift */,
@@ -119,6 +118,7 @@
 			children = (
 				EDCFFCBF1E811CAD00496E5B /* API.swift */,
 				16F4467F1F1F57750023AE60 /* AuthenticationManager.swift */,
+				16CA5B0B1F29DA67006BBF05 /* Helper.swift */,
 			);
 			name = Plugins;
 			sourceTree = "<group>";

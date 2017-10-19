@@ -11,29 +11,28 @@ import Firebase
 
 class NewMessageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
     var users = [User]() {
         didSet {
-            //เอา user ของตัวเองออก
+            //get current user out
             displayedUsers = users.filter { $0.uid != AuthenticationManager.user()?.uid }
         }
     }
+    
     var displayedUsers = [User]()
     var selectedUserIDs = [String]()
     var allname: [String] = []
-    
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectedUser: UIBarButtonItem!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
+        super.viewDidLoad()
         fetchUsers()
         selectedUser.isEnabled = false
         selectedUser.title = "OK"
-    }
     
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return displayedUsers.count
@@ -73,9 +72,9 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
             selectedUser.isEnabled = false
             selectedUser.title = "OK"
         }
-
     }
 
+    //fetch users from firebase
     func fetchUsers() {
         Database.database().reference().child("users").observeSingleEvent(of: .value, with: { (snapshot) in
             guard let dictionary = snapshot.value as? [String: Any] else {
@@ -95,7 +94,6 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         })
     }
-    
     
     @IBAction func createNewChat(_ sender: Any) {
         let usersRef = Database.database().reference().child("users")
