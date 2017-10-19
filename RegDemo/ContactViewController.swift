@@ -49,25 +49,25 @@ class ContactViewController: UIViewController, UITableViewDelegate {
         tableView.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        let chatroomID = dataSource!.snapshot(at: indexPath.row).key
-        Database.database().reference().child("chatrooms").child(chatroomID).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                if let dict = dictionary["members"] as? [String: Any] {
-                    self.allmembers = [String](dict.keys)
-                    self.tableView.reloadData()
-                }
-            }
-        }, withCancel: nil)
-
-        if editingStyle == .delete {
-            chatroomIDs.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            for member in allmembers {
-                Database.database().reference().child("users").child(member).child("chatrooms").removeValue()
-            }
-        }
-    }
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        let chatroomID = dataSource!.snapshot(at: indexPath.row).key
+//        Database.database().reference().child("chatrooms").child(chatroomID).observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let dictionary = snapshot.value as? [String: AnyObject] {
+//                if let dict = dictionary["members"] as? [String: Any] {
+//                    self.allmembers = [String](dict.keys)
+//                    self.tableView.reloadData()
+//                }
+//            }
+//        }, withCancel: nil)
+//
+//        if editingStyle == .delete {
+//            chatroomIDs.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//            for member in allmembers {
+//                
+//            }
+//        }
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let indexPath = tableView.indexPathForSelectedRow {
