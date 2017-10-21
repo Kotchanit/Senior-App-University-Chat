@@ -24,6 +24,11 @@ class ChatViewController: JSQMessagesViewController {
     var chatRef: DatabaseReference?
     var members: [String] = []
     
+    private var photoMessageMap = [String: JSQPhotoMediaItem]()
+    private var avatars = [String: JSQMessagesAvatarImage]()
+    private let imageURLNotSetKey = "NOTSET"
+    private let messageQueryLimit: UInt = 25
+    var avatarString: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -242,17 +247,8 @@ class ChatViewController: JSQMessagesViewController {
     
     //Show user's pic in chatroom for each message
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-
-        if messages.count == 0 {
-            return nil
-        }
-
-        let message = messages[indexPath.row]
-        if message.senderId == senderId {
-            return nil
-        }
-
-        return JSQMessagesAvatarImage.avatar(with: #imageLiteral(resourceName: "nu-logo"))
+        let message = messages[indexPath.item]
+        return self.avatars[message.senderId]
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -335,17 +331,53 @@ class ChatViewController: JSQMessagesViewController {
       
     }
     
-    @IBAction func DidPreessed(_ sender: Any) {
-        if let tabbarVC = self.tabBarController, let vc = self.storyboard?.instantiateViewController(withIdentifier: "contactVC") {
-            if (tabbarVC.viewControllers?.count ?? 0) < 2 { return }
-            guard let desMavVC = tabbarVC.viewControllers?[1] as? UINavigationController else { return }
-            vc.hidesBottomBarWhenPushed = true
-            desMavVC.pushViewController(vc, animated: true)
-            self.navigationController?.popToRootViewController(animated: false)
-            tabbarVC.selectedIndex = 1
+    private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
+        
+        ImageDownloadManager.shared.fetchImage(with: photoURL) { (image: UIImage?) in
+            if let image = image {
+                mediaItem.image = image
+            }
+            
+            self.finishReceivingMessage()
+            guard let key = key else { return }
+            self.photoMessageMap.removeValue(forKey: key)
+        }
+    }
+    
+//    fileprivate func setImageURL(_ url: String, forPhotoMessageWithKey key: String) {
+//        // TODO: - Update existing image when generate image url successfully.
+//        let itemRef = messageRef?.child(key)
+//        itemRef.updateChildValues(["data": url])
+//    }
+    
+    private func downloadCircleAvatar(with imageUrl: String, avatarImage: JSQMessagesAvatarImage) {
+        ImageDownloadManager.shared.fetchImage(with: imageUrl, completion: { (image: UIImage?) in
+            if let image = image {
+                avatarImage.avatarImage = JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+            }
+        })
+    }
+    
+    private func prepareAvatarImage(with id: String) -> JSQMessagesAvatarImage! {
+        if (self.avatars[id] == nil) {
+            let avartarImage = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: "F", backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.lightGray, font: UIFont.systemFont(ofSize: 17), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+            self.avatars[id] = avartarImage
         }
         
+        return self.avatars[id]
     }
+    
+//    @IBAction func DidPreessed(_ sender: Any) {
+//        if let tabbarVC = self.tabBarController, let vc = self.storyboard?.instantiateViewController(withIdentifier: "contactVC") {
+//            if (tabbarVC.viewControllers?.count ?? 0) < 2 { return }
+//            guard let desMavVC = tabbarVC.viewControllers?[1] as? UINavigationController else { return }
+//            vc.hidesBottomBarWhenPushed = true
+//            desMavVC.pushViewController(vc, animated: true)
+//            self.navigationController?.popToRootViewController(animated: false)
+//            tabbarVC.selectedIndex = 1
+//        }
+//
+//    }
  
 }
 

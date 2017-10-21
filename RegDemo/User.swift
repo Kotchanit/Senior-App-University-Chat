@@ -16,7 +16,8 @@ struct User {
     let facultyName: String
     let programName: String?
     let latestGPA: Float?
-
+    //    var avatarImage: JSQMessagesAvatarImage?
+    
     var uid: String {
         return username
     }
@@ -29,5 +30,7 @@ struct User {
         self.facultyName = facultyName
         self.programName = programName
         self.latestGPA = latestGPA
+        //        self.avatarImage = JSQMessagesAvatarImageFactory.avatarImage(with: image, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
     }
 }
+

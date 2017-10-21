@@ -230,11 +230,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Chat" id="4kT-J3-M0x">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="8eq-KY-OvH">
-                            <connections>
-                                <action selector="DidPreessed:" destination="wt8-gE-gMl" id="lYm-8g-6GF"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="6IL-7t-9oy">
                             <connections>
                                 <segue destination="XYj-bs-AQa" kind="push" id="lIe-KX-reb"/>

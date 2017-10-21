@@ -19,5 +19,6 @@ target 'RegDemo' do
 
   pod 'JSQMessagesViewController'
   pod 'SDWebImage'
+  pod 'Kingfisher'
 
 end
