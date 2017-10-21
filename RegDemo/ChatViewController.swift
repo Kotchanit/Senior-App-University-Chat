@@ -13,6 +13,8 @@ import AVKit
 import FirebaseDatabase
 import FirebaseStorage
 import FirebaseAuth
+import Alamofire
+import AlamofireImage
 
 class ChatViewController: JSQMessagesViewController {
     
@@ -45,8 +47,9 @@ class ChatViewController: JSQMessagesViewController {
         messageRef = Database.database().reference().child("chatrooms").child(chatroomID).child("messages")
         observeMessages()
         
-        collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height: kJSQMessagesCollectionViewCellLabelHeightDefault)
+        collectionView.collectionViewLayout.incomingAvatarViewSize = CGSize(width: kJSQMessagesCollectionViewAvatarSizeDefault, height: kJSQMessagesCollectionViewAvatarSizeDefault)
         collectionView.collectionViewLayout.outgoingAvatarViewSize = .zero
+        collectionView.collectionViewLayout.bubbleSizeCalculator = MessagesBubblesWithEmojiSizeCalculator()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -83,13 +86,16 @@ class ChatViewController: JSQMessagesViewController {
                 let mediaType = dict["mediaType"] as! String
                 let senderId = dict["senderID"] as! String
                 let senderName = dict["senderName"] as! String
+                let timestampRaw = dict["timestamp"] as? String ?? ""
+                let timestamp = Date(iso8601: timestampRaw) ?? Date()
                 
                 switch mediaType {
                     
                 case "TEXT":
                     
                     let text = dict["text"] as? String
-                    self.messages.append(JSQMessage(senderId: senderId, displayName: senderName, text: text))
+                    self.messages.append(JSQMessage(senderId: senderId, senderDisplayName: senderName, date: timestamp, text: text))
+                    self.downloadAvatar(for: senderId, avatarImage: self.prepareAvatarImage(with: senderId))
                     
                 case "PHOTO":
                     
@@ -98,7 +104,7 @@ class ChatViewController: JSQMessagesViewController {
                     let data = NSData(contentsOf: url! as URL)
                     let picture = UIImage(data: data as! Data)
                     let photo = JSQPhotoMediaItem(image: picture)
-                    self.messages.append(JSQMessage(senderId: senderId, displayName: self.senderDisplayName, media: photo))
+                    self.messages.append(JSQMessage(senderId: senderId, senderDisplayName: senderName, date: timestamp, media: photo))
                     
                     if self.senderId == senderId {
                         photo?.appliesMediaViewMaskAsOutgoing = true
@@ -112,7 +118,7 @@ class ChatViewController: JSQMessagesViewController {
                     let fileUrl = dict["fileUrl"] as! String
                     let video = NSURL(string: fileUrl)
                     let videoItem = JSQVideoMediaItem(fileURL: video as URL!, isReadyToPlay: true)
-                    self.messages.append(JSQMessage(senderId: senderId, displayName: senderName, media: videoItem))
+                    self.messages.append(JSQMessage(senderId: senderId,senderDisplayName: senderName, date: timestamp, media: videoItem))
 
                     if self.senderId == senderId {
                         videoItem?.appliesMediaViewMaskAsOutgoing = true
@@ -136,7 +142,12 @@ class ChatViewController: JSQMessagesViewController {
 //        collectionView.reloadData()
 //        print(messages)
         let newMessage = messageRef!.childByAutoId()
-        let messageData = ["text": text, "senderID": senderId, "senderName": senderDisplayName, "mediaType": "TEXT"]
+        let messageData = [
+            "text": text,
+            "senderID": senderId,
+            "senderName": senderDisplayName,
+            "mediaType": "TEXT",
+            "timestamp": Date().iso8601DateString]
         newMessage.setValue(messageData)
         self.finishSendingMessage()
     }
@@ -221,34 +232,52 @@ class ChatViewController: JSQMessagesViewController {
     
     //messageBubbleTopLabel text about Date
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
-        if messages.count == 0 {
-            return nil
+        if cellHasTopLabelAt(indexPath: indexPath) {
+            return NSAttributedString(string: "\(messages[indexPath.item].date.chatFormatString)")
         }
-
-        let message = messages[indexPath.item]
-
-        if message.senderId == senderId {
-            return nil
-        }
-        return NSAttributedString()
-        //return NSAttributedString(string: "Date 05/10/2017")
-
+        return nil
     }
     
     //set hight toplabel
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAt indexPath: IndexPath!) -> CGFloat {
-        if indexPath.item % 3 == 0 {
+        if cellHasTopLabelAt(indexPath: indexPath) {
             return kJSQMessagesCollectionViewCellLabelHeightDefault
         }
-
         return 0.0
     }
+    
+    private func cellHasTopLabelAt(indexPath: IndexPath) -> Bool {
+        if indexPath.item == 0 {
+            return true
+        }
+        
+        let thisMessage = messages[indexPath.item]
+        let prevMessage = messages[indexPath.item-1]
+        return thisMessage.date.timeIntervalSince(prevMessage.date) > 3600
+    }
 
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAt indexPath: IndexPath!) -> NSAttributedString? {
+        if messages.count == 0 {
+            return nil
+        }
+        
+        let message = messages[indexPath.item]
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: message.date)
+        let minute = calendar.component(.minute, from: message.date)
+        let cellBottomLabelText = String(format: "%02d:%02d", hour, minute)
+        
+        return NSAttributedString(string: cellBottomLabelText)
+    }
+    
+    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellBottomLabelAt indexPath: IndexPath!) -> CGFloat {
+        return kJSQMessagesCollectionViewCellLabelHeightDefault
+    }
     
     //Show user's pic in chatroom for each message
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         let message = messages[indexPath.item]
-        return self.avatars[message.senderId]
+        return prepareAvatarImage(with: message.senderId)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -259,6 +288,15 @@ class ChatViewController: JSQMessagesViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         let message = messages[indexPath.item]
+        
+        if !message.isMediaMessage && message.text.unicodeScalars.count == 1 && message.text.unicodeScalars.first!.isEmoji {
+            cell.textView.font = UIFont.systemFont(ofSize: 72)
+            cell.messageBubbleImageView.isHidden = true
+        }
+        else {
+            cell.textView.font = UIFont.systemFont(ofSize: 17)
+            cell.messageBubbleImageView.isHidden = false
+        }
 
         if message.senderId != senderId {
             cell.messageBubbleTopLabel.textColor = UIColor.darkGray
@@ -303,7 +341,7 @@ class ChatViewController: JSQMessagesViewController {
                 let fileUrl = metadata!.downloadURLs![0].absoluteString
                 
                 let newMessage = self.messageRef!.childByAutoId()
-                let messageData = ["fileUrl": fileUrl, "senderID": self.senderId, "senderName": self.senderDisplayName, "mediaType": "PHOTO"]
+                let messageData = ["fileUrl": fileUrl, "senderID": self.senderId, "senderName": self.senderDisplayName, "mediaType": "PHOTO", "timestamp": Date().iso8601DateString]
                 newMessage.setValue(messageData)
                 
             }
@@ -323,7 +361,7 @@ class ChatViewController: JSQMessagesViewController {
                 let fileUrl = metadata!.downloadURLs![0].absoluteString
                 
                 let newMessage = self.messageRef!.childByAutoId()
-                let messageData = ["fileUrl": fileUrl, "senderID": self.senderId, "senderName": self.senderDisplayName, "mediaType": "VIDEO"]
+                let messageData = ["fileUrl": fileUrl, "senderID": self.senderId, "senderName": self.senderDisplayName, "mediaType": "VIDEO", "timestamp": Date().iso8601DateString]
                 newMessage.setValue(messageData)
                 
             }
@@ -332,9 +370,8 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     private func fetchImageDataAtURL(_ photoURL: String, forMediaItem mediaItem: JSQPhotoMediaItem, clearsPhotoMessageMapOnSuccessForKey key: String?) {
-        
-        ImageDownloadManager.shared.fetchImage(with: photoURL) { (image: UIImage?) in
-            if let image = image {
+        Alamofire.request(photoURL).responseImage { response in
+            if let image = response.value {
                 mediaItem.image = image
             }
             
@@ -350,12 +387,25 @@ class ChatViewController: JSQMessagesViewController {
 //        itemRef.updateChildValues(["data": url])
 //    }
     
-    private func downloadCircleAvatar(with imageUrl: String, avatarImage: JSQMessagesAvatarImage) {
-        ImageDownloadManager.shared.fetchImage(with: imageUrl, completion: { (image: UIImage?) in
-            if let image = image {
+    private func reloadRows(with senderID: String) {
+        let rows = collectionView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
+            let data = collectionView.dataSource.collectionView(collectionView, messageDataForItemAt: indexPath)
+            return data?.senderId() == senderID
+        }
+        collectionView.reloadItems(at: rows)
+    }
+    
+    private func downloadAvatar(for senderID: String, avatarImage: JSQMessagesAvatarImage) {
+        guard let token = AuthenticationManager.token(), let request = API.userImageURLRequest(token: token, userID: senderID) else {
+            return
+        }
+        
+        Alamofire.request(request).responseImage { response in
+            if let image = response.value {
                 avatarImage.avatarImage = JSQMessagesAvatarImageFactory.circularAvatarImage(image, withDiameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+                self.reloadRows(with: senderID)
             }
-        })
+        }
     }
     
     private func prepareAvatarImage(with id: String) -> JSQMessagesAvatarImage! {

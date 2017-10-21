@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1621EC741F94A63700D8EF6B /* NewMessagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1621EC731F94A63700D8EF6B /* NewMessagesTableViewCell.swift */; };
 		1621EC761F94B4BB00D8EF6B /* Chatroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1621EC751F94B4BB00D8EF6B /* Chatroom.swift */; };
+		16350B491F9B6DA5001586F7 /* MessagesBubblesWithEmojiSizeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16350B481F9B6DA5001586F7 /* MessagesBubblesWithEmojiSizeCalculator.swift */; };
+		16350B4B1F9B6DED001586F7 /* UnicodeScalarEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16350B4A1F9B6DED001586F7 /* UnicodeScalarEmoji.swift */; };
+		16350B4D1F9B6DFE001586F7 /* DateChatFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */; };
+		16350B4F1F9B6E47001586F7 /* DateISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16350B4E1F9B6E47001586F7 /* DateISO.swift */; };
 		165B9B301F99FC0800CCC545 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165B9B2F1F99FC0800CCC545 /* ImageDownloadManager.swift */; };
 		16C7BCB41F308D82009BE301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16C7BCB31F308D82009BE301 /* Main.storyboard */; };
 		16CA2F561F2089A900F83720 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA2F551F2089A900F83720 /* ChatViewController.swift */; };
@@ -38,6 +42,10 @@
 /* Begin PBXFileReference section */
 		1621EC731F94A63700D8EF6B /* NewMessagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessagesTableViewCell.swift; sourceTree = "<group>"; };
 		1621EC751F94B4BB00D8EF6B /* Chatroom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chatroom.swift; sourceTree = "<group>"; };
+		16350B481F9B6DA5001586F7 /* MessagesBubblesWithEmojiSizeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesBubblesWithEmojiSizeCalculator.swift; sourceTree = "<group>"; };
+		16350B4A1F9B6DED001586F7 /* UnicodeScalarEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnicodeScalarEmoji.swift; sourceTree = "<group>"; };
+		16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateChatFormat.swift; sourceTree = "<group>"; };
+		16350B4E1F9B6E47001586F7 /* DateISO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateISO.swift; sourceTree = "<group>"; };
 		165B9B2F1F99FC0800CCC545 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 		16C7BCB31F308D82009BE301 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		16CA2F551F2089A900F83720 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -104,10 +112,13 @@
 		165B9B2E1F99F51D00CCC545 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				16350B4E1F9B6E47001586F7 /* DateISO.swift */,
+				16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */,
 				16CA5B0B1F29DA67006BBF05 /* Helper.swift */,
 				16F4467F1F1F57750023AE60 /* AuthenticationManager.swift */,
 				EDCFFCBF1E811CAD00496E5B /* API.swift */,
 				165B9B2F1F99FC0800CCC545 /* ImageDownloadManager.swift */,
+				16350B4A1F9B6DED001586F7 /* UnicodeScalarEmoji.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -155,6 +166,7 @@
 				1621EC731F94A63700D8EF6B /* NewMessagesTableViewCell.swift */,
 				16CA2F551F2089A900F83720 /* ChatViewController.swift */,
 				16F8EF401F8B8BB900D90828 /* EditViewController.swift */,
+				16350B481F9B6DA5001586F7 /* MessagesBubblesWithEmojiSizeCalculator.swift */,
 			);
 			name = Chat;
 			sourceTree = "<group>";
@@ -359,6 +371,7 @@
 				EDCFFCAE1E81141600496E5B /* LoginViewController.swift in Sources */,
 				16D970241EFBB9FF004ADD6E /* Subject.swift in Sources */,
 				16D970261EFBC059004ADD6E /* HomeViewController.swift in Sources */,
+				16350B491F9B6DA5001586F7 /* MessagesBubblesWithEmojiSizeCalculator.swift in Sources */,
 				EDCFFCC01E811CAD00496E5B /* API.swift in Sources */,
 				165B9B301F99FC0800CCC545 /* ImageDownloadManager.swift in Sources */,
 				1621EC761F94B4BB00D8EF6B /* Chatroom.swift in Sources */,
@@ -366,12 +379,15 @@
 				16CA2F5A1F20B65500F83720 /* ContactViewController.swift in Sources */,
 				16F8EF411F8B8BB900D90828 /* EditViewController.swift in Sources */,
 				1621EC741F94A63700D8EF6B /* NewMessagesTableViewCell.swift in Sources */,
+				16350B4F1F9B6E47001586F7 /* DateISO.swift in Sources */,
 				EDCFFCC41E811E6700496E5B /* Token.swift in Sources */,
+				16350B4D1F9B6DFE001586F7 /* DateChatFormat.swift in Sources */,
 				EDCFFCC21E811D1500496E5B /* User.swift in Sources */,
 				16CA2F561F2089A900F83720 /* ChatViewController.swift in Sources */,
 				16D573EC1F88FC9700895277 /* Enroll.swift in Sources */,
 				16F8EF3F1F8B68DE00D90828 /* EnrollTableViewCell.swift in Sources */,
 				16CA5B0C1F29DA67006BBF05 /* Helper.swift in Sources */,
+				16350B4B1F9B6DED001586F7 /* UnicodeScalarEmoji.swift in Sources */,
 				EDCFFCAC1E81141600496E5B /* AppDelegate.swift in Sources */,
 				16CA5B0A1F29C346006BBF05 /* SettingViewController.swift in Sources */,
 				16EADD861F3C4770003412F9 /* NewMessageViewController.swift in Sources */,
