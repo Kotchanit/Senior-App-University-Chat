@@ -12,9 +12,9 @@ import FirebaseDatabase
 import FirebaseDatabaseUI
 
 class ContactViewController: UIViewController, UITableViewDelegate {
-
+    
     @IBOutlet weak var tableView: UITableView!
- 
+    
     var chatroomIDs: [String] = []
     
     var dataSource: FUITableViewDataSource?
@@ -27,7 +27,14 @@ class ContactViewController: UIViewController, UITableViewDelegate {
         //user is not logged in
         checkIfUserisLoggedIn()
         
+        guard let uid = AuthenticationManager.user()?.uid else {
+            return
+        }
+        
+        // Get the chatrooms that the current user is a member of chat
         let query = Database.database().reference().child("chatrooms")
+            .queryOrdered(byChild: "members/\(uid)").queryEqual(toValue: true)
+        
         dataSource = tableView.bind(to: query) { tableView, indexPath, snapshot in
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellContact", for: indexPath)
             
@@ -39,7 +46,7 @@ class ContactViewController: UIViewController, UITableViewDelegate {
             return cell
         }
         
-
+        
         tableView.reloadData()
     }
     
@@ -49,25 +56,19 @@ class ContactViewController: UIViewController, UITableViewDelegate {
         tableView.reloadData()
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        let chatroomID = dataSource!.snapshot(at: indexPath.row).key
-//        Database.database().reference().child("chatrooms").child(chatroomID).observeSingleEvent(of: .value, with: { (snapshot) in
-//            if let dictionary = snapshot.value as? [String: AnyObject] {
-//                if let dict = dictionary["members"] as? [String: Any] {
-//                    self.allmembers = [String](dict.keys)
-//                    self.tableView.reloadData()
-//                }
-//            }
-//        }, withCancel: nil)
-//
-//        if editingStyle == .delete {
-//            chatroomIDs.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//            for member in allmembers {
-//                
-//            }
-//        }
-//    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let chatroomID = dataSource!.snapshot(at: indexPath.row).key
+        guard let uid = AuthenticationManager.user()?.uid else { return }
+        
+        if editingStyle == .delete {
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            chatroomIDs.remove(at: indexPath.row)
+            Database.database().reference().child("chatrooms").child(chatroomID).child("members").child(uid).removeValue { error, _ in
+                print(error)
+                print("remove value failed")
+            }
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let indexPath = tableView.indexPathForSelectedRow {
@@ -93,7 +94,7 @@ class ContactViewController: UIViewController, UITableViewDelegate {
         Database.database().reference().child("users").child(uid).child("data").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 self.navigationItem.title = dictionary["name"] as? String
-                     self.tableView.reloadData()
+                self.tableView.reloadData()
             }
         }, withCancel: nil)
         
@@ -117,5 +118,5 @@ class ContactViewController: UIViewController, UITableViewDelegate {
         Helper.helper.switchToLoginViewController()
     }
     
- 
+    
 }
