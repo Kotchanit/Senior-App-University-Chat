@@ -23,6 +23,7 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     var selectedUserIDs = [String]()
     var allname: [String] = []
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectedUser: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!

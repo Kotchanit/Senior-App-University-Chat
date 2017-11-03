@@ -438,6 +438,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="fo5-lA-GXk" id="oax-Qd-JJ1"/>
                         <outlet property="selectedUser" destination="gEl-k2-rgx" id="Yqy-PK-d0t"/>
                         <outlet property="tableView" destination="ONc-Qs-BPB" id="lOp-nr-6W9"/>
                     </connections>
@@ -620,6 +621,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="Cju-bD-i3Z" id="GFx-8j-gi9"/>
                         <outlet property="selectedUser" destination="O6X-qD-NOC" id="ajM-6D-PtK"/>
                         <outlet property="tableView" destination="nMq-xJ-Ioe" id="BFe-ig-uMf"/>
                     </connections>

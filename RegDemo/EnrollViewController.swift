@@ -13,6 +13,7 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectedUser: UIBarButtonItem!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var chatrooms = [Chatroom]()
     
