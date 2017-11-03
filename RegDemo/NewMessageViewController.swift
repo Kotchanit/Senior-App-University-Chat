@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class NewMessageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NewMessageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     var users = [User]() {
         didSet {
@@ -19,16 +19,19 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     var displayedUsers = [User]()
+    var currentUser = [User]()
     var selectedUserIDs = [String]()
     var allname: [String] = []
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectedUser: UIBarButtonItem!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         fetchUsers()
+        //setupSearchBar()
         selectedUser.isEnabled = false
         selectedUser.title = "OK"
     
@@ -73,6 +76,26 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
             selectedUser.title = "OK"
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    //Search Bar
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        guard !searchText.isEmpty else {
+//            currentUser = displayedUsers
+//            return
+//        }
+//        currentUser = displayedUsers.filter({ (user) -> Bool in
+//            return user.name.contains(searchText)
+//        })
+//        tableView.reloadData()
+//    }
+//
+//    func setupSearchBar() {
+//        searchBar.delegate = self
+//    }
 
     //fetch users from firebase
     func fetchUsers() {

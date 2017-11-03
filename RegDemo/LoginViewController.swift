@@ -16,7 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var loginButton: UIButton!
-    @IBOutlet weak var segmentControl: UISegmentedControl!
+    
     let fcmtoken = Messaging.messaging().fcmToken
     
     var contactController : ContactViewController?

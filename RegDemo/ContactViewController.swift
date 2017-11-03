@@ -17,7 +17,7 @@ class ContactViewController: UIViewController, UITableViewDelegate {
     
     var chatroomIDs: [String] = []
     
-    var dataSource: FUITableViewDataSource?
+    var dataSource: EditableTableViewDataSource?
     
     var allmembers: [String] = []
     
@@ -35,7 +35,7 @@ class ContactViewController: UIViewController, UITableViewDelegate {
         let query = Database.database().reference().child("chatrooms")
             .queryOrdered(byChild: "members/\(uid)").queryEqual(toValue: true)
         
-        dataSource = tableView.bind(to: query) { tableView, indexPath, snapshot in
+        dataSource = tableView.bind(to: query, populateCell: { (tableView, indexPath, snapshot) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellContact", for: indexPath)
             
             let dict = snapshot.value as? [String: Any]
@@ -44,30 +44,22 @@ class ContactViewController: UIViewController, UITableViewDelegate {
             cell.textLabel?.text = name
             
             return cell
-        }
-        
-        
-        tableView.reloadData()
+        }, commitEdit: { (tableView, editingStyle, indexPath) in
+            let chatroomID = self.chatroomIDs[indexPath.row]
+            guard let uid = AuthenticationManager.user()?.uid else { return }
+            
+            if editingStyle == .delete {
+                self.chatroomIDs.remove(at: indexPath.row)
+                Database.database().reference().child("chatrooms").child(chatroomID).child("members").child(uid).removeValue()
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        })
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         tableView.reloadData()
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        let chatroomID = dataSource!.snapshot(at: indexPath.row).key
-        guard let uid = AuthenticationManager.user()?.uid else { return }
-        
-        if editingStyle == .delete {
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            chatroomIDs.remove(at: indexPath.row)
-            Database.database().reference().child("chatrooms").child(chatroomID).child("members").child(uid).removeValue { error, _ in
-                print(error)
-                print("remove value failed")
-            }
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

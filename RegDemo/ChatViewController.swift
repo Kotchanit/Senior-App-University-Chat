@@ -54,7 +54,7 @@ class ChatViewController: JSQMessagesViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        automaticallyScrollsToMostRecentMessage = true
         observeMembers()
     }
     
@@ -131,8 +131,9 @@ class ChatViewController: JSQMessagesViewController {
                 }
                 
                 self.collectionView.reloadData()
+               
             }
-
+             self.finishReceivingMessage()
         })
     }
     
@@ -216,7 +217,6 @@ class ChatViewController: JSQMessagesViewController {
 
         }
     }
-
     
     //messageBubbleTopLabel hight
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAt indexPath: IndexPath!) -> CGFloat {
@@ -381,11 +381,6 @@ class ChatViewController: JSQMessagesViewController {
         }
     }
     
-//    fileprivate func setImageURL(_ url: String, forPhotoMessageWithKey key: String) {
-//        // TODO: - Update existing image when generate image url successfully.
-//        let itemRef = messageRef?.child(key)
-//        itemRef.updateChildValues(["data": url])
-//    }
     
     private func reloadRows(with senderID: String) {
         let rows = collectionView.indexPathsForVisibleItems.filter { (indexPath) -> Bool in
@@ -428,7 +423,7 @@ class ChatViewController: JSQMessagesViewController {
 //        }
 //
 //    }
- 
+    
 }
 
 extension ChatViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -448,8 +443,5 @@ extension ChatViewController: UIImagePickerControllerDelegate, UINavigationContr
         self.dismiss(animated: true, completion: nil)
         collectionView.reloadData()
         
-        
-        
-     
     }
 }

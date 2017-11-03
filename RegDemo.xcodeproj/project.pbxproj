@@ -14,6 +14,7 @@
 		16350B4D1F9B6DFE001586F7 /* DateChatFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */; };
 		16350B4F1F9B6E47001586F7 /* DateISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16350B4E1F9B6E47001586F7 /* DateISO.swift */; };
 		165B9B301F99FC0800CCC545 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165B9B2F1F99FC0800CCC545 /* ImageDownloadManager.swift */; };
+		16A52C521FA873D400F8FC32 /* EditableTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A52C511FA873D400F8FC32 /* EditableTableViewDataSource.swift */; };
 		16C7BCB41F308D82009BE301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16C7BCB31F308D82009BE301 /* Main.storyboard */; };
 		16CA2F561F2089A900F83720 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA2F551F2089A900F83720 /* ChatViewController.swift */; };
 		16CA2F5A1F20B65500F83720 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA2F591F20B65500F83720 /* ContactViewController.swift */; };
@@ -47,6 +48,7 @@
 		16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateChatFormat.swift; sourceTree = "<group>"; };
 		16350B4E1F9B6E47001586F7 /* DateISO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateISO.swift; sourceTree = "<group>"; };
 		165B9B2F1F99FC0800CCC545 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
+		16A52C511FA873D400F8FC32 /* EditableTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTableViewDataSource.swift; sourceTree = "<group>"; };
 		16C7BCB31F308D82009BE301 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		16CA2F551F2089A900F83720 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		16CA2F591F20B65500F83720 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
@@ -112,13 +114,14 @@
 		165B9B2E1F99F51D00CCC545 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				EDCFFCBF1E811CAD00496E5B /* API.swift */,
 				16350B4E1F9B6E47001586F7 /* DateISO.swift */,
 				16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */,
 				16CA5B0B1F29DA67006BBF05 /* Helper.swift */,
 				16F4467F1F1F57750023AE60 /* AuthenticationManager.swift */,
-				EDCFFCBF1E811CAD00496E5B /* API.swift */,
 				165B9B2F1F99FC0800CCC545 /* ImageDownloadManager.swift */,
 				16350B4A1F9B6DED001586F7 /* UnicodeScalarEmoji.swift */,
+				16A52C511FA873D400F8FC32 /* EditableTableViewDataSource.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -320,9 +323,32 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RegDemo/Pods-RegDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -350,13 +376,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RegDemo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -379,6 +408,7 @@
 				16CA2F5A1F20B65500F83720 /* ContactViewController.swift in Sources */,
 				16F8EF411F8B8BB900D90828 /* EditViewController.swift in Sources */,
 				1621EC741F94A63700D8EF6B /* NewMessagesTableViewCell.swift in Sources */,
+				16A52C521FA873D400F8FC32 /* EditableTableViewDataSource.swift in Sources */,
 				16350B4F1F9B6E47001586F7 /* DateISO.swift in Sources */,
 				EDCFFCC41E811E6700496E5B /* Token.swift in Sources */,
 				16350B4D1F9B6DFE001586F7 /* DateChatFormat.swift in Sources */,
