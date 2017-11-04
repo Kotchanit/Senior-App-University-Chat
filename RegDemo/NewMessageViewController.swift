@@ -26,7 +26,7 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectedUser: UIBarButtonItem!
-    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     override func viewDidLoad() {
         
@@ -83,20 +83,20 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     //Search Bar
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        guard !searchText.isEmpty else {
-//            currentUser = displayedUsers
-//            return
-//        }
-//        currentUser = displayedUsers.filter({ (user) -> Bool in
-//            return user.name.contains(searchText)
-//        })
-//        tableView.reloadData()
-//    }
-//
-//    func setupSearchBar() {
-//        searchBar.delegate = self
-//    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            currentUser = displayedUsers
+            return
+        }
+        currentUser = displayedUsers.filter({ (user) -> Bool in
+            return user.name.contains(searchText)
+        })
+        tableView.reloadData()
+    }
+
+    func setupSearchBar() {
+        searchBar.delegate = self
+    }
 
     //fetch users from firebase
     func fetchUsers() {

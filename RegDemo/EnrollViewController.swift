@@ -29,13 +29,12 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var selectedUserIDs = [String]()
     
     
-    
     var year = 0
     var semester = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tabBarController?.tabBar.isHidden = true
         if let token = AuthenticationManager.token() {
             API.enrolls(subject: subjectID, year: year, semester: semester, token: token, completion: { (result) in
                 if case let .success(items) = result {
@@ -69,6 +68,8 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.userImageView.af_setImage(withURLRequest: request)
         }
         
+        cell.accessoryType = selectedUserIDs.contains(item.studentID) ? .checkmark : .none
+        
         return cell
     }
     
@@ -84,7 +85,24 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell?.accessoryType = .checkmark
             self.selectedUserIDs.append(user.studentID)
         }
-        
+        updateSelectedUser()
+    }
+    
+    @IBAction func selectAllUser() {
+        selectedUserIDs = displayedUsers.map { $0.studentID }
+        tableView.reloadData()
+        updateSelectedUser()
+    }
+    
+    
+    @IBAction func noneSelectUser() {
+        selectedUserIDs = []
+        tableView.reloadData()
+        updateSelectedUser()
+    }
+    
+    
+    private func updateSelectedUser() {
         if selectedUserIDs.count > 0 {
             selectedUser.isEnabled = true
             self.selectedUser.title = "OK(\(selectedUserIDs.count))"
@@ -92,7 +110,6 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
             selectedUser.isEnabled = false
             selectedUser.title = "OK"
         }
-        
     }
     
     @IBAction func createNewChat(_ sender: Any) {
