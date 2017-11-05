@@ -36,12 +36,12 @@ class ContactViewController: UIViewController, UITableViewDelegate {
             .queryOrdered(byChild: "members/\(uid)").queryEqual(toValue: true)
         
         dataSource = tableView.bind(to: query, populateCell: { (tableView, indexPath, snapshot) -> UITableViewCell in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cellContact", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cellContact", for: indexPath) as! ContactTableViewCell
             
             let dict = snapshot.value as? [String: Any]
             let name = dict?["name"] as? String
             
-            cell.textLabel?.text = name
+            cell.chatNameLabel.text = name
             
             return cell
         }, commitEdit: { (tableView, editingStyle, indexPath) in

@@ -112,6 +112,13 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    @IBAction func entireClass(_ sender: Any) {
+        selectedUserIDs = displayedUsers.map { $0.studentID }
+        //Can't check if it have all user yet
+        tableView.reloadData()
+        updateSelectedUser()
+    }
+    
     @IBAction func createNewChat(_ sender: Any) {
         let usersRef = Database.database().reference().child("users")
         let chatroomRef = Database.database().reference().child("chatrooms")
