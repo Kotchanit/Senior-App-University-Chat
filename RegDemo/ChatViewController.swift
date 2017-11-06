@@ -404,8 +404,10 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     private func prepareAvatarImage(with id: String) -> JSQMessagesAvatarImage! {
+        //--------------- incomplete -----------------
+        let firstChar = senderDisplayName.characters.first
         if (self.avatars[id] == nil) {
-            let avartarImage = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: "F", backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.lightGray, font: UIFont.systemFont(ofSize: 17), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+            let avartarImage = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: "\(firstChar!)" , backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.lightGray, font: UIFont.systemFont(ofSize: 17), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
             self.avatars[id] = avartarImage
         }
         
