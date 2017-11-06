@@ -120,7 +120,6 @@
 				16350B4E1F9B6E47001586F7 /* DateISO.swift */,
 				16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */,
 				16CA5B0B1F29DA67006BBF05 /* Helper.swift */,
-				16F4467F1F1F57750023AE60 /* AuthenticationManager.swift */,
 				165B9B2F1F99FC0800CCC545 /* ImageDownloadManager.swift */,
 				16350B4A1F9B6DED001586F7 /* UnicodeScalarEmoji.swift */,
 				16A52C511FA873D400F8FC32 /* EditableTableViewDataSource.swift */,
@@ -131,6 +130,7 @@
 		16A2E7A51F13557800D94D01 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				16F4467F1F1F57750023AE60 /* AuthenticationManager.swift */,
 				16D970231EFBB9FF004ADD6E /* Subject.swift */,
 				EDCFFCC31E811E6700496E5B /* Token.swift */,
 				EDCFFCC11E811D1500496E5B /* User.swift */,

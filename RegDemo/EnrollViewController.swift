@@ -27,7 +27,7 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var displayedUsers = [Enroll]()
     var selectedUserIDs = [String]()
-    
+    var chatname = ""
     
     var year = 0
     var semester = 0
@@ -112,11 +112,30 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    
     @IBAction func entireClass(_ sender: Any) {
-        selectedUserIDs = displayedUsers.map { $0.studentID }
-        //Can't check if it have all user yet
-        tableView.reloadData()
+        
+        let usersRef = Database.database().reference().child("users")
+        let chatroomRef = Database.database().reference().child("chatrooms")
+        let newChatroomKey = chatroomRef.childByAutoId().key
+        let chatroomMembersRef = chatroomRef.child(newChatroomKey).child("members")
+        let nameRef = chatroomRef.child(newChatroomKey).child("name")
+    
+        let allMemberIDs = students.map { $0.studentID }
+
+        //append name to names
+        nameRef.setValue(chatname)
+        
+        // Adds all members to chatroom
+        for userID in allMemberIDs {
+            chatroomMembersRef.child(userID).setValue(true)
+            usersRef.child(userID).child("chatrooms").child(newChatroomKey).setValue(true)
+        }
+    
         updateSelectedUser()
+        
+        // Open the chatroom view
+        switchToChatVC()
     }
     
     @IBAction func createNewChat(_ sender: Any) {
@@ -142,6 +161,13 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         // Open the chatroom view
+        switchToChatVC()
+    }
+    
+    private func switchToChatVC() {
+        let chatroomRef = Database.database().reference().child("chatrooms")
+        let newChatroomKey = chatroomRef.childByAutoId().key
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let chatVC = storyboard.instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
         chatVC.chatroomID = newChatroomKey
@@ -154,4 +180,5 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
     }
+    
 }

@@ -65,6 +65,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             enrollController?.subjectID = subjectItems[indexPath.row].subjectID
             enrollController?.year = subjectItems[indexPath.row].year
             enrollController?.semester = subjectItems[indexPath.row].semester
+            enrollController?.chatname = subjectItems[indexPath.row].nameEN
         }
     }
 
