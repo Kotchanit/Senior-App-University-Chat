@@ -537,7 +537,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 51D006BB865AC8F46E64970F /* Pods-RegDemo.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RegDemo/RegDemo.entitlements;
 				DEVELOPMENT_TEAM = 65PKPTRG94;
 				INFOPLIST_FILE = RegDemo/Info.plist;
@@ -552,7 +552,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E5231A8ADF5CE9BA12196AA9 /* Pods-RegDemo.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = RegDemo/RegDemo.entitlements;
 				DEVELOPMENT_TEAM = 65PKPTRG94;
 				INFOPLIST_FILE = RegDemo/Info.plist;

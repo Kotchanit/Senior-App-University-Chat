@@ -54,7 +54,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         let item = subjectItems[indexPath.row]
-        cell.textLabel?.text = item.nameTH
+        cell.textLabel?.text = item.nameEN
         
         return cell
     }
@@ -68,5 +68,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             enrollController?.chatname = subjectItems[indexPath.row].nameEN
         }
     }
+    
+  
 
 }
