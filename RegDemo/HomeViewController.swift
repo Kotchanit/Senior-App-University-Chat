@@ -23,8 +23,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
         if let token = AuthenticationManager.token() {
             API.subjects(token: token, completion: { (result) in
                 if case let .success(items) = result {
@@ -38,8 +37,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         showInfomation()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        //super.viewDidAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
     }
     
