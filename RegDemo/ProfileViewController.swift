@@ -1,78 +1,51 @@
 //
-//  ProfileViewController.swift
+//  SettingViewController.swift
 //  RegDemo
 //
-//  Created by Ant on 21/03/2017.
-//  Copyright © 2017 Apptitude. All rights reserved.
+//  Created by B13 on 7/27/2560 BE.
+//  Copyright © 2560 Apptitude. All rights reserved.
 //
 
 import UIKit
+import FirebaseAuth
 import AlamofireImage
 import Alamofire
 
 class ProfileViewController: UIViewController {
     
-    var token: Token?
-    
-    @IBOutlet var profileImageView: UIImageView!
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var courseDepartmentLabel: UILabel!
-    @IBOutlet var facultyLabel: UILabel!
-    @IBOutlet var gpaLabel: UILabel!
-    @IBOutlet var subjectButtton: UIButton!
-
-    
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var studentIDLabel: UILabel!
+    @IBOutlet weak var notificationSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let token = token {
-            //print("Token: \(token.value)")
-            
-            API.profile(token: token) { result in
-                if case let .success(user) = result {
-                    self.bind(user: user)
-                }
-                else {
-                    self.showAlert(message: result.error?.localizedDescription ?? "Unknown error")
-                }
-            }
-        }
+        showInfomation()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    
+    @IBAction func editNickname() {
         
-        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-    func bind(user: User) {
-        nameLabel.text = user.name
-        courseDepartmentLabel.text = user.status == "student" ? user.programName : user.departmentName
-        facultyLabel.text = user.facultyName
-        
-        if user.status == "student" {
-            if let gpa = user.latestGPA {
-                gpaLabel.text = String(format: "%.2f", gpa)
-            }
-            else {
-                gpaLabel.text = "-"
-            }
+    func showInfomation () {
+        if let token = AuthenticationManager.token(), let request = API.profileImageURLRequest(token: token) {
+            profileImage.af_setImage(withURLRequest: request)
         }
-        else {
-            gpaLabel.text = "teacher"
-        }
-        
-        if let request = API.profileImageURLRequest(token: token!) {
-            profileImageView.af_setImage(withURLRequest: request)
-        }
-        else {
-            profileImageView.image = nil
-        }
+        studentIDLabel.text = AuthenticationManager.user()?.uid
+        nameLabel.text = AuthenticationManager.user()?.name
     }
     
-    @IBAction func logoutPressed() {
-        dismiss(animated: true, completion: nil)
+    @IBAction func logout() {
+        do {
+            try Auth.auth().signOut()
+        } catch let error {
+            print(error)
+        }
+        AuthenticationManager.clear()
+        Helper.helper.switchToLoginViewController()
     }
-
+    
+    
 }
+

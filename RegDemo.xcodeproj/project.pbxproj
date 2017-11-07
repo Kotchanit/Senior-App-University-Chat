@@ -14,11 +14,11 @@
 		16350B4D1F9B6DFE001586F7 /* DateChatFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */; };
 		16350B4F1F9B6E47001586F7 /* DateISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16350B4E1F9B6E47001586F7 /* DateISO.swift */; };
 		165B9B301F99FC0800CCC545 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165B9B2F1F99FC0800CCC545 /* ImageDownloadManager.swift */; };
+		169B9ABF1FB1CC580078B933 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169B9ABE1FB1CC580078B933 /* ProfileViewController.swift */; };
 		16A52C521FA873D400F8FC32 /* EditableTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A52C511FA873D400F8FC32 /* EditableTableViewDataSource.swift */; };
 		16C7BCB41F308D82009BE301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16C7BCB31F308D82009BE301 /* Main.storyboard */; };
 		16CA2F561F2089A900F83720 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA2F551F2089A900F83720 /* ChatViewController.swift */; };
 		16CA2F5A1F20B65500F83720 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA2F591F20B65500F83720 /* ContactViewController.swift */; };
-		16CA5B0A1F29C346006BBF05 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA5B091F29C346006BBF05 /* SettingViewController.swift */; };
 		16CA5B0C1F29DA67006BBF05 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA5B0B1F29DA67006BBF05 /* Helper.swift */; };
 		16D573EC1F88FC9700895277 /* Enroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D573EB1F88FC9700895277 /* Enroll.swift */; };
 		16D573EE1F8905E300895277 /* EnrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D573ED1F8905E300895277 /* EnrollViewController.swift */; };
@@ -49,11 +49,11 @@
 		16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateChatFormat.swift; sourceTree = "<group>"; };
 		16350B4E1F9B6E47001586F7 /* DateISO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateISO.swift; sourceTree = "<group>"; };
 		165B9B2F1F99FC0800CCC545 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
+		169B9ABE1FB1CC580078B933 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		16A52C511FA873D400F8FC32 /* EditableTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTableViewDataSource.swift; sourceTree = "<group>"; };
 		16C7BCB31F308D82009BE301 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		16CA2F551F2089A900F83720 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		16CA2F591F20B65500F83720 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
-		16CA5B091F29C346006BBF05 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		16CA5B0B1F29DA67006BBF05 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		16D573EB1F88FC9700895277 /* Enroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enroll.swift; sourceTree = "<group>"; };
 		16D573ED1F8905E300895277 /* EnrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollViewController.swift; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 		16F8EF451F8B8EBD00D90828 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				16CA5B091F29C346006BBF05 /* SettingViewController.swift */,
+				169B9ABE1FB1CC580078B933 /* ProfileViewController.swift */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -416,6 +416,7 @@
 				16350B4F1F9B6E47001586F7 /* DateISO.swift in Sources */,
 				EDCFFCC41E811E6700496E5B /* Token.swift in Sources */,
 				16350B4D1F9B6DFE001586F7 /* DateChatFormat.swift in Sources */,
+				169B9ABF1FB1CC580078B933 /* ProfileViewController.swift in Sources */,
 				EDCFFCC21E811D1500496E5B /* User.swift in Sources */,
 				16CA2F561F2089A900F83720 /* ChatViewController.swift in Sources */,
 				16D573EC1F88FC9700895277 /* Enroll.swift in Sources */,
@@ -423,7 +424,6 @@
 				16CA5B0C1F29DA67006BBF05 /* Helper.swift in Sources */,
 				16350B4B1F9B6DED001586F7 /* UnicodeScalarEmoji.swift in Sources */,
 				EDCFFCAC1E81141600496E5B /* AppDelegate.swift in Sources */,
-				16CA5B0A1F29C346006BBF05 /* SettingViewController.swift in Sources */,
 				16EADD861F3C4770003412F9 /* NewMessageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
