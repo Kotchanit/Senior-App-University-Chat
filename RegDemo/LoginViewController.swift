@@ -15,6 +15,8 @@ class LoginViewController: UIViewController {
     
     @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
+    
+    
     @IBOutlet var loginButton: UIButton!
     
     let fcmtoken = Messaging.messaging().fcmToken
