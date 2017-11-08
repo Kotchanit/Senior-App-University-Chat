@@ -38,8 +38,12 @@ class ContactViewController: UIViewController, UITableViewDelegate {
             
             let dict = snapshot.value as? [String: Any]
             let name = dict?["name"] as? String
+            let latestMessage = dict?["lastest_message"] as? String
+            let latestMessageTimestamp = dict?["lastest_message_timestamp"] as? String
             
             cell.chatNameLabel.text = name
+            cell.latestMessageLabel.text = latestMessage
+            cell.timeLabel.text = latestMessageTimestamp
             
             return cell
         }, commitEdit: { (tableView, editingStyle, indexPath, snapshot) in

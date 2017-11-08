@@ -43,7 +43,7 @@ class ChatViewController: JSQMessagesViewController {
                 self.senderDisplayName = name
             }
         })
- 
+        chatRef = Database.database().reference().child("chatrooms").child(chatroomID)
         messageRef = Database.database().reference().child("chatrooms").child(chatroomID).child("messages")
         observeMessages()
         
@@ -139,10 +139,6 @@ class ChatViewController: JSQMessagesViewController {
     
     //sender TextMessages
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-        //messageRef
-        
-        
-        
         let newMessage = messageRef!.childByAutoId()
         let messageData = [
             "text": text,
@@ -151,14 +147,14 @@ class ChatViewController: JSQMessagesViewController {
             "mediaType": "TEXT",
             "timestamp": Date().iso8601DateString]
         newMessage.setValue(messageData)
+        chatRef?.child("lastest_message").setValue(text)
+        chatRef?.child("lastest_message_timestamp").setValue(Date().iso8601DateString)
         self.finishSendingMessage()
     }
     
     //Sender MediaMessages
     override func didPressAccessoryButton(_ sender: UIButton!) {
         print("didPressAccessoryButton")
-        
-        
         let sheet = UIAlertController(title: "Media Messages", message: "Please select a media", preferredStyle: UIAlertControllerStyle.actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alert : UIAlertAction) in
             
@@ -174,10 +170,6 @@ class ChatViewController: JSQMessagesViewController {
         sheet.addAction(videoLibrary)
         sheet.addAction(cancel)
         self.present(sheet, animated: true, completion: nil)
-        
-//        let imagePicker = UIImagePickerController()
-//        imagePicker.delegate = self
-//        self.present(imagePicker, animated: true, completion: nil)
     }
     
     func getMediaFrom(type: CFString) {
@@ -290,14 +282,16 @@ class ChatViewController: JSQMessagesViewController {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         let message = messages[indexPath.item]
         
-        cell.textView.isUserInteractionEnabled = true
-        if !message.isMediaMessage && message.text.unicodeScalars.count == 1 && message.text.unicodeScalars.first!.isEmoji {
-            cell.textView.font = UIFont.systemFont(ofSize: 72)
-            cell.messageBubbleImageView.isHidden = true
-        }
-        else {
-            cell.textView.font = UIFont.systemFont(ofSize: 17)
-            cell.messageBubbleImageView.isHidden = false
+        if !message.isMediaMessage {
+            cell.textView.isUserInteractionEnabled = true
+            if message.text.unicodeScalars.count == 1 && message.text.unicodeScalars.first!.isEmoji {
+                cell.textView.font = UIFont.systemFont(ofSize: 72)
+                cell.messageBubbleImageView.isHidden = true
+            }
+            else {
+                cell.textView.font = UIFont.systemFont(ofSize: 17)
+                cell.messageBubbleImageView.isHidden = false
+            }
         }
 
         if message.senderId != senderId {
@@ -344,6 +338,8 @@ class ChatViewController: JSQMessagesViewController {
                 
                 let newMessage = self.messageRef!.childByAutoId()
                 let messageData = ["fileUrl": fileUrl, "senderID": self.senderId, "senderName": self.senderDisplayName, "mediaType": "PHOTO", "timestamp": Date().iso8601DateString]
+                self.chatRef?.child("lastest_message").setValue(self.senderDisplayName + " send photo")
+                self.chatRef?.child("lastest_message_timestamp").setValue(Date().iso8601DateString)
                 newMessage.setValue(messageData)
                 
             }
@@ -364,6 +360,8 @@ class ChatViewController: JSQMessagesViewController {
                 
                 let newMessage = self.messageRef!.childByAutoId()
                 let messageData = ["fileUrl": fileUrl, "senderID": self.senderId, "senderName": self.senderDisplayName, "mediaType": "VIDEO", "timestamp": Date().iso8601DateString]
+                self.chatRef?.child("lastest_message").setValue(self.senderDisplayName + " send video")
+                self.chatRef?.child("lastest_message_timestamp").setValue(Date().iso8601DateString)
                 newMessage.setValue(messageData)
                 
             }
