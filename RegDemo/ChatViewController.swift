@@ -289,6 +289,7 @@ class ChatViewController: JSQMessagesViewController {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
         let message = messages[indexPath.item]
         
+        cell.textView.isUserInteractionEnabled = true
         if !message.isMediaMessage && message.text.unicodeScalars.count == 1 && message.text.unicodeScalars.first!.isEmoji {
             cell.textView.font = UIFont.systemFont(ofSize: 72)
             cell.messageBubbleImageView.isHidden = true
