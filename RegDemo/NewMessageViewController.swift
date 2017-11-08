@@ -18,6 +18,17 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    var searchKeyword: String? = nil {
+        didSet {
+            if let keyword = searchKeyword, keyword != "" {
+                displayedUsers = users.filter { $0.uid != AuthenticationManager.user()?.uid && $0.name.contains(keyword) }
+            }
+            else {
+                displayedUsers = users.filter { $0.uid != AuthenticationManager.user()?.uid }
+            }
+        }
+    }
+    
     var displayedUsers = [User]()
     var currentUser = [User]()
     var selectedUserIDs = [String]()
@@ -29,13 +40,11 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
         fetchUsers()
-        //setupSearchBar()
         selectedUser.isEnabled = false
         selectedUser.title = "OK"
-    
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,6 +57,7 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         let user = displayedUsers[indexPath.row]
         cell.nameLabel.text = user.name
         cell.studentIDLabel.text = "\(user.username)"
+        cell.accessoryType = selectedUserIDs.contains(user.uid) ? .checkmark : .none
         
         if let token = AuthenticationManager.token(), let request = API.userImageURLRequest(token: token, userID: user.username) {
             cell.userImageView.af_setImage(withURLRequest: request)
@@ -84,18 +94,8 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //Search Bar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard !searchText.isEmpty else {
-            currentUser = displayedUsers
-            return
-        }
-        currentUser = displayedUsers.filter({ (user) -> Bool in
-            return user.name.contains(searchText)
-        })
+        searchKeyword = searchText.isEmpty ? nil : searchText
         tableView.reloadData()
-    }
-
-    func setupSearchBar() {
-        searchBar.delegate = self
     }
 
     //fetch users from firebase

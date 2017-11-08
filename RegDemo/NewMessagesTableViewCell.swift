@@ -14,4 +14,7 @@ class NewMessagesTableViewCell: UITableViewCell {
     @IBOutlet weak var studentIDLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
+    override func prepareForReuse() {
+        userImageView.image = nil
+    }
 }
