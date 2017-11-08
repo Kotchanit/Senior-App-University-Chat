@@ -148,6 +148,10 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         let query = chatroomRef.queryOrdered(byChild: "membersRaw").queryEqual(toValue: membersRaw)
         query.observeSingleEvent(of: .value, with: { (snapshot) in
             if let chatroom = snapshot.children.nextObject() as? DataSnapshot {
+                let uid = AuthenticationManager.user()!.uid
+                let databaseRef = Database.database().reference()
+                databaseRef.child("chatrooms").child(chatroom.key).child("members").child(uid).setValue(true)
+                databaseRef.child("users").child(uid).child("chatrooms").child(chatroom.key).setValue(true)
                 completion(chatroom.key)
             }
             else {

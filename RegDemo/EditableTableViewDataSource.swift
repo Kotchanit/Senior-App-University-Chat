@@ -7,7 +7,7 @@ class EditableTableViewDataSource: FUITableViewDataSource {
     typealias PopulateCellBlock = (UITableView, IndexPath, DataSnapshot) -> UITableViewCell
     
     /// Called to commit an edit to the UITableView.
-    typealias CommitEditBlock = (UITableView, UITableViewCellEditingStyle, IndexPath) -> Void
+    typealias CommitEditBlock = (UITableView, UITableViewCellEditingStyle, IndexPath, DataSnapshot) -> Void
     
     private let commitEditBlock: CommitEditBlock?
     
@@ -30,7 +30,7 @@ class EditableTableViewDataSource: FUITableViewDataSource {
                             forRowAt indexPath: IndexPath)
     {
         if (commitEditBlock != nil) {
-            commitEditBlock!(tableView, editingStyle, indexPath)
+            commitEditBlock!(tableView, editingStyle, indexPath, snapshot(at: indexPath.row))
         }
     }
     

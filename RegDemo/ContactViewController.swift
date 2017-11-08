@@ -15,8 +15,6 @@ class ContactViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var chatroomIDs: [String] = []
-    
     var dataSource: EditableTableViewDataSource?
     
     var allmembers: [String] = []
@@ -44,14 +42,14 @@ class ContactViewController: UIViewController, UITableViewDelegate {
             cell.chatNameLabel.text = name
             
             return cell
-        }, commitEdit: { (tableView, editingStyle, indexPath) in
-            let chatroomID = self.chatroomIDs[indexPath.row]
+        }, commitEdit: { (tableView, editingStyle, indexPath, snapshot) in
+            let chatroomID = snapshot.key
             guard let uid = AuthenticationManager.user()?.uid else { return }
             
             if editingStyle == .delete {
-                self.chatroomIDs.remove(at: indexPath.row)
-                Database.database().reference().child("chatrooms").child(chatroomID).child("members").child(uid).removeValue()
-                tableView.deleteRows(at: [indexPath], with: .automatic)
+                let databaseRef = Database.database().reference()
+                databaseRef.child("chatrooms").child(chatroomID).child("members").child(uid).removeValue()
+                databaseRef.child("users").child(uid).child("chatrooms").child(chatroomID).removeValue()
             }
         })
     }
@@ -90,32 +88,7 @@ class ContactViewController: UIViewController, UITableViewDelegate {
     func checkIfUserisLoggedIn() {
         if AuthenticationManager.user()?.uid == nil {
             perform(#selector(logout), with: nil, afterDelay: 0)
-        } else {
-            fetchUserAndSetupNavBarTitle()
         }
-    }
-    
-    func fetchUserAndSetupNavBarTitle() {
-        guard let uid = AuthenticationManager.user()?.uid else {
-            
-            return
-        }
-        
-        Database.database().reference().child("users").child(uid).child("data").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                self.navigationItem.title = dictionary["name"] as? String
-                self.tableView.reloadData()
-            }
-        }, withCancel: nil)
-        
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: AnyObject] {
-                if let dict = dictionary["chatrooms"] as? [String: Any] {
-                    self.chatroomIDs = [String](dict.keys)
-                    self.tableView.reloadData()
-                }
-            }
-        }, withCancel: nil)
     }
     
     func logout() {
