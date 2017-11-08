@@ -38,10 +38,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         showInfomation()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        //super.viewDidAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
     }
+    
     
     func showInfomation () {
         if let token = AuthenticationManager.token(), let request = API.profileImageURLRequest(token: token) {
