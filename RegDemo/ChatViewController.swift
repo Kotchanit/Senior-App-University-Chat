@@ -95,14 +95,14 @@ class ChatViewController: JSQMessagesViewController {
                     
                     let text = dict["text"] as? String
                     self.messages.append(JSQMessage(senderId: senderId, senderDisplayName: senderName, date: timestamp, text: text))
-                    self.downloadAvatar(for: senderId, avatarImage: self.prepareAvatarImage(with: senderId))
+                    self.downloadAvatar(for: senderId, avatarImage: self.prepareAvatarImage(id: senderId, with: senderName))
                     
                 case "PHOTO":
                     
                     let fileUrl = dict["fileUrl"] as! String
                     let url = NSURL(string: fileUrl)
                     let data = NSData(contentsOf: url! as URL)
-                    let picture = UIImage(data: data as! Data)
+                    let picture = UIImage(data: data! as Data)
                     let photo = JSQPhotoMediaItem(image: picture)
                     self.messages.append(JSQMessage(senderId: senderId, senderDisplayName: senderName, date: timestamp, media: photo))
                     
@@ -277,7 +277,7 @@ class ChatViewController: JSQMessagesViewController {
     //Show user's pic in chatroom for each message
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
         let message = messages[indexPath.item]
-        return prepareAvatarImage(with: message.senderId)
+        return prepareAvatarImage(id: message.senderId, with: message.senderDisplayName)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -404,11 +404,10 @@ class ChatViewController: JSQMessagesViewController {
         }
     }
     
-    private func prepareAvatarImage(with id: String) -> JSQMessagesAvatarImage! {
-        //--------------- incomplete -----------------
-        let firstChar = senderDisplayName.characters.first
+    private func prepareAvatarImage(id: String, with name: String) -> JSQMessagesAvatarImage! {
         if (self.avatars[id] == nil) {
-            let avartarImage = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: "\(firstChar!)" , backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.lightGray, font: UIFont.systemFont(ofSize: 17), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
+            let firstChar = String(name.characters.first!)
+            let avartarImage = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: firstChar , backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.lightGray, font: UIFont.systemFont(ofSize: 17), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
             self.avatars[id] = avartarImage
         }
         
