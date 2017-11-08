@@ -120,38 +120,66 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func createNewChat(_ sender: Any) {
-        let usersRef = Database.database().reference().child("users")
+        let allMemberIDs = selectedUserIDs + [AuthenticationManager.user()!.uid]
         let chatroomRef = Database.database().reference().child("chatrooms")
+        
+        getChatroomKey(chatroomRef: chatroomRef, for: allMemberIDs) { (key) in
+            
+            let chatroomKey = key ?? self.newChatroom(chatroomRef: chatroomRef, memberIDs: allMemberIDs)
+            
+            // Open the chatroom view
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let chatVC = storyboard.instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
+            chatVC.chatroomID = chatroomKey
+            self.navigationController?.pushViewController(chatVC, animated: true)
+            
+            // Wait 1 second and then remove self from navigation stack
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                if let vcs = self.navigationController?.viewControllers {
+                    self.navigationController?.viewControllers = vcs.filter { $0 != self }
+                }
+            }
+        }
+
+    }
+    
+    private func getChatroomKey(chatroomRef: DatabaseReference, for memberIDs: [String], completion: @escaping (String?) -> ()) {
+        let membersRaw = memberIDs.sorted().joined(separator: ",")
+        let query = chatroomRef.queryOrdered(byChild: "membersRaw").queryEqual(toValue: membersRaw)
+        query.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let chatroom = snapshot.children.nextObject() as? DataSnapshot {
+                print("Existing chatroom: "+chatroom.key)
+                completion(chatroom.key)
+            }
+            else {
+                completion(nil)
+            }
+        })
+    }
+    
+    private func newChatroom(chatroomRef: DatabaseReference, memberIDs: [String]) -> String {
+        let usersRef = Database.database().reference().child("users")
         let newChatroomKey = chatroomRef.childByAutoId().key
         let chatroomMembersRef = chatroomRef.child(newChatroomKey).child("members")
         let nameRef = chatroomRef.child(newChatroomKey).child("name")
         
-        let allMemberIDs = selectedUserIDs + [AuthenticationManager.user()!.uid]
-        
         // Filter all the users to just the selected users, and get their names only
         //check if user.id in allmembersID is true
-        let selectedUsers = users.filter { allMemberIDs.contains($0.uid) }
+        let selectedUsers = users.filter { memberIDs.contains($0.uid) }
         //append name to names
         let names = selectedUsers.map { $0.name } //check n
         nameRef.setValue(names.joined(separator: ", "))
-
+        
         // Adds all members to chatroom
-        for userID in allMemberIDs {
+        for userID in memberIDs {
             chatroomMembersRef.child(userID).setValue(true)
             usersRef.child(userID).child("chatrooms").child(newChatroomKey).setValue(true)
         }
         
-        // Open the chatroom view
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let chatVC = storyboard.instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
-        chatVC.chatroomID = newChatroomKey
-        navigationController?.pushViewController(chatVC, animated: true)
+        // Add membersRaw
+        let membersRaw = memberIDs.sorted().joined(separator: ",")
+        chatroomRef.child(newChatroomKey).child("membersRaw").setValue(membersRaw)
         
-        // Wait 1 second and then remove self from navigation stack
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            if let vcs = self.navigationController?.viewControllers {
-                self.navigationController?.viewControllers = vcs.filter { $0 != self }
-            }
-        }
+        return newChatroomKey
     }
 }
