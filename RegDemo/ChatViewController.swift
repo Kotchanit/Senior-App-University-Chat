@@ -139,9 +139,10 @@ class ChatViewController: JSQMessagesViewController {
     
     //sender TextMessages
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
-//        messages.append(JSQMessage(senderId: senderId, displayName: senderDisplayName, text: text))
-//        collectionView.reloadData()
-//        print(messages)
+        //messageRef
+        
+        
+        
         let newMessage = messageRef!.childByAutoId()
         let messageData = [
             "text": text,
@@ -196,7 +197,7 @@ class ChatViewController: JSQMessagesViewController {
         
         if message.senderId == self.senderId {
             let bubbleFactory = JSQMessagesBubbleImageFactory()
-            return bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.blue)
+            return bubbleFactory?.outgoingMessagesBubbleImage(with: UIColor.orange)
         } else {
             let bubbleFactory = JSQMessagesBubbleImageFactory()
             return bubbleFactory?.incomingMessagesBubbleImage(with: UIColor.lightGray)

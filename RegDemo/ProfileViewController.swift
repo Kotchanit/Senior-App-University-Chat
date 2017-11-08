@@ -14,13 +14,18 @@ import Alamofire
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var studentIDLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var facultyLabel: UILabel!
+    @IBOutlet weak var programLabel: UILabel!
+    @IBOutlet weak var gpaLabel: UILabel!
     @IBOutlet weak var notificationSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         showInfomation()
+        print(AuthenticationManager.user()?.latestGPA)
     }
     
     
@@ -32,8 +37,12 @@ class ProfileViewController: UIViewController {
         if let token = AuthenticationManager.token(), let request = API.profileImageURLRequest(token: token) {
             profileImage.af_setImage(withURLRequest: request)
         }
-        studentIDLabel.text = AuthenticationManager.user()?.uid
+        usernameLabel.text = AuthenticationManager.user()?.uid
         nameLabel.text = AuthenticationManager.user()?.name
+        statusLabel.text = AuthenticationManager.user()?.status
+        facultyLabel.text = AuthenticationManager.user()?.status
+        programLabel.text = AuthenticationManager.user()?.programName
+        gpaLabel.text = "\(AuthenticationManager.user()?.latestGPA)"
     }
     
     @IBAction func logout() {

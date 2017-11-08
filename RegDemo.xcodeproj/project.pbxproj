@@ -145,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				16F8EF461F8B8ECE00D90828 /* Login */,
-				16F8EF451F8B8EBD00D90828 /* Setting */,
+				16F8EF451F8B8EBD00D90828 /* Profile */,
 				16F8EF441F8B8EA900D90828 /* Chat */,
 				16F8EF421F8B8E7400D90828 /* Home */,
 				16A2E7A51F13557800D94D01 /* Model */,
@@ -177,12 +177,12 @@
 			name = Chat;
 			sourceTree = "<group>";
 		};
-		16F8EF451F8B8EBD00D90828 /* Setting */ = {
+		16F8EF451F8B8EBD00D90828 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				169B9ABE1FB1CC580078B933 /* ProfileViewController.swift */,
 			);
-			name = Setting;
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		16F8EF461F8B8ECE00D90828 /* Login */ = {
