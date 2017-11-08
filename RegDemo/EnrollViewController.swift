@@ -124,6 +124,7 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let allMemberIDs = students.map { $0.studentID }
 
         //append name to names
+        chatroomRef.child(newChatroomKey).child("subjectID").setValue(subjectID)
         nameRef.setValue(chatname)
         
         // Adds all members to chatroom
@@ -131,6 +132,8 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
             chatroomMembersRef.child(userID).setValue(true)
             usersRef.child(userID).child("chatrooms").child(newChatroomKey).setValue(true)
         }
+        
+        
     }
     
     @IBAction func createNewChat(_ sender: Any) {
