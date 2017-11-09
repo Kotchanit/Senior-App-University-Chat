@@ -9,6 +9,7 @@
 import UIKit
 import AlamofireImage
 import Alamofire
+import FirebaseDatabase
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -20,7 +21,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     var subjectItems: [Subject] = []
-    
+    var nickname = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false
@@ -42,15 +43,30 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = false
+        showInfomation()
     }
     
     
     func showInfomation () {
-        if let token = AuthenticationManager.token(), let request = API.profileImageURLRequest(token: token) {
-           profileImageView.af_setImage(withURLRequest: request)
+        guard let uid = AuthenticationManager.user()?.uid else { return }
+        
+        Database.database().reference().child("users").child(uid).child("data").child("nickname").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let nicknamesanpshot = snapshot.value as? String {
+                self.nickname = nicknamesanpshot
+            }
+        })
+        
+        if nickname == "" {
+            self.nameLabel.text = AuthenticationManager.user()?.name
+        } else {
+            self.nameLabel.text = nickname
         }
+        
+        if let token = AuthenticationManager.token(), let request = API.profileImageURLRequest(token: token) {
+            profileImageView.af_setImage(withURLRequest: request)
+        }
+        
         usernameLabel.text = AuthenticationManager.user()?.uid
-        nameLabel.text = AuthenticationManager.user()?.name
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

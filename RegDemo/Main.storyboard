@@ -111,6 +111,7 @@
         <!--News-->
         <scene sceneID="XDj-dE-ccG">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kfe-q6-elE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="eWv-5q-WyP" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qzP-B3-lth"/>
@@ -123,7 +124,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="News" id="Xfu-nQ-08O"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kfe-q6-elE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1242" y="-233"/>
         </scene>
@@ -165,7 +165,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="latestMessage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEx-El-ZlQ">
                                                     <rect key="frame" x="62" y="26" width="224" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -457,7 +457,7 @@
                                                     <color key="titleColor" red="0.54109090569999996" green="0.54106456039999995" blue="0.54927140470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="editNickname" destination="Ohw-re-1Cs" eventType="touchUpInside" id="aqI-6z-v1v"/>
+                                                    <segue destination="KWI-YL-Eim" kind="show" id="e0M-Sp-lVq"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -503,6 +503,7 @@
                         <outlet property="facultyLabel" destination="99W-rI-dD9" id="3MR-Gu-jjq"/>
                         <outlet property="gpaLabel" destination="Czb-1A-er6" id="63T-jH-mCT"/>
                         <outlet property="nameLabel" destination="wr9-Pc-gR3" id="PKp-rT-aeC"/>
+                        <outlet property="nicknameLabel" destination="eDF-F2-FW6" id="RNd-Q5-p7p"/>
                         <outlet property="notificationSwitch" destination="X0v-vl-FWX" id="40K-lZ-30e"/>
                         <outlet property="profileImage" destination="sD8-WU-0zu" id="5a6-05-h55"/>
                         <outlet property="programLabel" destination="mz9-vn-ieL" id="bQs-tQ-Cbf"/>
@@ -513,6 +514,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QOQ-mI-wnv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-282.39999999999998" y="-233.43328335832086"/>
+        </scene>
+        <!--Edit-->
+        <scene sceneID="7Sz-sl-7RW">
+            <objects>
+                <viewController title="Edit" id="KWI-YL-Eim" customClass="EditNicknameViewController" customModule="RegDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pC0-2o-MIo"/>
+                        <viewControllerLayoutGuide type="bottom" id="maL-RL-Fan"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2WR-te-Ftd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZsD-6x-caB">
+                                <rect key="frame" x="59" y="152" width="257" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edit Nickname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iw2-T1-ZUI">
+                                <rect key="frame" x="59" y="120" width="125" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ZI-GT-cbN">
+                                <rect key="frame" x="138" y="190" width="98" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="OK">
+                                    <color key="titleColor" red="0.99607843139999996" green="0.47058823529999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="editNickname:" destination="KWI-YL-Eim" eventType="touchUpInside" id="P7f-ef-Thq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="nicknameTextField" destination="ZsD-6x-caB" id="8Ph-hZ-Cxo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yR9-L9-mCy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-282.39999999999998" y="623.83808095952031"/>
         </scene>
         <!--Choose friends-->
         <scene sceneID="0eG-5g-4cE">
@@ -953,7 +1002,7 @@
         <image name="icons8-home" width="25" height="25"/>
         <image name="icons8-news" width="25" height="25"/>
         <image name="icons8-speech-bubble" width="25" height="25"/>
-        <image name="nu-logo" width="512" height="512"/>
+        <image name="nu-logo" width="462" height="512"/>
         <image name="pause.png" width="28" height="28"/>
         <image name="play.png" width="28" height="28"/>
     </resources>

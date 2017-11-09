@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import AlamofireImage
 import Alamofire
+import FirebaseDatabase
 
 class ProfileViewController: UIViewController {
     
@@ -21,26 +22,42 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var programLabel: UILabel!
     @IBOutlet weak var gpaLabel: UILabel!
     @IBOutlet weak var notificationSwitch: UISwitch!
+    @IBOutlet weak var nicknameLabel: UILabel!
     
+    var nickname = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         showInfomation()
-        print(AuthenticationManager.user()?.latestGPA)
     }
     
-    
-    @IBAction func editNickname() {
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showInfomation()
     }
+    
     
     func showInfomation () {
+        guard let uid = AuthenticationManager.user()?.uid else { return }
+
+        Database.database().reference().child("users").child(uid).child("data").child("nickname").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let nicknamesanpshot = snapshot.value as? String {
+                self.nickname = nicknamesanpshot
+            }
+        })
+       
+        if nickname == "" {
+            self.nicknameLabel.text = AuthenticationManager.user()?.name
+        } else {
+            self.nicknameLabel.text = nickname
+        }
+        
         if let token = AuthenticationManager.token(), let request = API.profileImageURLRequest(token: token) {
             profileImage.af_setImage(withURLRequest: request)
         }
         usernameLabel.text = AuthenticationManager.user()?.uid
         nameLabel.text = AuthenticationManager.user()?.name
         statusLabel.text = AuthenticationManager.user()?.status
-        facultyLabel.text = AuthenticationManager.user()?.status
+        facultyLabel.text = AuthenticationManager.user()?.facultyName
         programLabel.text = AuthenticationManager.user()?.programName
         gpaLabel.text = "\(AuthenticationManager.user()?.latestGPA)"
     }
