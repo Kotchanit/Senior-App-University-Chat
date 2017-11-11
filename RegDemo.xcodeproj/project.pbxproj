@@ -13,7 +13,6 @@
 		16350B4B1F9B6DED001586F7 /* UnicodeScalarEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16350B4A1F9B6DED001586F7 /* UnicodeScalarEmoji.swift */; };
 		16350B4D1F9B6DFE001586F7 /* DateChatFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */; };
 		16350B4F1F9B6E47001586F7 /* DateISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16350B4E1F9B6E47001586F7 /* DateISO.swift */; };
-		165B9B301F99FC0800CCC545 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165B9B2F1F99FC0800CCC545 /* ImageDownloadManager.swift */; };
 		169B9ABF1FB1CC580078B933 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169B9ABE1FB1CC580078B933 /* ProfileViewController.swift */; };
 		169DFA491FB44603001B918B /* EditNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169DFA481FB44603001B918B /* EditNicknameViewController.swift */; };
 		16A52C521FA873D400F8FC32 /* EditableTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A52C511FA873D400F8FC32 /* EditableTableViewDataSource.swift */; };
@@ -26,6 +25,7 @@
 		16D573F01F89067600895277 /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D573EF1F89067600895277 /* Semester.swift */; };
 		16D970241EFBB9FF004ADD6E /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D970231EFBB9FF004ADD6E /* Subject.swift */; };
 		16D970261EFBC059004ADD6E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D970251EFBC059004ADD6E /* HomeViewController.swift */; };
+		16E11E651FB5B28700148F8B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E11E641FB5B28700148F8B /* NewsViewController.swift */; };
 		16E9B56A1F861C11007651A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16E9B5691F861C11007651A4 /* GoogleService-Info.plist */; };
 		16EADD861F3C4770003412F9 /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EADD851F3C4770003412F9 /* NewMessageViewController.swift */; };
 		16F446801F1F57750023AE60 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4467F1F1F57750023AE60 /* AuthenticationManager.swift */; };
@@ -49,7 +49,6 @@
 		16350B4A1F9B6DED001586F7 /* UnicodeScalarEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnicodeScalarEmoji.swift; sourceTree = "<group>"; };
 		16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateChatFormat.swift; sourceTree = "<group>"; };
 		16350B4E1F9B6E47001586F7 /* DateISO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateISO.swift; sourceTree = "<group>"; };
-		165B9B2F1F99FC0800CCC545 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 		169B9ABE1FB1CC580078B933 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		169DFA481FB44603001B918B /* EditNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewController.swift; sourceTree = "<group>"; };
 		16A52C511FA873D400F8FC32 /* EditableTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -62,6 +61,7 @@
 		16D573EF1F89067600895277 /* Semester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Semester.swift; sourceTree = "<group>"; };
 		16D970231EFBB9FF004ADD6E /* Subject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
 		16D970251EFBC059004ADD6E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		16E11E641FB5B28700148F8B /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		16E9B5681F8619E3007651A4 /* RegDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RegDemo.entitlements; sourceTree = "<group>"; };
 		16E9B5691F861C11007651A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		16EADD851F3C4770003412F9 /* NewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
@@ -122,7 +122,6 @@
 				16350B4E1F9B6E47001586F7 /* DateISO.swift */,
 				16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */,
 				16CA5B0B1F29DA67006BBF05 /* Helper.swift */,
-				165B9B2F1F99FC0800CCC545 /* ImageDownloadManager.swift */,
 				16350B4A1F9B6DED001586F7 /* UnicodeScalarEmoji.swift */,
 				16A52C511FA873D400F8FC32 /* EditableTableViewDataSource.swift */,
 			);
@@ -146,6 +145,7 @@
 		16A2E7A71F1355A400D94D01 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				16E11E631FB5B26A00148F8B /* News */,
 				16F8EF461F8B8ECE00D90828 /* Login */,
 				16F8EF421F8B8E7400D90828 /* Home */,
 				16F8EF441F8B8EA900D90828 /* Chat */,
@@ -153,6 +153,14 @@
 				16A2E7A51F13557800D94D01 /* Model */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		16E11E631FB5B26A00148F8B /* News */ = {
+			isa = PBXGroup;
+			children = (
+				16E11E641FB5B28700148F8B /* NewsViewController.swift */,
+			);
+			name = News;
 			sourceTree = "<group>";
 		};
 		16F8EF421F8B8E7400D90828 /* Home */ = {
@@ -336,7 +344,6 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -350,7 +357,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -410,7 +416,6 @@
 				16D970261EFBC059004ADD6E /* HomeViewController.swift in Sources */,
 				16350B491F9B6DA5001586F7 /* MessagesBubblesWithEmojiSizeCalculator.swift in Sources */,
 				EDCFFCC01E811CAD00496E5B /* API.swift in Sources */,
-				165B9B301F99FC0800CCC545 /* ImageDownloadManager.swift in Sources */,
 				1621EC761F94B4BB00D8EF6B /* Chatroom.swift in Sources */,
 				16D573EE1F8905E300895277 /* EnrollViewController.swift in Sources */,
 				16CA2F5A1F20B65500F83720 /* ContactViewController.swift in Sources */,
@@ -427,6 +432,7 @@
 				16F8EF3F1F8B68DE00D90828 /* EnrollTableViewCell.swift in Sources */,
 				16CA5B0C1F29DA67006BBF05 /* Helper.swift in Sources */,
 				16350B4B1F9B6DED001586F7 /* UnicodeScalarEmoji.swift in Sources */,
+				16E11E651FB5B28700148F8B /* NewsViewController.swift in Sources */,
 				EDCFFCAC1E81141600496E5B /* AppDelegate.swift in Sources */,
 				16EADD861F3C4770003412F9 /* NewMessageViewController.swift in Sources */,
 			);
