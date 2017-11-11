@@ -71,9 +71,6 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.4.0)
-  - SDWebImage (4.2.2):
-    - SDWebImage/Core (= 4.2.2)
-  - SDWebImage/Core (4.2.2)
 
 DEPENDENCIES:
   - Alamofire
@@ -86,7 +83,6 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseUI/Database
   - JSQMessagesViewController
-  - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -107,8 +103,7 @@ SPEC CHECKSUMS:
   leveldb-library: 44ef425bfde64f5b41daef86b38db2d13edbbee1
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
-  SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
 
-PODFILE CHECKSUM: 0c7b93de20f218924789c3025b45d66ec925a474
+PODFILE CHECKSUM: 09375d348fc71d6efcbc480e781265cca4297c40
 
 COCOAPODS: 1.4.0.beta.1

@@ -18,6 +18,5 @@ target 'RegDemo' do
   pod 'FirebaseUI/Database'
 
   pod 'JSQMessagesViewController'
-  pod 'SDWebImage'
 
 end
