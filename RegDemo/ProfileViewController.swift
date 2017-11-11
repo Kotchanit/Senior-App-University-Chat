@@ -23,11 +23,13 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var gpaLabel: UILabel!
     @IBOutlet weak var notificationSwitch: UISwitch!
     @IBOutlet weak var nicknameLabel: UILabel!
+    @IBOutlet weak var editNickname: UIButton!
     
     var nickname = ""
     override func viewDidLoad() {
+        editNickname.semanticContentAttribute = .forceRightToLeft
+        editNickname.setTitle("Edit Nickname ", for: .normal)
         super.viewDidLoad()
-        showInfomation()
     }
     
     override func viewWillAppear(_ animated: Bool) {

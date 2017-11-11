@@ -108,25 +108,6 @@
             </objects>
             <point key="canvasLocation" x="-2026" y="-2703"/>
         </scene>
-        <!--News-->
-        <scene sceneID="XDj-dE-ccG">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kfe-q6-elE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="eWv-5q-WyP" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qzP-B3-lth"/>
-                        <viewControllerLayoutGuide type="bottom" id="auU-Dn-ygW"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3pY-7D-n2W">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="News" id="Xfu-nQ-08O"/>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="-1242" y="-233"/>
-        </scene>
         <!--Chats-->
         <scene sceneID="0pS-kZ-wMb">
             <objects>
@@ -449,11 +430,13 @@
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdS-vR-vxF">
-                                                <rect key="frame" x="113" y="121" width="121" height="18"/>
+                                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdS-vR-vxF">
+                                                <rect key="frame" x="93" y="119" width="160" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="Edit Nickname">
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                                </accessibility>
+                                                <state key="normal" title=" Edit Nickname " image="icons8-edit">
                                                     <color key="titleColor" red="0.54109090569999996" green="0.54106456039999995" blue="0.54927140470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -500,6 +483,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="mal-rs-3tY"/>
                     <connections>
+                        <outlet property="editNickname" destination="qdS-vR-vxF" id="IR0-oA-MnF"/>
                         <outlet property="facultyLabel" destination="99W-rI-dD9" id="3MR-Gu-jjq"/>
                         <outlet property="gpaLabel" destination="Czb-1A-er6" id="63T-jH-mCT"/>
                         <outlet property="nameLabel" destination="wr9-Pc-gR3" id="PKp-rT-aeC"/>
@@ -940,9 +924,6 @@
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="eWv-5q-WyP" kind="relationship" relationship="rootViewController" id="tgx-Bh-7Wn"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYQ-ac-v1U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -999,6 +980,7 @@
     </scenes>
     <resources>
         <image name="icons8-customer" width="25" height="25"/>
+        <image name="icons8-edit" width="20" height="20"/>
         <image name="icons8-home" width="25" height="25"/>
         <image name="icons8-news" width="25" height="25"/>
         <image name="icons8-speech-bubble" width="25" height="25"/>

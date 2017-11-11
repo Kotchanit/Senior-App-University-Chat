@@ -59,8 +59,8 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! EnrollTableViewCell
-        
         let item = displayedUsers[indexPath.row]
+        
         cell.studentIDLabel.text = "\(item.studentID)"
         cell.nameLabel.text = item.name
         

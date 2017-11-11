@@ -38,7 +38,7 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectedUser: UIBarButtonItem!
     
-    
+    var nickname = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,8 +53,8 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellNM", for: indexPath) as! NewMessagesTableViewCell
-        
         let user = displayedUsers[indexPath.row]
+    
         cell.nameLabel.text = user.name
         cell.studentIDLabel.text = "\(user.username)"
         cell.accessoryType = selectedUserIDs.contains(user.uid) ? .checkmark : .none
