@@ -112,28 +112,28 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    
-    @IBAction func entireClass(_ sender: Any) {
+    func gotoChat(chatroomKey: String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let chatVC = storyboard.instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
+        chatVC.chatroomID = chatroomKey
+        self.navigationController?.pushViewController(chatVC, animated: true)
         
-        let usersRef = Database.database().reference().child("users")
-        let chatroomRef = Database.database().reference().child("chatrooms")
-        let newChatroomKey = chatroomRef.childByAutoId().key
-        let chatroomMembersRef = chatroomRef.child(newChatroomKey).child("members")
-        let nameRef = chatroomRef.child(newChatroomKey).child("name")
-    
-        let allMemberIDs = students.map { $0.studentID }
-
-        //append name to names
-        chatroomRef.child(newChatroomKey).child("subjectID").setValue(subjectID)
-        nameRef.setValue(chatname)
-        
-        // Adds all members to chatroom
-        for userID in allMemberIDs {
-            chatroomMembersRef.child(userID).setValue(true)
-            usersRef.child(userID).child("chatrooms").child(newChatroomKey).setValue(true)
+        // Wait 1 second and then remove self from navigation stack
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            if let vcs = self.navigationController?.viewControllers {
+                self.navigationController?.viewControllers = vcs.filter { $0 != self }
+            }
         }
         
+    }
+    
+    @IBAction func entireClass(_ sender: Any) {
+        let chatroomRef = Database.database().reference().child("chatrooms")
         
+        getChatroomKey(chatroomRef: chatroomRef, field: "subjectID", value: subjectID) { (key) in
+            let chatroomKey = key ?? self.newSubjectChatroom(chatroomRef: chatroomRef, subjectID: self.subjectID)
+            self.gotoChat(chatroomKey: chatroomKey)
+        }
     }
     
     @IBAction func createNewChat(_ sender: Any) {
@@ -141,28 +141,19 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let chatroomRef = Database.database().reference().child("chatrooms")
         
         getChatroomKey(chatroomRef: chatroomRef, for: allMemberIDs) { (key) in
-            
             let chatroomKey = key ?? self.newChatroom(chatroomRef: chatroomRef, memberIDs: allMemberIDs)
-            
-            // Open the chatroom view
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let chatVC = storyboard.instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
-            chatVC.chatroomID = chatroomKey
-            self.navigationController?.pushViewController(chatVC, animated: true)
-            
-            // Wait 1 second and then remove self from navigation stack
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                if let vcs = self.navigationController?.viewControllers {
-                    self.navigationController?.viewControllers = vcs.filter { $0 != self }
-                }
-            }
+            self.gotoChat(chatroomKey: chatroomKey)
         }
     }
     
     
     private func getChatroomKey(chatroomRef: DatabaseReference, for memberIDs: [String], completion: @escaping (String?) -> ()) {
         let membersRaw = memberIDs.sorted().joined(separator: ",")
-        let query = chatroomRef.queryOrdered(byChild: "membersRaw").queryEqual(toValue: membersRaw)
+        getChatroomKey(chatroomRef: chatroomRef, field: "membersRaw", value: membersRaw, completion: completion)
+    }
+    
+    private func getChatroomKey(chatroomRef: DatabaseReference, field: String, value: Any, completion: @escaping (String?) -> ()) {
+        let query = chatroomRef.queryOrdered(byChild: field).queryEqual(toValue: value)
         query.observeSingleEvent(of: .value, with: { (snapshot) in
             if let chatroom = snapshot.children.nextObject() as? DataSnapshot {
                 let uid = AuthenticationManager.user()!.uid
@@ -199,6 +190,26 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Add membersRaw
         let membersRaw = memberIDs.sorted().joined(separator: ",")
         chatroomRef.child(newChatroomKey).child("membersRaw").setValue(membersRaw)
+        
+        return newChatroomKey
+    }
+    
+    private func newSubjectChatroom(chatroomRef: DatabaseReference, subjectID: Int) -> String {
+        let usersRef = Database.database().reference().child("users")
+        let newChatroomKey = chatroomRef.childByAutoId().key
+        let chatroomMembersRef = chatroomRef.child(newChatroomKey).child("members")
+        
+        let allMemberIDs = students.map { $0.studentID }
+        
+        //append name to names
+        chatroomRef.child(newChatroomKey).child("subjectID").setValue(subjectID)
+        chatroomRef.child(newChatroomKey).child("name").setValue(chatname)
+        
+        // Adds all members to chatroom
+        for userID in allMemberIDs {
+            chatroomMembersRef.child(userID).setValue(true)
+            usersRef.child(userID).child("chatrooms").child(newChatroomKey).setValue(true)
+        }
         
         return newChatroomKey
     }

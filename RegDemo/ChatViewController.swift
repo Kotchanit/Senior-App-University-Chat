@@ -18,7 +18,7 @@ import AlamofireImage
 
 class ChatViewController: JSQMessagesViewController {
     
-    var chatroomID = ""
+    var chatroomID = "news"
     var name = ""
     var messages = [JSQMessage]()
     
@@ -34,6 +34,9 @@ class ChatViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.inputToolbar.isHidden = true
+        
         
         senderId = AuthenticationManager.user()?.uid
         senderDisplayName = AuthenticationManager.user()?.name
@@ -69,6 +72,7 @@ class ChatViewController: JSQMessagesViewController {
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 self.members = [String](dictionary.keys)
                 self.navigationItem.title = "\(self.name)(\(self.members.count))"
+                self.inputToolbar.isHidden = !self.members.contains(self.senderId)
             }
         })
         Database.database().reference().child("chatrooms").child(chatroomID).child("name").observeSingleEvent(of: .value, with: { (snapshot) in
