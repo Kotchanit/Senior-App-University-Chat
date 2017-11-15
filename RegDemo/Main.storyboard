@@ -937,7 +937,7 @@
             </objects>
             <point key="canvasLocation" x="-2428" y="-1047"/>
         </scene>
-        <!--Chat View Controller-->
+        <!--News-->
         <scene sceneID="Ld7-5D-7Xn">
             <objects>
                 <viewController id="G4q-MJ-Hou" customClass="ChatViewController" customModule="RegDemo" customModuleProvider="target" sceneMemberID="viewController">
@@ -950,7 +950,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="6XT-bC-4g6"/>
+                    <navigationItem key="navigationItem" title="News" id="6XT-bC-4g6"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1c7-hh-Flj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -966,6 +966,9 @@
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

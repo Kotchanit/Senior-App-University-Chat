@@ -71,14 +71,22 @@ class ChatViewController: JSQMessagesViewController {
         Database.database().reference().child("chatrooms").child(chatroomID).child("members").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 self.members = [String](dictionary.keys)
-                self.navigationItem.title = "\(self.name)(\(self.members.count))"
+                if self.chatroomID == "news" {
+                    self.navigationItem.title = "\(self.name)"
+                } else {
+                    self.navigationItem.title = "\(self.name)(\(self.members.count))"
+                }
                 self.inputToolbar.isHidden = !self.members.contains(self.senderId)
             }
         })
         Database.database().reference().child("chatrooms").child(chatroomID).child("name").observeSingleEvent(of: .value, with: { (snapshot) in
             if let name = snapshot.value as? String{
                 self.name = name
-                self.navigationItem.title = "\(self.name) (\(self.members.count))"
+                if self.chatroomID == "news" {
+                    self.navigationItem.title = "\(self.name)"
+                } else {
+                    self.navigationItem.title = "\(self.name)(\(self.members.count))"
+                }
             }
         })
     }
