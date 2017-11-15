@@ -45,6 +45,7 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         fetchUsers()
         selectedUser.isEnabled = false
         selectedUser.title = "OK"
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,6 +63,15 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         if let token = AuthenticationManager.token(), let request = API.userImageURLRequest(token: token, userID: user.username) {
             cell.userImageView.af_setImage(withURLRequest: request)
         }
+        
+        // cell.userImageView?.layer.borderWidth = 1
+        cell.userImageView?.layer.masksToBounds = false
+        //cell.userImageView?.layer.borderColor = UIColor.white.cgColor
+        cell.userImageView?.layer.cornerRadius = (cell.userImageView?.frame.height)!/2
+        cell.userImageView?.clipsToBounds = true
+        
+        //        cell.userImageView?.layer.cornerRadius = (cell.userImageView?.frame.size.width)! / 2
+        //        cell.userImageView?.layer.masksToBounds = true
         
         return cell
     }

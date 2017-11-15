@@ -49,7 +49,6 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
             })
 
         }
-
         
     }
 
@@ -67,6 +66,16 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let token = AuthenticationManager.token(), let request = API.userImageURLRequest(token: token, userID: item.studentID) {
             cell.userImageView.af_setImage(withURLRequest: request)
         }
+        
+        // cell.userImageView?.layer.borderWidth = 1
+        cell.userImageView?.layer.masksToBounds = false
+        //cell.userImageView?.layer.borderColor = UIColor.white.cgColor
+        cell.userImageView?.layer.cornerRadius = (cell.userImageView?.frame.height)!/2
+        cell.userImageView?.clipsToBounds = true
+        
+//        cell.userImageView?.layer.cornerRadius = (cell.userImageView?.frame.size.width)! / 2
+//        cell.userImageView?.layer.masksToBounds = true
+        
         
         cell.accessoryType = selectedUserIDs.contains(item.studentID) ? .checkmark : .none
         

@@ -64,6 +64,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if let token = AuthenticationManager.token(), let request = API.profileImageURLRequest(token: token) {
             profileImageView.af_setImage(withURLRequest: request)
+            profileImageView.layer.borderWidth = 1
+            profileImageView.layer.masksToBounds = false
+            profileImageView.layer.borderColor = UIColor.white.cgColor
+            profileImageView.layer.cornerRadius = profileImageView.frame.height/2
+            profileImageView.clipsToBounds = true
         }
         
         usernameLabel.text = AuthenticationManager.user()?.uid

@@ -55,6 +55,11 @@ class ProfileViewController: UIViewController {
         
         if let token = AuthenticationManager.token(), let request = API.profileImageURLRequest(token: token) {
             profileImage.af_setImage(withURLRequest: request)
+            profileImage.layer.borderWidth = 1
+            profileImage.layer.masksToBounds = false
+            profileImage.layer.borderColor = UIColor.white.cgColor
+            profileImage.layer.cornerRadius = profileImage.frame.height/2
+            profileImage.clipsToBounds = true
         }
         usernameLabel.text = AuthenticationManager.user()?.uid
         nameLabel.text = AuthenticationManager.user()?.name
