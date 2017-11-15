@@ -152,13 +152,23 @@ class ChatViewController: JSQMessagesViewController {
     //sender TextMessages
     override func didPressSend(_ button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: Date!) {
         let newMessage = messageRef!.childByAutoId()
-        let messageData = [
-            "text": text,
-            "senderID": senderId,
-            "senderName": senderDisplayName,
-            "mediaType": "TEXT",
-            "timestamp": Date().iso8601DateString]
-        newMessage.setValue(messageData)
+        if chatroomID == "news" {
+            let messageData = [
+                "text": text,
+                "senderID": senderId,
+                "senderName": "Naresuan University",
+                "mediaType": "TEXT",
+                "timestamp": Date().iso8601DateString]
+            newMessage.setValue(messageData)
+        } else {
+            let messageData = [
+                "text": text,
+                "senderID": senderId,
+                "senderName": senderDisplayName,
+                "mediaType": "TEXT",
+                "timestamp": Date().iso8601DateString]
+            newMessage.setValue(messageData)
+        }
         chatRef?.child("lastest_message").setValue(text)
         chatRef?.child("lastest_message_timestamp").setValue(Date().iso8601DateString)
         self.finishSendingMessage()
@@ -349,11 +359,27 @@ class ChatViewController: JSQMessagesViewController {
                 let fileUrl = metadata!.downloadURLs![0].absoluteString
                 
                 let newMessage = self.messageRef!.childByAutoId()
-                let messageData = ["fileUrl": fileUrl, "senderID": self.senderId, "senderName": self.senderDisplayName, "mediaType": "PHOTO", "timestamp": Date().iso8601DateString]
+                
+                if self.chatroomID == "news" {
+                    let messageData =
+                        ["fileUrl": fileUrl,
+                         "senderID": self.senderId,
+                         "senderName": "Naresuan University",
+                         "mediaType": "PHOTO",
+                         "timestamp": Date().iso8601DateString]
+                     newMessage.setValue(messageData)
+                } else {
+                    let messageData =
+                        ["fileUrl": fileUrl,
+                         "senderID": self.senderId,
+                         "senderName": self.senderDisplayName,
+                         "mediaType": "PHOTO",
+                         "timestamp": Date().iso8601DateString]
+                    newMessage.setValue(messageData)
+                }
+                
                 self.chatRef?.child("lastest_message").setValue(self.senderDisplayName + " send photo")
                 self.chatRef?.child("lastest_message_timestamp").setValue(Date().iso8601DateString)
-                newMessage.setValue(messageData)
-                
             }
             
         } else if let video = video {
@@ -371,10 +397,27 @@ class ChatViewController: JSQMessagesViewController {
                 let fileUrl = metadata!.downloadURLs![0].absoluteString
                 
                 let newMessage = self.messageRef!.childByAutoId()
-                let messageData = ["fileUrl": fileUrl, "senderID": self.senderId, "senderName": self.senderDisplayName, "mediaType": "VIDEO", "timestamp": Date().iso8601DateString]
+                
+                if self.chatroomID == "news" {
+                    let messageData =
+                        ["fileUrl": fileUrl,
+                        "senderID": self.senderId,
+                        "senderName": "Naresuan University",
+                        "mediaType": "VIDEO",
+                        "timestamp": Date().iso8601DateString]
+                        newMessage.setValue(messageData)
+                } else {
+                    let messageData =
+                        ["fileUrl": fileUrl,
+                         "senderID": self.senderId,
+                         "senderName": self.senderDisplayName,
+                         "mediaType": "VIDEO",
+                         "timestamp": Date().iso8601DateString]
+                        newMessage.setValue(messageData)
+                }
+                
                 self.chatRef?.child("lastest_message").setValue(self.senderDisplayName + " send video")
                 self.chatRef?.child("lastest_message_timestamp").setValue(Date().iso8601DateString)
-                newMessage.setValue(messageData)
                 
             }
         }
