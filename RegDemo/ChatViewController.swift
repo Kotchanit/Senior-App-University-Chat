@@ -117,7 +117,7 @@ class ChatViewController: JSQMessagesViewController {
                     let picture = UIImage(data: data! as Data)
                     let photo = JSQPhotoMediaItem(image: picture)
                     self.messages.append(JSQMessage(senderId: senderId, senderDisplayName: senderName, date: timestamp, media: photo))
-                    
+                    self.downloadAvatar(for: senderId, avatarImage: self.prepareAvatarImage(id: senderId, with: senderName))
                     if self.senderId == senderId {
                         photo?.appliesMediaViewMaskAsOutgoing = true
                     } else {
@@ -131,7 +131,7 @@ class ChatViewController: JSQMessagesViewController {
                     let video = NSURL(string: fileUrl)
                     let videoItem = JSQVideoMediaItem(fileURL: video as URL!, isReadyToPlay: true)
                     self.messages.append(JSQMessage(senderId: senderId,senderDisplayName: senderName, date: timestamp, media: videoItem))
-
+                    self.downloadAvatar(for: senderId, avatarImage: self.prepareAvatarImage(id: senderId, with: senderName))
                     if self.senderId == senderId {
                         videoItem?.appliesMediaViewMaskAsOutgoing = true
                     } else {
@@ -459,6 +459,8 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     private func prepareAvatarImage(id: String, with name: String) -> JSQMessagesAvatarImage! {
+        
+        
         if (self.avatars[id] == nil) {
             let firstChar = String(name.characters.first!)
             let avartarImage = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: firstChar , backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.lightGray, font: UIFont.systemFont(ofSize: 17), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
