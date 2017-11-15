@@ -33,6 +33,7 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     var currentUser = [User]()
     var selectedUserIDs = [String]()
     var allname: [String] = []
+    var searchController = UISearchController()
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -45,7 +46,10 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         fetchUsers()
         selectedUser.isEnabled = false
         selectedUser.title = "OK"
-
+        
+        let point = CGPoint(x: 0, y:(self.navigationController?.navigationBar.frame.size.height)!)
+        
+        self.tableView.setContentOffset(point, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
