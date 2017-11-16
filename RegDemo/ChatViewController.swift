@@ -475,7 +475,7 @@ class ChatViewController: JSQMessagesViewController {
     
     func presentAlert() {
         
-        let alertController = UIAlertController(title: "Nickname", message: "Please input your nickname", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Chat name", message: "Please input your chat name", preferredStyle: .alert)
         
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
             if let field = alertController.textFields?[0] {
