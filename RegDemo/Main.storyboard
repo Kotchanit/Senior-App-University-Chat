@@ -199,7 +199,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="6IL-7t-9oy">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="XYj-bs-AQa" kind="push" id="lIe-KX-reb"/>
+                                <action selector="editChatname:" destination="wt8-gE-gMl" id="5d0-vk-KuV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -221,7 +221,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wH-Ph-PXi">
-                                <rect key="frame" x="164" y="175" width="46" height="30"/>
+                                <rect key="frame" x="164" y="224" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="U6d-GK-b5F"/>
                                     <constraint firstAttribute="width" constant="46" id="x4R-JO-EEW"/>
@@ -232,7 +232,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change name of chat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJA-Ro-BQJ">
-                                <rect key="frame" x="61" y="98" width="174" height="21"/>
+                                <rect key="frame" x="61" y="54" width="174" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="174" id="JgQ-MS-Pyb"/>
                                     <constraint firstAttribute="height" constant="21" id="UTp-qw-fkx"/>
@@ -242,7 +242,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter chat name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wh4-PH-N1g">
-                                <rect key="frame" x="61" y="127" width="253" height="30"/>
+                                <rect key="frame" x="61" y="83" width="253" height="123"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="HQa-zA-Y6a"/>
                                     <constraint firstAttribute="width" constant="253" id="b4c-CI-3sh"/>
@@ -421,7 +421,7 @@
                                                     <color key="titleColor" red="0.54109090569999996" green="0.54106456039999995" blue="0.54927140470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="KWI-YL-Eim" kind="show" id="e0M-Sp-lVq"/>
+                                                    <action selector="editNickname:" destination="Ohw-re-1Cs" eventType="touchUpInside" id="3go-aH-OWp"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -479,59 +479,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QOQ-mI-wnv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-282.39999999999998" y="-233.43328335832086"/>
-        </scene>
-        <!--Edit-->
-        <scene sceneID="7Sz-sl-7RW">
-            <objects>
-                <viewController title="Edit" id="KWI-YL-Eim" customClass="EditNicknameViewController" customModule="RegDemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pC0-2o-MIo"/>
-                        <viewControllerLayoutGuide type="bottom" id="maL-RL-Fan"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2WR-te-Ftd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZsD-6x-caB">
-                                <rect key="frame" x="59" y="152" width="257" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edit Nickname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iw2-T1-ZUI">
-                                <rect key="frame" x="59" y="120" width="125" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ZI-GT-cbN">
-                                <rect key="frame" x="138" y="190" width="98" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="OK">
-                                    <color key="titleColor" red="0.99607843139999996" green="0.47058823529999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="editNickname:" destination="KWI-YL-Eim" eventType="touchUpInside" id="P7f-ef-Thq"/>
-                                </connections>
-                            </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2JC-UB-2e6">
-                                <rect key="frame" x="202" y="195" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <connections>
-                        <outlet property="activityindicater" destination="2JC-UB-2e6" id="Y0c-PK-rc3"/>
-                        <outlet property="nicknameTextField" destination="ZsD-6x-caB" id="8Ph-hZ-Cxo"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yR9-L9-mCy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-282.39999999999998" y="623.83808095952031"/>
         </scene>
         <!--Choose friends-->
         <scene sceneID="0eG-5g-4cE">

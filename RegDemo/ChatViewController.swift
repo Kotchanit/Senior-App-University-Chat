@@ -469,6 +469,38 @@ class ChatViewController: JSQMessagesViewController {
         return self.avatars[id]
     }
     
+    @IBAction func editChatname(_ sender: Any) {
+        presentAlert()
+    }
+    
+    func presentAlert() {
+        
+        let alertController = UIAlertController(title: "Nickname", message: "Please input your nickname", preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
+            if let field = alertController.textFields?[0] {
+                self.navigationItem.title = "\(field.text!) (\(self.members.count))"
+                let chatname = field.text
+                let dataRef = Database.database().reference().child("chatrooms").child(self.chatroomID).child("name")
+                dataRef.setValue(chatname)
+            } else {
+                // user did not fill field
+            }
+        }
+    
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Nickname"
+        }
+        
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 //    @IBAction func DidPreessed(_ sender: Any) {
 //        if let tabbarVC = self.tabBarController, let vc = self.storyboard?.instantiateViewController(withIdentifier: "contactVC") {
 //            if (tabbarVC.viewControllers?.count ?? 0) < 2 { return }

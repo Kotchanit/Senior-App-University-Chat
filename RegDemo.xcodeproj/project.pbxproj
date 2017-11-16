@@ -14,7 +14,6 @@
 		16350B4D1F9B6DFE001586F7 /* DateChatFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */; };
 		16350B4F1F9B6E47001586F7 /* DateISO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16350B4E1F9B6E47001586F7 /* DateISO.swift */; };
 		169B9ABF1FB1CC580078B933 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169B9ABE1FB1CC580078B933 /* ProfileViewController.swift */; };
-		169DFA491FB44603001B918B /* EditNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169DFA481FB44603001B918B /* EditNicknameViewController.swift */; };
 		16A52C521FA873D400F8FC32 /* EditableTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A52C511FA873D400F8FC32 /* EditableTableViewDataSource.swift */; };
 		16C7BCB41F308D82009BE301 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16C7BCB31F308D82009BE301 /* Main.storyboard */; };
 		16CA2F561F2089A900F83720 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CA2F551F2089A900F83720 /* ChatViewController.swift */; };
@@ -50,7 +49,6 @@
 		16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateChatFormat.swift; sourceTree = "<group>"; };
 		16350B4E1F9B6E47001586F7 /* DateISO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateISO.swift; sourceTree = "<group>"; };
 		169B9ABE1FB1CC580078B933 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		169DFA481FB44603001B918B /* EditNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameViewController.swift; sourceTree = "<group>"; };
 		16A52C511FA873D400F8FC32 /* EditableTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTableViewDataSource.swift; sourceTree = "<group>"; };
 		16C7BCB31F308D82009BE301 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		16CA2F551F2089A900F83720 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				169B9ABE1FB1CC580078B933 /* ProfileViewController.swift */,
-				169DFA481FB44603001B918B /* EditNicknameViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -405,7 +402,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				169DFA491FB44603001B918B /* EditNicknameViewController.swift in Sources */,
 				16F446801F1F57750023AE60 /* AuthenticationManager.swift in Sources */,
 				16D573F01F89067600895277 /* Semester.swift in Sources */,
 				EDCFFCAE1E81141600496E5B /* LoginViewController.swift in Sources */,

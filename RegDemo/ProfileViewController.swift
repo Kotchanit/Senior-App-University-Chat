@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController {
     
     var nickname = ""
     override func viewDidLoad() {
+        self.hideKeyboardOnTap(#selector(self.dismissKeyboard))
         editNickname.semanticContentAttribute = .forceRightToLeft
         editNickname.setTitle("Edit Nickname ", for: .normal)
         self.nicknameLabel.text = AuthenticationManager.user()?.name
@@ -38,6 +39,10 @@ class ProfileViewController: UIViewController {
         showInfomation()
     }
     
+    func dismissKeyboard() {
+        view.endEditing(true)
+        // do aditional stuff
+    }
     
     func showInfomation () {
         guard let uid = AuthenticationManager.user()?.uid else { return }
@@ -68,6 +73,39 @@ class ProfileViewController: UIViewController {
         facultyLabel.text = AuthenticationManager.user()?.facultyName
         programLabel.text = AuthenticationManager.user()?.programName
         gpaLabel.text = "\(AuthenticationManager.user()?.latestGPA)"
+    }
+    
+    @IBAction func editNickname(_ sender: Any) {
+        presentAlert()
+    }
+    
+    func presentAlert() {
+        guard let uid = AuthenticationManager.user()?.uid else { return }
+        
+        let alertController = UIAlertController(title: "Nickname", message: "Please input your nickname", preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
+            if let field = alertController.textFields?[0] {
+                self.nicknameLabel.text = field.text
+                self.nickname = field.text!
+                let dataRef = Database.database().reference().child("users").child(uid).child("data")
+                
+                dataRef.child("nickname").setValue(self.nickname)
+            } else {
+                // user did not fill field
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Nickname"
+        }
+        
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func logout() {
