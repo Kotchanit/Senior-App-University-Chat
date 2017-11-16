@@ -71,6 +71,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         usernameLabel.text = AuthenticationManager.user()?.uid
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
