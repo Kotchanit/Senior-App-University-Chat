@@ -42,7 +42,7 @@ class ContactViewController: UIViewController, UITableViewDelegate {
             cell.chatNameLabel.text = name
             cell.latestMessageLabel.text = latestMessage
             cell.timeLabel.text = latestMessageTimestamp
-            
+           
             return cell
         }, commitEdit: { (tableView, editingStyle, indexPath, snapshot) in
             let chatroomID = snapshot.key

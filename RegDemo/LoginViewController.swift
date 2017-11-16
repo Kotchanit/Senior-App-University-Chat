@@ -67,6 +67,8 @@ class LoginViewController: UIViewController {
         }
     }
     
+    
+
     func loginComplete(token: Token) {
         API.profile(token: token) { result in
             self.loginButton.isEnabled = true
