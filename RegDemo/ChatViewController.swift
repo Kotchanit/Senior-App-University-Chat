@@ -55,8 +55,7 @@ class ChatViewController: JSQMessagesViewController {
         collectionView.collectionViewLayout.bubbleSizeCalculator = MessagesBubblesWithEmojiSizeCalculator()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
         automaticallyScrollsToMostRecentMessage = true
         observeMembers()
     }

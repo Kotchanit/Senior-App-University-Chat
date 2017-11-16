@@ -29,6 +29,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         editNickname.semanticContentAttribute = .forceRightToLeft
         editNickname.setTitle("Edit Nickname ", for: .normal)
+        self.nicknameLabel.text = AuthenticationManager.user()?.name
         super.viewDidLoad()
     }
     
@@ -52,7 +53,6 @@ class ProfileViewController: UIViewController {
             }
         })
        
-        
         
         if let token = AuthenticationManager.token(), let request = API.profileImageURLRequest(token: token) {
             profileImage.af_setImage(withURLRequest: request)

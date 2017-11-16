@@ -28,12 +28,19 @@ class EditNicknameViewController: UIViewController {
     @IBAction func editNickname(_ sender: Any) {
         guard let uid = AuthenticationManager.user()?.uid else { return }
         
+    
         let nickname = nicknameTextField.text
-        let dataRef = Database.database().reference().child("users").child(uid).child("data")
         
-        dataRef.child("nickname").setValue(nickname)
-        
-        activityindicater.startAnimating()
+        if nickname == "" {
+            showAlert(message: "please")
+            return
+        } else {
+            let dataRef = Database.database().reference().child("users").child(uid).child("data")
+            
+            dataRef.child("nickname").setValue(nickname)
+            activityindicater.startAnimating()
+        }
+     
         //go back to the previous view controller
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             let _ = self.navigationController?.popViewController(animated: true)

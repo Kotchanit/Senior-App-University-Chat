@@ -36,7 +36,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             })
         }
-        showInfomation()
+        self.nameLabel.text = AuthenticationManager.user()?.name
     }
     
     override func viewWillAppear(_ animated: Bool) {

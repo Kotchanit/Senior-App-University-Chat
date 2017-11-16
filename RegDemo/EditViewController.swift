@@ -27,9 +27,14 @@ class EditViewController: UIViewController {
     }
     
     @IBAction func changeNameofChat(_ sender: Any) {
-        let chatname = chatNameTextField.text
-        let dataRef = Database.database().reference().child("chatrooms").child(chatroomID).child("name")
-        dataRef.setValue(chatname)
+        
+        if chatNameTextField.text == "" {
+            showAlert(message: "Please enter your nickname")
+        } else {
+            let chatname = chatNameTextField.text
+            let dataRef = Database.database().reference().child("chatrooms").child(chatroomID).child("name")
+            dataRef.setValue(chatname)
+        }
         
         //go back to the previous view controller
         let _ = navigationController?.popViewController(animated: true)

@@ -40,7 +40,6 @@ class LoginViewController: UIViewController {
         if Auth.auth().currentUser?.uid != nil {
             
         }
-
     }
     
     func dismissKeyboard() {
