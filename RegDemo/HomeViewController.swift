@@ -53,14 +53,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         Database.database().reference().child("users").child(uid).child("data").child("nickname").observeSingleEvent(of: .value, with: { (snapshot) in
             if let nicknamesanpshot = snapshot.value as? String {
                 self.nickname = nicknamesanpshot
+                if self.nickname == "" {
+                    self.nameLabel.text = AuthenticationManager.user()?.name
+                } else {
+                    self.nameLabel.text = self.nickname
+                }
             }
         })
-        
-        if nickname == "" {
-            self.nameLabel.text = AuthenticationManager.user()?.name
-        } else {
-            self.nameLabel.text = nickname
-        }
         
         if let token = AuthenticationManager.token(), let request = API.profileImageURLRequest(token: token) {
             profileImageView.af_setImage(withURLRequest: request)
@@ -97,6 +96,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-  
-
 }
+
+

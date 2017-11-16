@@ -44,14 +44,15 @@ class ProfileViewController: UIViewController {
         Database.database().reference().child("users").child(uid).child("data").child("nickname").observeSingleEvent(of: .value, with: { (snapshot) in
             if let nicknamesanpshot = snapshot.value as? String {
                 self.nickname = nicknamesanpshot
+                if self.nickname == "" {
+                    self.nicknameLabel.text = AuthenticationManager.user()?.name
+                } else {
+                    self.nicknameLabel.text = self.nickname
+                }
             }
         })
        
-        if nickname == "" {
-            self.nicknameLabel.text = AuthenticationManager.user()?.name
-        } else {
-            self.nicknameLabel.text = nickname
-        }
+        
         
         if let token = AuthenticationManager.token(), let request = API.profileImageURLRequest(token: token) {
             profileImage.af_setImage(withURLRequest: request)

@@ -517,10 +517,15 @@
                                     <action selector="editNickname:" destination="KWI-YL-Eim" eventType="touchUpInside" id="P7f-ef-Thq"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2JC-UB-2e6">
+                                <rect key="frame" x="202" y="195" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="activityindicater" destination="2JC-UB-2e6" id="Y0c-PK-rc3"/>
                         <outlet property="nicknameTextField" destination="ZsD-6x-caB" id="8Ph-hZ-Cxo"/>
                     </connections>
                 </viewController>
