@@ -17,8 +17,6 @@ class ContactViewController: UIViewController, UITableViewDelegate {
     
     var dataSource: EditableTableViewDataSource?
     
-    var allmembers: [String] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,24 +61,6 @@ class ContactViewController: UIViewController, UITableViewDelegate {
         
         tableView.reloadData()
     }
-    
-//    private func prepareChatImage(with id: String) {
-//        let chatName = ""
-//
-//        Database.database().reference().child("chatrooms").child().child("name").observeSingleEvent(of: .value, with: { (snapshot) in
-//            if let name = snapshot.value as? String {
-//                self.senderDisplayName = name
-//            }
-//        })
-//
-//        let firstChar =
-//        if (self.avatars[id] == nil) {
-//            let avartarImage = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: "\(firstChar!)" , backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.lightGray, font: UIFont.systemFont(ofSize: 17), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
-//            self.avatars[id] = avartarImage
-//        }
-//
-//        return self.avatars[id]
-//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let indexPath = tableView.indexPathForSelectedRow {
