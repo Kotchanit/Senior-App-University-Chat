@@ -420,6 +420,7 @@ class ChatViewController: JSQMessagesViewController {
                 
             }
         }
+        finishSendingMessage()
       
     }
     
