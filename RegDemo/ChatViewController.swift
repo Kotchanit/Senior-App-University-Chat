@@ -460,7 +460,6 @@ class ChatViewController: JSQMessagesViewController {
     
     private func prepareAvatarImage(id: String, with name: String) -> JSQMessagesAvatarImage! {
         
-        
         if (self.avatars[id] == nil) {
             let firstChar = String(name.characters.first!)
             let avartarImage = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: firstChar , backgroundColor: UIColor.groupTableViewBackground, textColor: UIColor.lightGray, font: UIFont.systemFont(ofSize: 17), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))

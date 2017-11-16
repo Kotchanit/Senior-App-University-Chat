@@ -208,87 +208,6 @@
             </objects>
             <point key="canvasLocation" x="-2428" y="624"/>
         </scene>
-        <!--Edit-->
-        <scene sceneID="N8d-Y4-jp7">
-            <objects>
-                <viewController id="XYj-bs-AQa" customClass="EditViewController" customModule="RegDemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FuG-if-y2s"/>
-                        <viewControllerLayoutGuide type="bottom" id="1ul-XF-kXX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="YZe-FA-xfj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wH-Ph-PXi">
-                                <rect key="frame" x="164" y="224" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="U6d-GK-b5F"/>
-                                    <constraint firstAttribute="width" constant="46" id="x4R-JO-EEW"/>
-                                </constraints>
-                                <state key="normal" title="OK"/>
-                                <connections>
-                                    <action selector="changeNameofChat:" destination="XYj-bs-AQa" eventType="touchUpInside" id="Zxc-k8-Xka"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change name of chat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJA-Ro-BQJ">
-                                <rect key="frame" x="61" y="54" width="174" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="174" id="JgQ-MS-Pyb"/>
-                                    <constraint firstAttribute="height" constant="21" id="UTp-qw-fkx"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter chat name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wh4-PH-N1g">
-                                <rect key="frame" x="61" y="83" width="253" height="123"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="HQa-zA-Y6a"/>
-                                    <constraint firstAttribute="width" constant="253" id="b4c-CI-3sh"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="oJA-Ro-BQJ" firstAttribute="leading" secondItem="YZe-FA-xfj" secondAttribute="leading" constant="61" id="04T-pT-Q3P"/>
-                            <constraint firstItem="oJA-Ro-BQJ" firstAttribute="leading" secondItem="YZe-FA-xfj" secondAttribute="leadingMargin" constant="45" id="0hw-p4-ygs"/>
-                            <constraint firstItem="6wH-Ph-PXi" firstAttribute="top" secondItem="wh4-PH-N1g" secondAttribute="bottom" constant="18" id="3Qe-GB-bry"/>
-                            <constraint firstItem="oJA-Ro-BQJ" firstAttribute="top" secondItem="FuG-if-y2s" secondAttribute="bottom" constant="34" id="4OU-ye-KOr"/>
-                            <constraint firstItem="6wH-Ph-PXi" firstAttribute="centerX" secondItem="YZe-FA-xfj" secondAttribute="centerX" id="5PG-za-aeY"/>
-                            <constraint firstItem="oJA-Ro-BQJ" firstAttribute="top" secondItem="YZe-FA-xfj" secondAttribute="top" constant="98" id="7Qa-y8-ORg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="wh4-PH-N1g" secondAttribute="trailing" constant="45" id="80T-jl-FLd"/>
-                            <constraint firstItem="oJA-Ro-BQJ" firstAttribute="top" secondItem="YZe-FA-xfj" secondAttribute="top" constant="98" id="8Mc-iG-F35"/>
-                            <constraint firstItem="wh4-PH-N1g" firstAttribute="leading" secondItem="YZe-FA-xfj" secondAttribute="leading" constant="61" id="CT6-is-uBi"/>
-                            <constraint firstItem="wh4-PH-N1g" firstAttribute="top" secondItem="YZe-FA-xfj" secondAttribute="top" constant="127" id="Fpq-43-7qe"/>
-                            <constraint firstItem="6wH-Ph-PXi" firstAttribute="top" secondItem="YZe-FA-xfj" secondAttribute="top" constant="175" id="N4v-kh-RKU"/>
-                            <constraint firstItem="6wH-Ph-PXi" firstAttribute="leading" secondItem="YZe-FA-xfj" secondAttribute="leading" constant="164" id="PbD-Bf-r85"/>
-                            <constraint firstItem="1ul-XF-kXX" firstAttribute="top" secondItem="6wH-Ph-PXi" secondAttribute="bottom" constant="413" id="U7A-Sc-roz"/>
-                            <constraint firstItem="6wH-Ph-PXi" firstAttribute="centerX" secondItem="wh4-PH-N1g" secondAttribute="centerX" id="WLV-gu-bWz"/>
-                            <constraint firstItem="wh4-PH-N1g" firstAttribute="leading" secondItem="YZe-FA-xfj" secondAttribute="leading" constant="61" id="Wnt-cB-zmC"/>
-                            <constraint firstItem="oJA-Ro-BQJ" firstAttribute="leading" secondItem="wh4-PH-N1g" secondAttribute="leading" id="WsO-La-2tE"/>
-                            <constraint firstItem="oJA-Ro-BQJ" firstAttribute="leading" secondItem="YZe-FA-xfj" secondAttribute="leading" constant="61" id="Xuf-YP-3bN"/>
-                            <constraint firstItem="wh4-PH-N1g" firstAttribute="top" secondItem="YZe-FA-xfj" secondAttribute="top" constant="127" id="aHy-TR-aAt"/>
-                            <constraint firstItem="6wH-Ph-PXi" firstAttribute="top" secondItem="YZe-FA-xfj" secondAttribute="top" constant="175" id="c8j-v5-dBE"/>
-                            <constraint firstItem="wh4-PH-N1g" firstAttribute="centerX" secondItem="YZe-FA-xfj" secondAttribute="centerX" id="fp3-EK-zs8"/>
-                            <constraint firstItem="wh4-PH-N1g" firstAttribute="leading" secondItem="YZe-FA-xfj" secondAttribute="leadingMargin" constant="45" id="j9t-9n-Uy5"/>
-                            <constraint firstItem="wh4-PH-N1g" firstAttribute="top" secondItem="oJA-Ro-BQJ" secondAttribute="bottom" constant="8" symbolic="YES" id="svz-X0-Hjx"/>
-                            <constraint firstItem="wh4-PH-N1g" firstAttribute="top" secondItem="oJA-Ro-BQJ" secondAttribute="bottom" constant="8" id="tkE-4q-FFa"/>
-                            <constraint firstItem="6wH-Ph-PXi" firstAttribute="leading" secondItem="YZe-FA-xfj" secondAttribute="leading" constant="164" id="uN8-tj-cIf"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Edit" id="uMJ-MN-cOD"/>
-                    <connections>
-                        <outlet property="chatNameTextField" destination="wh4-PH-N1g" id="taS-GD-CCN"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NDu-nz-Nv3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2428" y="1406"/>
-        </scene>
         <!--Profile-->
         <scene sceneID="GjE-zE-JcM">
             <objects>
@@ -584,11 +503,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="YNq-HR-xSZ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="YNq-HR-xSZ">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YNq-HR-xSZ" id="vVK-S3-k6Q">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
