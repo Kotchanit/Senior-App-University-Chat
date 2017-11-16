@@ -119,10 +119,10 @@
 			isa = PBXGroup;
 			children = (
 				EDCFFCBF1E811CAD00496E5B /* API.swift */,
-				16350B4E1F9B6E47001586F7 /* DateISO.swift */,
-				16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */,
 				16CA5B0B1F29DA67006BBF05 /* Helper.swift */,
 				16350B4A1F9B6DED001586F7 /* UnicodeScalarEmoji.swift */,
+				16350B4C1F9B6DFE001586F7 /* DateChatFormat.swift */,
+				16350B4E1F9B6E47001586F7 /* DateISO.swift */,
 				16A52C511FA873D400F8FC32 /* EditableTableViewDataSource.swift */,
 			);
 			name = Helper;

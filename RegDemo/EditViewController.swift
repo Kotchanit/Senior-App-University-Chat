@@ -16,6 +16,16 @@ class EditViewController: UIViewController {
     
     var chatroomID = ""
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.hideKeyboardOnTap(#selector(self.dismissKeyboard))
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+        // do aditional stuff
+    }
+    
     @IBAction func changeNameofChat(_ sender: Any) {
         let chatname = chatNameTextField.text
         let dataRef = Database.database().reference().child("chatrooms").child(chatroomID).child("name")

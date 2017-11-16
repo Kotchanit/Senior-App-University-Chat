@@ -50,6 +50,12 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         let point = CGPoint(x: 0, y:(self.navigationController?.navigationBar.frame.size.height)!)
         
         self.tableView.setContentOffset(point, animated: true)
+        self.hideKeyboardOnTap(#selector(self.dismissKeyboard))
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+        // do aditional stuff
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -200,3 +206,4 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         return newChatroomKey
     }
 }
+

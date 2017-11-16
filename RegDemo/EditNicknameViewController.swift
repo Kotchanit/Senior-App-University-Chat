@@ -13,7 +13,18 @@ class EditNicknameViewController: UIViewController {
 
    
     @IBOutlet weak var nicknameTextField: UITextField!
+    @IBOutlet var activityindicater: UIActivityIndicatorView!
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.hideKeyboardOnTap(#selector(self.dismissKeyboard))
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+        // do aditional stuff
+    }
+    
     @IBAction func editNickname(_ sender: Any) {
         guard let uid = AuthenticationManager.user()?.uid else { return }
         
@@ -22,8 +33,12 @@ class EditNicknameViewController: UIViewController {
         
         dataRef.child("nickname").setValue(nickname)
         
+        activityindicater.startAnimating()
         //go back to the previous view controller
-        let _ = navigationController?.popViewController(animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            let _ = self.navigationController?.popViewController(animated: true)
+        }
+        
     }
     
 }

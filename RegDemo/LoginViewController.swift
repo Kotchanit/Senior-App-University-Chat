@@ -23,20 +23,29 @@ class LoginViewController: UIViewController {
     
     var contactController : ContactViewController?
     
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+    
         navigationController?.isNavigationBarHidden = true
         loginButton.isEnabled = true
         
         usernameTextField.text = "57313783"
         passwordTextField.text = "1234"
+    
+        self.hideKeyboardOnTap(#selector(self.dismissKeyboard))
         
         print("FCM token: \(fcmtoken ?? "")")
         
         if Auth.auth().currentUser?.uid != nil {
             
         }
+
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+        // do aditional stuff
     }
     
     
@@ -92,6 +101,12 @@ extension UIViewController {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+    
+    func hideKeyboardOnTap(_ selector: Selector) {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: selector)
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
     
 }
