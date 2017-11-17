@@ -13,7 +13,7 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var selectedUser: UIBarButtonItem!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var entireBtn: UIButton!
     
     var chatrooms = [Chatroom]()
     
@@ -34,6 +34,7 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        entireBtn.layer.cornerRadius = 10
         self.tabBarController?.tabBar.isHidden = true
         if let token = AuthenticationManager.token() {
             API.enrolls(subject: subjectID, year: year, semester: semester, token: token, completion: { (result) in
@@ -67,16 +68,15 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.userImageView.af_setImage(withURLRequest: request)
         }
         
-        // cell.userImageView?.layer.borderWidth = 1
         cell.userImageView?.layer.masksToBounds = false
-        //cell.userImageView?.layer.borderColor = UIColor.white.cgColor
         cell.userImageView?.layer.cornerRadius = (cell.userImageView?.frame.height)!/2
         cell.userImageView?.clipsToBounds = true
         
-//        cell.userImageView?.layer.cornerRadius = (cell.userImageView?.frame.size.width)! / 2
-//        cell.userImageView?.layer.masksToBounds = true
-        
-        
+        let myCustomSelectionColorView = UIView()
+        myCustomSelectionColorView.backgroundColor = UIColor(red:1.00, green:0.81, blue:0.46, alpha:1.0)
+        cell.selectedBackgroundView = myCustomSelectionColorView
+
+
         cell.accessoryType = selectedUserIDs.contains(item.studentID) ? .checkmark : .none
         
         return cell

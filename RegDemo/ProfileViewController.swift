@@ -24,14 +24,18 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var notificationSwitch: UISwitch!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var editNickname: UIButton!
+    @IBOutlet weak var profileView: UIView!
+    @IBOutlet weak var infoView: UIView!
     
     var nickname = ""
     override func viewDidLoad() {
+        super.viewDidLoad()
+        profileView.layer.cornerRadius = 10
+        infoView.layer.cornerRadius = 10
         self.hideKeyboardOnTap(#selector(self.dismissKeyboard))
         editNickname.semanticContentAttribute = .forceRightToLeft
         editNickname.setTitle("Edit Nickname ", for: .normal)
         self.nicknameLabel.text = AuthenticationManager.user()?.name
-        super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {

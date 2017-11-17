@@ -83,6 +83,11 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         //        cell.userImageView?.layer.cornerRadius = (cell.userImageView?.frame.size.width)! / 2
         //        cell.userImageView?.layer.masksToBounds = true
         
+        let myCustomSelectionColorView = UIView()
+        myCustomSelectionColorView.backgroundColor = UIColor(red:1.00, green:0.81, blue:0.46, alpha:1.0)
+        cell.selectedBackgroundView = myCustomSelectionColorView
+
+        
         return cell
     }
     

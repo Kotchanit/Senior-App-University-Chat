@@ -20,6 +20,8 @@ class ContactViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       
+        
         //user is not logged in
         checkIfUserisLoggedIn()
         
@@ -39,9 +41,21 @@ class ContactViewController: UIViewController, UITableViewDelegate {
             let latestMessage = dict?["lastest_message"] as? String
             let latestMessageTimestamp = dict?["lastest_message_timestamp"] as? String
             
+            let members = (dict?["members"] as? [String: Any])?.keys
+            
+            
             cell.chatNameLabel.text = name
             cell.latestMessageLabel.text = latestMessage
             cell.timeLabel.text = latestMessageTimestamp
+            
+            let myCustomSelectionColorView = UIView()
+            myCustomSelectionColorView.backgroundColor = UIColor(red:1.00, green:0.81, blue:0.46, alpha:1.0)
+            cell.selectedBackgroundView = myCustomSelectionColorView
+            
+//            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+//            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//            cell.selectedBackgroundView = blurEffectView
+
            
             return cell
         }, commitEdit: { (tableView, editingStyle, indexPath, snapshot) in

@@ -15,14 +15,24 @@ class LoginViewController: UIViewController {
     
     @IBOutlet var usernameTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
-    
-    
+    @IBOutlet weak var loginView: UIView!
+    @IBOutlet weak var usernameView: UIView!
+    @IBOutlet weak var passwordView: UIView!
     @IBOutlet var loginButton: UIButton!
     
     let fcmtoken = Messaging.messaging().fcmToken
     
     var contactController : ContactViewController?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        loginView.layer.cornerRadius = 10
+        usernameView.layer.cornerRadius = 5
+        passwordView.layer.cornerRadius = 5
+        loginButton.layer.cornerRadius = 5 
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -40,7 +50,26 @@ class LoginViewController: UIViewController {
         if Auth.auth().currentUser?.uid != nil {
             
         }
+        
+     
     }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
+    
     
     func dismissKeyboard() {
         view.endEditing(true)

@@ -17,7 +17,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var profileView: UIView!
+    
     
     
     var subjectItems: [Subject] = []
@@ -37,6 +38,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             })
         }
         self.nameLabel.text = AuthenticationManager.user()?.name
+        profileView.layer.cornerRadius = 10
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,6 +85,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let item = subjectItems[indexPath.row]
         cell.textLabel?.text = item.nameEN
+        
+        let myCustomSelectionColorView = UIView()
+        myCustomSelectionColorView.backgroundColor = UIColor(red:1.00, green:0.81, blue:0.46, alpha:1.0)
+        cell.selectedBackgroundView = myCustomSelectionColorView
+
         
         return cell
     }

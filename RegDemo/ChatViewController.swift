@@ -492,7 +492,7 @@ class ChatViewController: JSQMessagesViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
         
         alertController.addTextField { (textField) in
-            textField.placeholder = "Nickname"
+            textField.placeholder = "Chat name"
         }
         
         alertController.addAction(confirmAction)
