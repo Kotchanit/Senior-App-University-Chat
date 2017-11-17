@@ -290,8 +290,12 @@ class ChatViewController: JSQMessagesViewController {
     
     //Show user's pic in chatroom for each message
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
-        let message = messages[indexPath.item]
-        return prepareAvatarImage(id: message.senderId, with: message.senderDisplayName)
+        if chatroomID == "news" {
+            return JSQMessagesAvatarImage.avatar(with: #imageLiteral(resourceName: "nu-logo"))
+        } else {
+            let message = messages[indexPath.item]
+            return prepareAvatarImage(id: message.senderId, with: message.senderDisplayName)
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
