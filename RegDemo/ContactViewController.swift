@@ -39,14 +39,20 @@ class ContactViewController: UIViewController, UITableViewDelegate {
             let dict = snapshot.value as? [String: Any]
             let name = dict?["name"] as? String
             let latestMessage = dict?["lastest_message"] as? String
-            let latestMessageTimestamp = dict?["lastest_message_timestamp"] as? String
+            let latestMessageTimestamp = Date(iso8601: dict?["lastest_message_timestamp"] as? String ?? "")
             
-            let members = (dict?["members"] as? [String: Any])?.keys
+            if let members = (dict?["members"] as? [String: Any])?.keys, members.count == 2, let memberID = members.filter({ $0 != uid }).first, let token = AuthenticationManager.token() {
+                let request = API.userImageURLRequest(token: token, userID: memberID)!
+                cell.chatImage.af_setImage(withURLRequest: request)
+            }
+            else {
+                cell.chatImage.image = UIImage(named: "icons8-customer") // default
+            }
             
             
             cell.chatNameLabel.text = name
             cell.latestMessageLabel.text = latestMessage
-            cell.timeLabel.text = latestMessageTimestamp
+            cell.timeLabel.text = latestMessageTimestamp?.chatFormatString
             
             let myCustomSelectionColorView = UIView()
             myCustomSelectionColorView.backgroundColor = UIColor(red:1.00, green:0.81, blue:0.46, alpha:1.0)

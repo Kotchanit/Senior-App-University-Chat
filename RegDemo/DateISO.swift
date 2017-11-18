@@ -17,7 +17,7 @@ extension Date {
         struct Static {
             static let instance: DateFormatter = {
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd'T' h:mm:ss.SSS'Z'"
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
                 dateFormatter.timeZone = TimeZone(identifier: "UTC")
                 dateFormatter.calendar = Calendar(identifier: Calendar.Identifier.gregorian)
                 return dateFormatter

@@ -270,23 +270,23 @@ class ChatViewController: JSQMessagesViewController {
         return thisMessage.date.timeIntervalSince(prevMessage.date) > 3600
     }
 
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAt indexPath: IndexPath!) -> NSAttributedString? {
-        if messages.count == 0 {
-            return nil
-        }
-        
-        let message = messages[indexPath.item]
-        let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: message.date)
-        let minute = calendar.component(.minute, from: message.date)
-        let cellBottomLabelText = String(format: "%02d:%02d", hour, minute)
-        
-        return NSAttributedString(string: cellBottomLabelText)
-    }
-    
-    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellBottomLabelAt indexPath: IndexPath!) -> CGFloat {
-        return kJSQMessagesCollectionViewCellLabelHeightDefault
-    }
+//    override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAt indexPath: IndexPath!) -> NSAttributedString? {
+//        if messages.count == 0 {
+//            return nil
+//        }
+//        
+//        let message = messages[indexPath.item]
+//        let calendar = Calendar.current
+//        let hour = calendar.component(.hour, from: message.date)
+//        let minute = calendar.component(.minute, from: message.date)
+//        let cellBottomLabelText = String(format: "%02d:%02d", hour, minute)
+//        
+//        return NSAttributedString(string: cellBottomLabelText)
+//    }
+//    
+//    override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellBottomLabelAt indexPath: IndexPath!) -> CGFloat {
+//        return kJSQMessagesCollectionViewCellLabelHeightDefault
+//    }
     
     //Show user's pic in chatroom for each message
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAt indexPath: IndexPath!) -> JSQMessageAvatarImageDataSource! {
@@ -504,18 +504,6 @@ class ChatViewController: JSQMessagesViewController {
         
         self.present(alertController, animated: true, completion: nil)
     }
-    
-//    @IBAction func DidPreessed(_ sender: Any) {
-//        if let tabbarVC = self.tabBarController, let vc = self.storyboard?.instantiateViewController(withIdentifier: "contactVC") {
-//            if (tabbarVC.viewControllers?.count ?? 0) < 2 { return }
-//            guard let desMavVC = tabbarVC.viewControllers?[1] as? UINavigationController else { return }
-//            vc.hidesBottomBarWhenPushed = true
-//            desMavVC.pushViewController(vc, animated: true)
-//            self.navigationController?.popToRootViewController(animated: false)
-//            tabbarVC.selectedIndex = 1
-//        }
-//
-//    }
     
 }
 

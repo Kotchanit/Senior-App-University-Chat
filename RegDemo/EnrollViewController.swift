@@ -122,18 +122,15 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func gotoChat(chatroomKey: String) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let chatVC = storyboard.instantiateViewController(withIdentifier: "chatVC") as! ChatViewController
-        chatVC.chatroomID = chatroomKey
-        self.navigationController?.pushViewController(chatVC, animated: true)
-        
-        // Wait 1 second and then remove self from navigation stack
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            if let vcs = self.navigationController?.viewControllers {
-                self.navigationController?.viewControllers = vcs.filter { $0 != self }
-            }
+        if let tabbarVC = self.tabBarController, let chatVC = self.storyboard?.instantiateViewController(withIdentifier: "chatVC") as? ChatViewController {
+            if (tabbarVC.viewControllers?.count ?? 0) < 2 { return }
+            guard let contactVC = tabbarVC.viewControllers?[1] as? UINavigationController else { return }
+            chatVC.chatroomID = chatroomKey
+            chatVC.hidesBottomBarWhenPushed = true
+            contactVC.pushViewController(chatVC, animated: true)
+            self.navigationController?.popToRootViewController(animated: false)
+            tabbarVC.selectedIndex = 1
         }
-        
     }
     
     @IBAction func entireClass(_ sender: Any) {
@@ -143,6 +140,8 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let chatroomKey = key ?? self.newSubjectChatroom(chatroomRef: chatroomRef, subjectID: self.subjectID)
             self.gotoChat(chatroomKey: chatroomKey)
         }
+        
+        
     }
     
     @IBAction func createNewChat(_ sender: Any) {
