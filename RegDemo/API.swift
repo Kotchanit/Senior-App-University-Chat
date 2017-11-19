@@ -84,7 +84,7 @@ class API {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(token.value)"
         ]
-        return try! URLRequest(url: baseURL+"api/profile/image", method: .get, headers: headers)
+        return try! URLRequest(url: baseURL+"api/profile/image?user=\(token.value)", method: .get, headers: headers)
     }
     
     static func userImageURLRequest(token: Token, userID: String) -> URLRequest? {
