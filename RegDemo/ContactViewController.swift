@@ -44,6 +44,11 @@ class ContactViewController: UIViewController, UITableViewDelegate {
             if let members = (dict?["members"] as? [String: Any])?.keys, members.count == 2, let memberID = members.filter({ $0 != uid }).first, let token = AuthenticationManager.token() {
                 let request = API.userImageURLRequest(token: token, userID: memberID)!
                 cell.chatImage.af_setImage(withURLRequest: request)
+                cell.chatImage.layer.borderWidth = 1
+                cell.chatImage.layer.masksToBounds = false
+                cell.chatImage.layer.borderColor = UIColor.white.cgColor
+                cell.chatImage.layer.cornerRadius = cell.chatImage.frame.height/2
+                cell.chatImage.clipsToBounds = true
             }
             else {
                 cell.chatImage.image = UIImage(named: "icons8-customer") // default
