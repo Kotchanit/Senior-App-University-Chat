@@ -40,20 +40,25 @@ class ContactViewController: UIViewController, UITableViewDelegate {
             let name = dict?["name"] as? String
             let latestMessage = dict?["lastest_message"] as? String
             let latestMessageTimestamp = Date(iso8601: dict?["lastest_message_timestamp"] as? String ?? "")
+            let subjectID = dict?["subjectID"] as? Int
             
             if let members = (dict?["members"] as? [String: Any])?.keys, members.count == 2, let memberID = members.filter({ $0 != uid }).first, let token = AuthenticationManager.token() {
                 let request = API.userImageURLRequest(token: token, userID: memberID)!
                 cell.chatImage.af_setImage(withURLRequest: request)
-                cell.chatImage.layer.borderWidth = 1
-                cell.chatImage.layer.masksToBounds = false
-                cell.chatImage.layer.borderColor = UIColor.white.cgColor
-                cell.chatImage.layer.cornerRadius = cell.chatImage.frame.height/2
-                cell.chatImage.clipsToBounds = true
             }
-            else {
-                cell.chatImage.image = UIImage(named: "icons8-customer") // default
+            else if let members = (dict?["members"] as? [String: Any])?.keys, members.count >= 3, subjectID != nil  {
+                cell.chatImage.image = UIImage(named: "school")
+            } else if let members = (dict?["members"] as? [String: Any])?.keys, members.count > 3, subjectID == nil {
+                cell.chatImage.image = UIImage(named: "group")
+            } else {
+                cell.chatImage.image = UIImage(named: "icons8-customer")
             }
             
+            cell.chatImage.layer.borderWidth = 1
+            cell.chatImage.layer.masksToBounds = false
+            cell.chatImage.layer.borderColor = UIColor.white.cgColor
+            cell.chatImage.layer.cornerRadius = cell.chatImage.frame.height/2
+            cell.chatImage.clipsToBounds = true
             
             cell.chatNameLabel.text = name
             cell.latestMessageLabel.text = latestMessage
