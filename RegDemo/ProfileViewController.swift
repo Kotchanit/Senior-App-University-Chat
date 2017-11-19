@@ -21,7 +21,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var facultyLabel: UILabel!
     @IBOutlet weak var programLabel: UILabel!
     @IBOutlet weak var gpaLabel: UILabel!
-    @IBOutlet weak var notificationSwitch: UISwitch!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var editNickname: UIButton!
     @IBOutlet weak var profileView: UIView!
