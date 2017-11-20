@@ -35,7 +35,7 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         entireBtn.layer.cornerRadius = 10
-        self.tabBarController?.tabBar.isHidden = true
+        
         if let token = AuthenticationManager.token() {
             API.enrolls(subject: subjectID, year: year, semester: semester, token: token, completion: { (result) in
                 if case let .success(items) = result {
