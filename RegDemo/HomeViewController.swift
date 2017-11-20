@@ -11,6 +11,7 @@ import AlamofireImage
 import Alamofire
 import FirebaseDatabase
 
+
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tableView: UITableView!
@@ -65,17 +66,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if let token = AuthenticationManager.token(), let request = API.profileImageURLRequest(token: token) {
             profileImageView.af_setImage(withURLRequest: request)
-            profileImageView.layer.borderWidth = 1
-            profileImageView.layer.masksToBounds = false
-            profileImageView.layer.borderColor = UIColor.white.cgColor
-            profileImageView.layer.cornerRadius = profileImageView.frame.height/2
-            profileImageView.clipsToBounds = true
+            
         }
+        
+        profileImageView.layer.borderWidth = 1
+        profileImageView.layer.masksToBounds = false
+        profileImageView.layer.borderColor = UIColor.white.cgColor
+        profileImageView.layer.cornerRadius = profileImageView.frame.height/2
+        profileImageView.clipsToBounds = true
         
         usernameLabel.text = AuthenticationManager.user()?.uid
         tableView.reloadData()
     }
     
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return subjectItems.count
     }
@@ -105,5 +109,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
 }
+
+
 
 
