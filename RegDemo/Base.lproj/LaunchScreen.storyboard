@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,16 +25,17 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="applogo" translatesAutoresizingMaskIntoConstraints="NO" id="rqI-7b-uiP">
                                 <rect key="frame" x="63" y="241" width="249" height="184"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="rqI-7b-uiP" secondAttribute="height" multiplier="249:184" id="31G-Z7-SLT"/>
+                                    <constraint firstAttribute="width" constant="249" id="m5j-zJ-Hqf"/>
+                                    <constraint firstAttribute="height" constant="184" id="zZG-tL-1oh"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.64914323569999999" blue="0.067234653980000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="rqI-7b-uiP" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="221" id="CEo-NQ-7fL"/>
-                            <constraint firstItem="rqI-7b-uiP" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="J2B-d6-Ezm"/>
-                            <constraint firstItem="rqI-7b-uiP" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Qxd-9H-fLW"/>
-                            <constraint firstItem="rqI-7b-uiP" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="47" id="ZaG-1d-SRD"/>
+                            <constraint firstItem="rqI-7b-uiP" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="47" id="5tP-8c-QXN"/>
+                            <constraint firstItem="rqI-7b-uiP" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="221" id="HLK-av-XwP"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="rqI-7b-uiP" secondAttribute="bottom" constant="242" id="Mmp-z0-Xfw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rqI-7b-uiP" secondAttribute="trailing" constant="47" id="hmc-i4-0EU"/>
                         </constraints>
                     </view>
                 </viewController>
