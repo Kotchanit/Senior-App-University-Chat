@@ -79,11 +79,9 @@ class ProfileViewController: UIViewController {
         }
         
         
-        if let gpa = gpaLabel.text { //check if  equal nil
+      
         
-        } else {
-            gpaLabel.text = "\(AuthenticationManager.user()?.latestGPA)"
-        }
+
         
         if AuthenticationManager.user()?.status != "student" {
             gpaLabel.isHidden = true
@@ -92,6 +90,7 @@ class ProfileViewController: UIViewController {
             programLabel.isHidden = true
         }
         
+        gpaLabel.text = "\(AuthenticationManager.user()?.latestGPA)"
         usernameLabel.text = AuthenticationManager.user()?.uid
         nameLabel.text = AuthenticationManager.user()?.name
         statusLabel.text = AuthenticationManager.user()?.status
