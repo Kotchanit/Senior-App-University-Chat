@@ -35,6 +35,8 @@ class ProfileViewController: UIViewController {
         editNickname.semanticContentAttribute = .forceRightToLeft
         editNickname.setTitle("Edit Nickname ", for: .normal)
         self.nicknameLabel.text = AuthenticationManager.user()?.name
+        profileImage.image = UIImage(named: "user")
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

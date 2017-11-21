@@ -20,8 +20,9 @@ class ContactViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
         
+        
+
         //user is not logged in
         checkIfUserisLoggedIn()
         
@@ -51,7 +52,7 @@ class ContactViewController: UIViewController, UITableViewDelegate {
             } else if let members = (dict?["members"] as? [String: Any])?.keys, members.count > 3, subjectID == nil {
                 cell.chatImage.image = UIImage(named: "group")
             } else {
-                cell.chatImage.image = UIImage(named: "icons8-customer")
+                cell.chatImage.image = UIImage(named: "user")
             }
             
             cell.chatImage.layer.borderWidth = 1

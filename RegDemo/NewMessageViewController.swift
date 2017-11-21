@@ -51,6 +51,7 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.tableView.setContentOffset(point, animated: true)
         self.hideKeyboardOnTap(#selector(self.dismissKeyboard))
+
     }
     
     func dismissKeyboard() {

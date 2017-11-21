@@ -60,12 +60,6 @@ class ChatViewController: JSQMessagesViewController {
         observeMembers()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let editVC = segue.destination as? EditViewController {
-            editVC.chatroomID = chatroomID
-        }
-    }
-    
     func observeMembers() {
         Database.database().reference().child("chatrooms").child(chatroomID).child("members").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject] {

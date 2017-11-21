@@ -38,6 +38,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             })
         }
+        profileImageView.image = UIImage(named: "user")
         self.nameLabel.text = AuthenticationManager.user()?.name
         profileView.layer.cornerRadius = 10
     }
