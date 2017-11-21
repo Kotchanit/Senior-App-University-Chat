@@ -24,6 +24,7 @@
 		16D573F01F89067600895277 /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D573EF1F89067600895277 /* Semester.swift */; };
 		16D970241EFBB9FF004ADD6E /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D970231EFBB9FF004ADD6E /* Subject.swift */; };
 		16D970261EFBC059004ADD6E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D970251EFBC059004ADD6E /* HomeViewController.swift */; };
+		16E6089B1FC445BE00F836AF /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E6089A1FC445BE00F836AF /* TabbarViewController.swift */; };
 		16E9B56A1F861C11007651A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16E9B5691F861C11007651A4 /* GoogleService-Info.plist */; };
 		16EADD861F3C4770003412F9 /* NewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EADD851F3C4770003412F9 /* NewMessageViewController.swift */; };
 		16F446801F1F57750023AE60 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F4467F1F1F57750023AE60 /* AuthenticationManager.swift */; };
@@ -57,6 +58,7 @@
 		16D573EF1F89067600895277 /* Semester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Semester.swift; sourceTree = "<group>"; };
 		16D970231EFBB9FF004ADD6E /* Subject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
 		16D970251EFBC059004ADD6E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		16E6089A1FC445BE00F836AF /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		16E9B5681F8619E3007651A4 /* RegDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RegDemo.entitlements; sourceTree = "<group>"; };
 		16E9B5691F861C11007651A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		16EADD851F3C4770003412F9 /* NewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				16350B4E1F9B6E47001586F7 /* DateISO.swift */,
 				16A52C511FA873D400F8FC32 /* EditableTableViewDataSource.swift */,
 				16350B481F9B6DA5001586F7 /* MessagesBubblesWithEmojiSizeCalculator.swift */,
+				16E6089A1FC445BE00F836AF /* TabbarViewController.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				16350B4F1F9B6E47001586F7 /* DateISO.swift in Sources */,
 				EDCFFCC41E811E6700496E5B /* Token.swift in Sources */,
 				16350B4D1F9B6DFE001586F7 /* DateChatFormat.swift in Sources */,
+				16E6089B1FC445BE00F836AF /* TabbarViewController.swift in Sources */,
 				169B9ABF1FB1CC580078B933 /* ProfileViewController.swift in Sources */,
 				EDCFFCC21E811D1500496E5B /* User.swift in Sources */,
 				16CA2F561F2089A900F83720 /* ChatViewController.swift in Sources */,
