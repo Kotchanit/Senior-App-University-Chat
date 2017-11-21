@@ -26,6 +26,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var infoView: UIView!
     
+    @IBOutlet weak var latestGPA: UILabel!
+    @IBOutlet weak var proGramName: UILabel!
+    
+    
+    
     var nickname = ""
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,12 +77,28 @@ class ProfileViewController: UIViewController {
             profileImage.layer.cornerRadius = profileImage.frame.height/2
             profileImage.clipsToBounds = true
         }
+        
+        
+        if let gpa = gpaLabel.text { //check if  equal nil
+        
+        } else {
+            gpaLabel.text = "\(AuthenticationManager.user()?.latestGPA)"
+        }
+        
+        if AuthenticationManager.user()?.status != "student" {
+            gpaLabel.isHidden = true
+            latestGPA.isHidden = true
+            proGramName.isHidden = true
+            programLabel.isHidden = true
+        }
+        
         usernameLabel.text = AuthenticationManager.user()?.uid
         nameLabel.text = AuthenticationManager.user()?.name
         statusLabel.text = AuthenticationManager.user()?.status
         facultyLabel.text = AuthenticationManager.user()?.facultyName
         programLabel.text = AuthenticationManager.user()?.programName
-        gpaLabel.text = "\(AuthenticationManager.user()?.latestGPA)"
+        
+        
     }
     
     @IBAction func editNickname(_ sender: Any) {

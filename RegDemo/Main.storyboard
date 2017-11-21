@@ -359,7 +359,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Czb-1A-er6">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Czb-1A-er6">
                                                         <rect key="frame" x="30" y="258" width="187" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -416,8 +416,10 @@
                         <outlet property="facultyLabel" destination="99W-rI-dD9" id="3MR-Gu-jjq"/>
                         <outlet property="gpaLabel" destination="Czb-1A-er6" id="63T-jH-mCT"/>
                         <outlet property="infoView" destination="2W2-Y0-gLZ" id="dSH-Wr-FzU"/>
+                        <outlet property="latestGPA" destination="lgz-66-0iG" id="z8P-xs-fXM"/>
                         <outlet property="nameLabel" destination="wr9-Pc-gR3" id="PKp-rT-aeC"/>
                         <outlet property="nicknameLabel" destination="eDF-F2-FW6" id="RNd-Q5-p7p"/>
+                        <outlet property="proGramName" destination="hbe-zm-Y8Y" id="ulh-tl-Az2"/>
                         <outlet property="profileImage" destination="sD8-WU-0zu" id="5a6-05-h55"/>
                         <outlet property="profileView" destination="wE2-39-auN" id="jdp-zU-kcU"/>
                         <outlet property="programLabel" destination="mz9-vn-ieL" id="bQs-tQ-Cbf"/>
