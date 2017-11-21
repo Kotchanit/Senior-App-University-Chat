@@ -114,8 +114,10 @@ class API {
                     let credit = subjectRaw["credit"] as? String ?? ""
                     let year = subjectRaw["year"] as? Int ?? 0
                     let semester = subjectRaw["semester"] as? Int ?? 0
+                    let sectionID = subjectRaw["semester"] as? Int ?? 0
+                    
                     // Create the subject object
-                    let subject = Subject(subjectID: subjectID, code: code, nameTH: nameTH, nameEN: nameEN, credit: credit, year: year, semester: semester)
+                    let subject = Subject(subjectID: subjectID, code: code, nameTH: nameTH, nameEN: nameEN, credit: credit, year: year, semester: semester, sectionID: sectionID)
                     subjects.append(subject)
                 }
                 

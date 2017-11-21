@@ -16,4 +16,5 @@ struct Subject {
     let credit: String
     let year: Int
     let semester: Int
+    let sectionID:Int
 }
