@@ -20,9 +20,6 @@ class ContactViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-
         //user is not logged in
         checkIfUserisLoggedIn()
         

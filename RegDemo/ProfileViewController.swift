@@ -78,11 +78,6 @@ class ProfileViewController: UIViewController {
             profileImage.clipsToBounds = true
         }
         
-        
-      
-        
-
-        
         if AuthenticationManager.user()?.status != "student" {
             gpaLabel.isHidden = true
             latestGPA.isHidden = true
@@ -90,13 +85,11 @@ class ProfileViewController: UIViewController {
             programLabel.isHidden = true
         }
         
-        gpaLabel.text = "\(AuthenticationManager.user()?.latestGPA)"
         usernameLabel.text = AuthenticationManager.user()?.uid
         nameLabel.text = AuthenticationManager.user()?.name
         statusLabel.text = AuthenticationManager.user()?.status
         facultyLabel.text = AuthenticationManager.user()?.facultyName
         programLabel.text = AuthenticationManager.user()?.programName
-        
         
     }
     
