@@ -10,5 +10,6 @@ import Foundation
 
 struct Enroll {
     let studentID: String
-    let name: String
+    let firstnameEN: String
+    let lastnameEN: String
 }

@@ -64,7 +64,7 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let item = displayedUsers[indexPath.row]
         
         cell.studentIDLabel.text = "\(item.studentID)"
-        cell.nameLabel.text = item.name
+        cell.nameLabel.text = "\(item.firstnameEN) \(item.lastnameEN)"
         
         if let token = AuthenticationManager.token(), let request = API.userImageURLRequest(token: token, userID: item.studentID) {
             cell.userImageView.af_setImage(withURLRequest: request)
@@ -178,6 +178,7 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })
     }
     
+    //Got a problem
     private func newChatroom(chatroomRef: DatabaseReference, memberIDs: [String]) -> String {
         let usersRef = Database.database().reference().child("users")
         let newChatroomKey = chatroomRef.childByAutoId().key
@@ -188,7 +189,7 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //check if user.id in allmembersID is true
         let selectedUsers = students.filter { memberIDs.contains($0.studentID) }
         //append name to names
-        let names = selectedUsers.map { $0.name } //check n
+        let names = selectedUsers.map { $0.firstnameEN } //check n
         nameRef.setValue(names.joined(separator: ", "))
         
         // Adds all members to chatroom
