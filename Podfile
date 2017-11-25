@@ -16,7 +16,6 @@ target 'RegDemo' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'FirebaseUI/Database'
-
   pod 'JSQMessagesViewController'
 
 end
