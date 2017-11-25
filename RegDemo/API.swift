@@ -22,9 +22,11 @@ enum DataError : Error {
 
 class API {
     
-    static let baseURL = "http://nuws.mobcomlab.com/"
+    //static let baseURL = "http://nuws.mobcomlab.com/"
+    static let baseURL = "https://nuws.nu.ac.th/"
     static let clientID = "1"
-    static let clientSecret = "fVXeDDZwCUfQ7jxohQ1uwUZ6myzsvNynWaL4eGHd"
+    //static let clientSecret = "fVXeDDZwCUfQ7jxohQ1uwUZ6myzsvNynWaL4eGHd"
+    static let clientSecret = "7yp5T6XA1gGmfxxsM1d2bl1zAyMNbKZRZhoyzBCb"
     
     static func login(username: String, password: String, completion: @escaping (Result<Token>) -> ()) {
         
