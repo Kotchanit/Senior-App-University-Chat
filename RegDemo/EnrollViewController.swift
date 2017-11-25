@@ -40,7 +40,10 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
             API.enrolls(subject: subjectID, year: year, semester: semester, token: token, completion: { (result) in
                 if case let .success(items) = result {
                     //print(items)
-                    self.students = items
+                    self.students = items.sorted(by: { (a, b) -> Bool in
+                        return a.studentID < b.studentID
+                    })
+                    
                     
                     self.tableView.reloadData()
                 } else {
