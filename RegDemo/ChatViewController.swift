@@ -15,6 +15,7 @@ import FirebaseStorage
 import FirebaseAuth
 import Alamofire
 import AlamofireImage
+import PhotoSlider
 
 class ChatViewController: JSQMessagesViewController {
     
@@ -31,6 +32,8 @@ class ChatViewController: JSQMessagesViewController {
     private let imageURLNotSetKey = "NOTSET"
     private let messageQueryLimit: UInt = 25
     var avatarString: String!
+    
+    var images = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -193,6 +196,7 @@ class ChatViewController: JSQMessagesViewController {
         sheet.addAction(videoLibrary)
         sheet.addAction(cancel)
         self.present(sheet, animated: true, completion: nil)
+        
     }
     
     func getMediaFrom(type: CFString, source: UIImagePickerControllerSourceType) {
@@ -331,16 +335,16 @@ class ChatViewController: JSQMessagesViewController {
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, didTapMessageBubbleAt indexPath: IndexPath!) {
-        print("didTapMessageBubbleAt indexPath: \(indexPath.item)")
         let message = messages[indexPath.item]
         if message.isMediaMessage {
             if let mediaItem = message.media as? JSQVideoMediaItem {
-            let player = AVPlayer(url: mediaItem.fileURL)
-            let playerViewController = AVPlayerViewController()
-            playerViewController.player = player //command to play video
-            self.present(playerViewController, animated: true, completion: nil)
+                let player = AVPlayer(url: mediaItem.fileURL)
+                let playerViewController = AVPlayerViewController()
+                playerViewController.player = player //command to play video
+                self.present(playerViewController, animated: true, completion: nil)
             }
         }
+        
     }
     
     override func didReceiveMemoryWarning() {

@@ -50,6 +50,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         showInfomation()
     }
     
+
     
     func showInfomation () {
         guard let uid = AuthenticationManager.user()?.uid else { return }
