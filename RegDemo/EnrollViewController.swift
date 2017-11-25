@@ -88,6 +88,7 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let user = displayedUsers[indexPath.row]
         let cell = tableView.cellForRow(at: indexPath)
         if cell?.accessoryType == .checkmark {
@@ -101,6 +102,7 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         updateSelectedUser()
     }
+
     
     @IBAction func selectAllUser() {
         selectedUserIDs = displayedUsers.map { $0.studentID }

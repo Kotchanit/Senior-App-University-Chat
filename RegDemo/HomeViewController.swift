@@ -50,8 +50,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         showInfomation()
     }
     
-
-    
     func showInfomation () {
         guard let uid = AuthenticationManager.user()?.uid else { return }
         
@@ -78,7 +76,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         profileImageView.clipsToBounds = true
         
         usernameLabel.text = AuthenticationManager.user()?.uid
-        tableView.reloadData()
     }
     
    
@@ -98,6 +95,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
