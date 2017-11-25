@@ -107,14 +107,14 @@ class API {
                 // Convert each subject raw into a subject
                 for subjectRaw in subjectsRaw {
                     // Get the data inside the subjectRaw
-                    let subjectID = subjectRaw["subject_id"] as? Int ?? 0
+                    let subjectID = self.parseInt(subjectRaw["subject_id"])
                     let code = subjectRaw["code"] as? String ?? ""
                     let nameTH = subjectRaw["name_th"] as? String ?? ""
                     let nameEN = subjectRaw["name_en"] as? String ?? ""
                     let credit = subjectRaw["credit"] as? String ?? ""
-                    let year = subjectRaw["year"] as? Int ?? 0
-                    let semester = subjectRaw["semester"] as? Int ?? 0
-                    let sectionID = subjectRaw["semester"] as? Int ?? 0
+                    let year = self.parseInt(subjectRaw["year"])
+                    let semester = self.parseInt(subjectRaw["semester"])
+                    let sectionID = self.parseInt(subjectRaw["section_id"])
                     
                     // Create the subject object
                     let subject = Subject(subjectID: subjectID, code: code, nameTH: nameTH, nameEN: nameEN, credit: credit, year: year, semester: semester, sectionID: sectionID)
@@ -197,5 +197,10 @@ class API {
 //        }
 //    }
 
-    
+    private static func parseInt(_ x: Any?, _ defaultValue: Int = 0) -> Int {
+        if let str = x as? String {
+            return Int(str) ?? defaultValue
+        }
+        return x as? Int ?? defaultValue
+    }
 }

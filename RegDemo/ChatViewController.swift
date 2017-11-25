@@ -170,27 +170,36 @@ class ChatViewController: JSQMessagesViewController {
     //Sender MediaMessages
     override func didPressAccessoryButton(_ sender: UIButton!) {
         print("didPressAccessoryButton")
-        let sheet = UIAlertController(title: "Media Messages", message: "Please select a media", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let sheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (alert : UIAlertAction) in
             
         }
+        let cameraPhoto = UIAlertAction(title: "Take a photo", style: .default) { (alert : UIAlertAction) in
+            self.getMediaFrom(type: kUTTypeImage, source: .camera)
+        }
+        let cameraVideo = UIAlertAction(title: "Record a video", style: .default) { (alert : UIAlertAction) in
+            self.getMediaFrom(type: kUTTypeMovie, source: .camera)
+        }
         let photoLibrary = UIAlertAction(title: "Photo Library", style: .default) { (alert : UIAlertAction) in
-            self.getMediaFrom(type: kUTTypeImage)
+            self.getMediaFrom(type: kUTTypeImage, source: .photoLibrary)
         }
         let videoLibrary = UIAlertAction(title: "Video Library", style: .default) { (alert : UIAlertAction) in
-            self.getMediaFrom(type: kUTTypeMovie)
+            self.getMediaFrom(type: kUTTypeMovie, source: .photoLibrary)
         }
         
+        sheet.addAction(cameraPhoto)
+        sheet.addAction(cameraVideo)
         sheet.addAction(photoLibrary)
         sheet.addAction(videoLibrary)
         sheet.addAction(cancel)
         self.present(sheet, animated: true, completion: nil)
     }
     
-    func getMediaFrom(type: CFString) {
+    func getMediaFrom(type: CFString, source: UIImagePickerControllerSourceType) {
         let mediaPicker = UIImagePickerController()
         mediaPicker.delegate = self
         mediaPicker.mediaTypes = [type as String]
+        mediaPicker.sourceType = source
         self.present(mediaPicker, animated: true, completion: nil)
     }
     

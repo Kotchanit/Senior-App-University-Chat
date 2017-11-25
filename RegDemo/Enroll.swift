@@ -12,4 +12,8 @@ struct Enroll {
     let studentID: String
     let firstnameEN: String
     let lastnameEN: String
+    
+    var nameEN: String {
+        return firstnameEN.capitalized + " " + lastnameEN.capitalized
+    }
 }

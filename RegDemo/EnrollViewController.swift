@@ -64,7 +64,7 @@ class EnrollViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let item = displayedUsers[indexPath.row]
         
         cell.studentIDLabel.text = "\(item.studentID)"
-        cell.nameLabel.text = "\(item.firstnameEN) \(item.lastnameEN)"
+        cell.nameLabel.text = item.nameEN
         
         if let token = AuthenticationManager.token(), let request = API.userImageURLRequest(token: token, userID: item.studentID) {
             cell.userImageView.af_setImage(withURLRequest: request)

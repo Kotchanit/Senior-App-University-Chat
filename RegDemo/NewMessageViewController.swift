@@ -21,7 +21,7 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
     var searchKeyword: String? = nil {
         didSet {
             if let keyword = searchKeyword, keyword != "" {
-                displayedUsers = users.filter { $0.uid != AuthenticationManager.user()?.uid && $0.name.contains(keyword) }
+                displayedUsers = users.filter { $0.uid != AuthenticationManager.user()?.uid && ($0.name.contains(keyword) || $0.username.hasPrefix(keyword)) }
             }
             else {
                 displayedUsers = users.filter { $0.uid != AuthenticationManager.user()?.uid }
@@ -72,23 +72,12 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.accessoryType = selectedUserIDs.contains(user.uid) ? .checkmark : .none
         
         if let token = AuthenticationManager.token(), let request = API.userImageURLRequest(token: token, userID: user.username) {
-            cell.userImageView.af_setImage(withURLRequest: request)
+            cell.userImageView.af_setImage(withURLRequest: request, placeholderImage: UIImage(named: "user"))
         }
-        
-        // cell.userImageView?.layer.borderWidth = 1
-        cell.userImageView?.layer.masksToBounds = false
-        //cell.userImageView?.layer.borderColor = UIColor.white.cgColor
-        cell.userImageView?.layer.cornerRadius = (cell.userImageView?.frame.height)!/2
-        cell.userImageView?.clipsToBounds = true
-        
-        //        cell.userImageView?.layer.cornerRadius = (cell.userImageView?.frame.size.width)! / 2
-        //        cell.userImageView?.layer.masksToBounds = true
-        
-        let myCustomSelectionColorView = UIView()
-        myCustomSelectionColorView.backgroundColor = UIColor(red:1.00, green:0.81, blue:0.46, alpha:1.0)
-        cell.selectedBackgroundView = myCustomSelectionColorView
+        else {
+            cell.userImageView.image = UIImage(named: "user")
+        }
 
-        
         return cell
     }
     
@@ -138,7 +127,10 @@ class NewMessageViewController: UIViewController, UITableViewDelegate, UITableVi
                     users.append(user)
                 }
             }
-            self.users = users
+            self.users = users.sorted(by: { (a, b) -> Bool in
+                return a.username < b.username
+            })
+            
             DispatchQueue.main.async{
                 self.tableView.reloadData()
             }
