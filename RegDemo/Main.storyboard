@@ -855,6 +855,11 @@
                         <color key="barTintColor" red="1" green="0.57457399368286133" blue="0.0019781978335231543" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="selectedImageTintColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="selectedIndex">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="V0F-kV-cF4" kind="relationship" relationship="viewControllers" id="49H-pO-05N"/>
                         <segue destination="q7n-UC-39o" kind="relationship" relationship="viewControllers" id="Ooe-4w-j3U"/>
