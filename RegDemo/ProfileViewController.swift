@@ -20,13 +20,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var facultyLabel: UILabel!
     @IBOutlet weak var programLabel: UILabel!
-    @IBOutlet weak var gpaLabel: UILabel!
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var editNickname: UIButton!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var infoView: UIView!
-    
-    @IBOutlet weak var latestGPA: UILabel!
     @IBOutlet weak var proGramName: UILabel!
     
     
@@ -79,8 +76,6 @@ class ProfileViewController: UIViewController {
         }
         
         if AuthenticationManager.user()?.status != "student" {
-            gpaLabel.isHidden = true
-            latestGPA.isHidden = true
             proGramName.isHidden = true
             programLabel.isHidden = true
         }

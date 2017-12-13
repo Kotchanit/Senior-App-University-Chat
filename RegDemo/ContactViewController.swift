@@ -44,10 +44,12 @@ class ContactViewController: UIViewController, UITableViewDelegate {
                 let request = API.userImageURLRequest(token: token, userID: memberID)!
                 cell.chatImage.af_setImage(withURLRequest: request)
             }
-            else if let members = (dict?["members"] as? [String: Any])?.keys, members.count >= 3, subjectID != nil  {
+            else if let members = (dict?["members"] as? [String: Any])?.keys, members.count > 10, subjectID != nil  {
                 cell.chatImage.image = UIImage(named: "school")
             } else if let members = (dict?["members"] as? [String: Any])?.keys, members.count > 3, subjectID == nil {
                 cell.chatImage.image = UIImage(named: "group")
+            } else if let name = dict?["name"] as? String, name == "Naresuan University" {
+                cell.chatImage.image = UIImage(named: "nu-logo")
             } else {
                 cell.chatImage.image = UIImage(named: "user")
             }
@@ -66,11 +68,6 @@ class ContactViewController: UIViewController, UITableViewDelegate {
             myCustomSelectionColorView.backgroundColor = UIColor(red:1.00, green:0.81, blue:0.46, alpha:1.0)
             cell.selectedBackgroundView = myCustomSelectionColorView
             
-//            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
-//            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//            cell.selectedBackgroundView = blurEffectView
-
-           
             return cell
         }, commitEdit: { (tableView, editingStyle, indexPath, snapshot) in
             let chatroomID = snapshot.key
@@ -86,7 +83,6 @@ class ContactViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         tableView.reloadData()
     }
     

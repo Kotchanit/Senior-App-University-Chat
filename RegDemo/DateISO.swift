@@ -20,6 +20,7 @@ extension Date {
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
                 dateFormatter.timeZone = TimeZone(identifier: "UTC")
                 dateFormatter.calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 return dateFormatter
             }()
         }

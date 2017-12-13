@@ -300,7 +300,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="325" height="284"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FACULTY NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWJ-Bb-2rK">
-                                                        <rect key="frame" x="8" y="168" width="309" height="21"/>
+                                                        <rect key="frame" x="8" y="168" width="317" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -319,20 +319,20 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USERNAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWG-tE-oJe">
-                                                        <rect key="frame" x="8" y="15" width="95" height="18"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="USERNAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWG-tE-oJe">
+                                                        <rect key="frame" x="8" y="15" width="309" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wrm-ob-dDi">
-                                                        <rect key="frame" x="8" y="64" width="50" height="18"/>
+                                                        <rect key="frame" x="8" y="64" width="309" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="STATUS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSv-Kt-eGJ">
-                                                        <rect key="frame" x="8" y="116" width="56" height="21"/>
+                                                        <rect key="frame" x="8" y="116" width="309" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -353,7 +353,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PROGRAM NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbe-zm-Y8Y">
-                                                        <rect key="frame" x="8" y="222" width="309" height="21"/>
+                                                        <rect key="frame" x="8" y="222" width="317" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -375,8 +375,8 @@
                                                     <constraint firstItem="Wrm-ob-dDi" firstAttribute="top" secondItem="kp9-vC-w01" secondAttribute="bottom" constant="8" id="ZBq-8m-2YM"/>
                                                     <constraint firstAttribute="height" constant="284" id="byg-z1-Wzg"/>
                                                     <constraint firstItem="LWG-tE-oJe" firstAttribute="top" secondItem="2W2-Y0-gLZ" secondAttribute="top" constant="15" id="g1w-Y4-e9C"/>
-                                                    <constraint firstAttribute="trailing" secondItem="LWG-tE-oJe" secondAttribute="trailing" constant="222" id="k4T-Ca-3lm"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Wrm-ob-dDi" secondAttribute="trailing" constant="267" id="qKb-gG-AlG"/>
+                                                    <constraint firstAttribute="trailing" secondItem="LWG-tE-oJe" secondAttribute="trailing" constant="8" id="k4T-Ca-3lm"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Wrm-ob-dDi" secondAttribute="trailing" constant="8" id="qKb-gG-AlG"/>
                                                     <constraint firstItem="LWG-tE-oJe" firstAttribute="leading" secondItem="2W2-Y0-gLZ" secondAttribute="leading" constant="8" id="y0q-jU-RSL"/>
                                                 </constraints>
                                             </view>
